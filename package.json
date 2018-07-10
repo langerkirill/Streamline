@@ -22,7 +22,8 @@
     "npm": "6.1.0"
   },
   "scripts": {
-    "webpack": "webpack --mode=development --watch"
+    "webpack": "webpack --mode=development --watch",
+    "postinstall": "webpack --mode=production"
   },
   "devDependencies": {
     "webpack-cli": "^2.1.2"
