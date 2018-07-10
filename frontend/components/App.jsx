@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 export default () => {
   return (
     <HashRouter>
+      <div>Put an application here</div>
     </HashRouter>
   );
 }
