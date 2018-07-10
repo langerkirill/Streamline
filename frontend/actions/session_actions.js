@@ -18,7 +18,7 @@ const logoutCurrentUser = () => {
 export const login = user => {
   return dispatch => {
     return SessionApiUtil.login(user).then(user => {
-      debugger
+
       return dispatch(receiveCurrentUser(user));
     }, errors => {
       return console.log(errors.responseJSON);
