@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root to: 'static_pages#root'
 
+  root to: 'static_pages#root'
   # we namespace the routes that return json specifically under api
   # all of these controller actions will return json.  We only need data now, not html
   # 'everything inside of this block should be organized under api'

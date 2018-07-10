@@ -1,7 +1,7 @@
 class Api::UsersController < ApplicationController
   def index
     @users = User.all
-    # render :index
+    render :index
   end
 
   def update
@@ -12,7 +12,7 @@ class Api::UsersController < ApplicationController
       render json: ['something went wrong'], status: 422
     end
   end
-  
+
   def create
     @user = User.new(user_params)
     if @user.save

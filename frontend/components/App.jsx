@@ -3,7 +3,7 @@ import React from 'react';
 import { HashRouter, Route, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-function App() {
+export default () => {
   return (
     <HashRouter>
     </HashRouter>

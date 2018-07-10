@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Root from './components/root';
 import configureStore from "./store/store";
+import {fetchUsers, createUser} from './actions/user_actions';
 
 document.addEventListener("DOMContentLoaded", () => {
   // We only create the store when this event fires
@@ -22,6 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     store = configureStore();
   }
+
+  window.fetchUsers = fetchUsers;
+  window.createUser = createUser;
   window.store = store;
   const root = document.getElementById("root");
   ReactDOM.render(<Root store={store} />, root);

@@ -8,7 +8,7 @@ export const fetchUsers = () => {
 export const createUser = user => {
   return $.ajax({
     method: 'POST',
-    url: `/api/users/`,
-    data: { user } // same as { user: user }
+    url: `/api/users`,
+    data: { user } 
   });
 };
