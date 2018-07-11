@@ -49,3 +49,75 @@
   align-items: center;
   height: 1000px;
 }
+
+.modal {
+  height: 407px;
+  width: 450px;
+  background: white;
+  position: absolute;
+  top: 30%;
+  left: -6%;
+  z-index: 20;
+  grid-template-rows: .3fr .8fr .3fr 2fr .8fr;
+  display: grid;
+}
+
+.modal-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.modal-title{
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: 32px;
+  padding: 10px;
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.modal-text {
+  font-family: serif;
+  margin-left: 24px;
+  font-size: 18px;
+}
+
+.signup-modal {
+  justify-content: flex-end;
+  height: 0px;
+  font-size: 15px;
+  width: 100px;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 30px;
+  background: #ff4500;
+  margin-top: 30px;
+  border: none;
+  position: absolute;
+  right: 6%;
+  bottom: 6%;
+}
+
+.modal-email, .modal-password {
+
+  width: 300px;
+  height: 40px;
+}
+
+.modal-exit {
+  font-size: 30px;
+  font-weight: 100;
+  color: lightgray;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+}

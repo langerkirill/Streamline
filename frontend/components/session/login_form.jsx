@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 
 class LogIn extends React.Component {
@@ -7,7 +7,7 @@ class LogIn extends React.Component {
     super(props);
 
     this.state = {
-      black: false,
+      black: true,
       username: '',
       password: ''
     };
@@ -27,12 +27,45 @@ class LogIn extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.login(Object.assign({}, this.state));
+    if (black) {
+        this.props.signup(Object.assign({}, this.state));
+    } else {
+        this.props.login(Object.assign({}, this.state));
+    }
   }
 
   render() {
 
     let btn_class = this.state.black ? "blackButton" : "whiteButton";
+    let signUpModal;
+
+    if (this.state.black) {
+      signUpModal = () => {
+        return (
+          <div className="modal">
+            <button className="modal-exit">X</button>
+            <div></div>
+            <div className="modal-title"> Sign up for free</div>
+            <div className="modal-text"> Join for the tracking. Stay for the community.</div>
+            <form className="modal-form" onSubmit={this.handleSubmit}>
+              <div>
+                <label>Email</label><br/>
+                <input type="text" className="modal-email"></input>
+              </div>
+              <div>
+                <label>New password</label><br/>
+                <input type="password" className="modal-password"></input>
+              </div>
+              <button class="signup-modal">Sign Up</button>
+            </form>
+          </div>
+        );
+      };
+    } else {
+      signUpModal = () => {
+        return ("");
+      }
+    }
 
     return (
       <div >
@@ -44,6 +77,7 @@ class LogIn extends React.Component {
           <div className="background">
             <div className={btn_class}>
               <div className="login-container">
+                {signUpModal()}
                 <div className="login-top"> Log In </div>
                   <div className="form-container">
                     <form className="login-form" onSubmit={this.handleSubmit}>
@@ -64,7 +98,6 @@ class LogIn extends React.Component {
           </div>
         </section>
       </div>
-
     );
   }
 }
