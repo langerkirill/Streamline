@@ -27,7 +27,7 @@ class SignUp extends React.Component {
   render() {
     return (
       <div>
-        <nav className="session-nav">
+        <nav className="session-nav-signup">
           <div className="icon" href="#home">StreamLine</div>
           <NavLink className="login" exact to="/login">Log In</NavLink>
         </nav>

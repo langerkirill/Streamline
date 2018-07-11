@@ -1,4 +1,6 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
+
 
 class LogIn extends React.Component {
   constructor(props) {
@@ -26,19 +28,25 @@ class LogIn extends React.Component {
   render() {
     return (
       <div>
-        <div className="icon" href="#home">StreamLine
-          <form onSubmit={this.handleSubmit}>
-            <input type="text"
-              value={this.state.username}
-              onChange={this.updateField('username')}/>
-            <br />
-            <input type="password"
-              value={this.state.password}
-              onChange={this.updateField('password')}/>
-            <br/>
-            <button>{this.props.buttonText}</button>
-          </form>
-        </div>
+        <nav className="session-nav-login">
+          <div className="icon" href="#home">StreamLine</div>
+          <NavLink className="signup" exact to="/signup">Sign Up</NavLink>
+        </nav>
+        <section>
+          <div className="background">
+            <div className="login-form-container">
+              <form className="login-form" onSubmit={this.handleSubmit}>
+                <input type="text" placeholder="Your Email"
+                  value={this.state.username}
+                  onChange={this.updateField('username')}/>
+                <input type="password" placeholder="Password"
+                  value={this.state.password}
+                  onChange={this.updateField('password')}/>
+                <button>{this.props.buttonText}</button>
+              </form>
+            </div>
+          </div>
+        </section>
       </div>
 
     );

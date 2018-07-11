@@ -1,6 +1,6 @@
 
 
-.session-nav{
+.session-nav-signup{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -11,17 +11,18 @@
   font-family: impact, serif;
 }
 
+
 .icon {
   font-weight:bolder;
 }
 
-.login{
+
+.signup{
   font-family: sans-serif;
   padding: 10px 20px;
   font-size: 12px;
-  font-weight: bold;
   border: 1px solid lightgray;
-  color: #ff4500;
+  color: grey;
   outline-style:none;
   box-shadow:none;
   text-decoration: none;
