@@ -42,12 +42,8 @@ class SignUp extends React.Component {
                 <div className="form-container">
                   <form className="signup-form" onSubmit={this.handleSubmit}>
                     <div></div>
-                    <input type="text" placeholder="First Name"
-                        value={this.state.username}
-                        onChange={this.updateField('fn')}/>
-                    <input type="text" placeholder="Last Name"
-                      value={this.state.username}
-                      onChange={this.updateField('ln')}/>
+                    <input type="text" placeholder="First Name"/>
+                    <input type="text" placeholder="Last Name"/>
                     <input type="text" placeholder="Your Email"
                       value={this.state.username}
                       onChange={this.updateField('username')}/>

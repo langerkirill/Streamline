@@ -7,7 +7,7 @@ class LogIn extends React.Component {
     super(props);
 
     this.state = {
-      black: true,
+      black: false,
       username: '',
       password: ''
     };
@@ -27,10 +27,13 @@ class LogIn extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    if (black) {
-        this.props.signup(Object.assign({}, this.state));
+    if (this.state.black) {
+      let newState = Object.assign({}, this.state);
+      delete newState['black'];
+      this.props.signup(newState);
+      debugger
     } else {
-        this.props.login(Object.assign({}, this.state));
+      this.props.login(Object.assign({}, this.state));
     }
   }
 
@@ -43,20 +46,22 @@ class LogIn extends React.Component {
       signUpModal = () => {
         return (
           <div className="modal">
-            <button className="modal-exit">X</button>
+            <button className="modal-exit" onClick={this.changeColor.bind(this)}>X</button>
             <div></div>
             <div className="modal-title"> Sign up for free</div>
             <div className="modal-text"> Join for the tracking. Stay for the community.</div>
             <form className="modal-form" onSubmit={this.handleSubmit}>
               <div>
                 <label>Email</label><br/>
-                <input type="text" className="modal-email"></input>
+                <input type="text" className="modal-email" value={this.state.username}
+                onChange={this.updateField('username')}></input>
               </div>
               <div>
                 <label>New password</label><br/>
-                <input type="password" className="modal-password"></input>
+                <input type="password" className="modal-password" value={this.state.password}
+                onChange={this.updateField('password')}></input>
               </div>
-              <button class="signup-modal">Sign Up</button>
+              <button className="signup-modal">Sign Up</button>
             </form>
           </div>
         );
