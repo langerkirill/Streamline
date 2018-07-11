@@ -1,7 +1,7 @@
 
 .login{
   font-family: sans-serif;
-  padding: 10px 20px;
+  padding: 10px 30px;
   font-size: 12px;
   font-weight: bold;
   border: 1px solid lightgray;
@@ -11,17 +11,11 @@
   text-decoration: none;
 }
 
-.background {
-  background: url(http://wallpaperstop.net/wp-content/uploads/2018/02/Mountain%20Bikes%20High%20Definition.jpg);
-  max-width:100%;
-  min-height:652px;
-  height: 1000px;
-  background-size: contain;
-  display: flex;
-  align-items: center;
-  background-repeat: no-repeat;
+.login:hover{
+  background-color: lightgray;
+  border: 1px solid grey;
+  transition: .5s;
 }
-
 
 .session-nav-login{
   display: flex;
@@ -35,8 +29,10 @@
 }
 
 .login-container{
+  position: absolute;
+  top: 6%;
+  right: 35%;
   border-radius: 3px;
-  margin-top: 80px;
   margin: 0 auto;
   height: 500px;
   background-color: rgba(0,0,0, 0.7);
@@ -83,4 +79,8 @@
   background: #ff4500;
   margin-top: 30px;
   border: none;
+}
+
+.login-form > input:focus {
+  background: white;
 }

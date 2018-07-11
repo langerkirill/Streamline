@@ -15,11 +15,11 @@
 .background {
   background: url(http://wallpaperstop.net/wp-content/uploads/2018/02/Mountain%20Bikes%20High%20Definition.jpg);
   max-width:100%;
-  min-height:652px;
+  min-height: 1000px;
   height: 1000px;
-  background-size: contain;
-  display: flex;
+  background-size: cover;
   background-repeat: no-repeat;
+  position: relative;
 }
 
 .signup-buttons{
@@ -40,6 +40,9 @@
 }
 
 .signup-container{
+  top: 6%;
+  right: 35%;
+  position: absolute;
   border-radius: 3px;
   margin: 0 auto;
   height: 500px;
@@ -74,6 +77,10 @@
   background: black;
   width: 260px;
   margin-bottom: 10px;
+}
+
+.signup-form > input:focus {
+  background: white;
 }
 
 .signup-form > button {

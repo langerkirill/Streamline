@@ -40,28 +40,3 @@
   align-items: center;
   height: 1000px;
 }
-
-.splash-login{
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin-top: 50px;
-  color: black;
-  border: 1px solid lightgrey;
-  outline-style:none;
-  box-shadow:none;
-  text-decoration: none;
-  padding: 15px 200px;
-}
-
-.mail{
-  text-align: left;
-  margin: 0;
-  display: flex;
-  justify-content: flex-start;
-  margin-left: -180px;
-}
-
-.splash-login-text{
-  padding-left: 200px;
-}
