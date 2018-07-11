@@ -3,6 +3,7 @@ import { HashRouter, Route, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LoginContainer from './session/login_container';
 import SignupContainer from './session/signup_container';
+import SplashPage from './session/splash_page';
 import Dashboard from './dashboard/dash_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { logout } from '../actions/session_actions';
@@ -26,7 +27,7 @@ function App({ loggedIn, user, logout }) {
         }
 
         <AuthRoute exact component={SignupContainer} path="/signup" />
-        <AuthRoute exact component={SignupContainer} path="/" />
+        <AuthRoute exact component={SplashPage} path="/" />
         <AuthRoute component={LoginContainer} path="/login" />
         <ProtectedRoute component={Dashboard} path="/dashboard" />
 

@@ -7,15 +7,13 @@
   color: #ff4500;
   border-bottom: 1px solid lightgray;
   font-size: 25px;
-  padding: 5px 80px;
+  padding: 5px 150px;
   font-family: impact, serif;
 }
-
 
 .icon {
   font-weight:bolder;
 }
-
 
 .signup{
   font-family: sans-serif;
@@ -26,4 +24,44 @@
   outline-style:none;
   box-shadow:none;
   text-decoration: none;
+}
+
+.main-text{
+  font-family: sans-serif;
+  font-weight: 100;
+  font-size: 50px;
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.session-main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 1000px;
+}
+
+.splash-login{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 50px;
+  color: black;
+  border: 1px solid lightgrey;
+  outline-style:none;
+  box-shadow:none;
+  text-decoration: none;
+  padding: 15px 200px;
+}
+
+.mail{
+  text-align: left;
+  margin: 0;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: -180px;
+}
+
+.splash-login-text{
+  padding-left: 200px;
 }

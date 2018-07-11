@@ -1,6 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 
+
 class SignUp extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +22,7 @@ class SignUp extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.formAction(Object.assign({}, this.state));
+    this.props.signup(Object.assign({}, this.state));
   }
 
   render() {
@@ -29,21 +30,39 @@ class SignUp extends React.Component {
       <div>
         <nav className="session-nav-signup">
           <div className="icon" href="#home">StreamLine</div>
-          <NavLink className="login" exact to="/login">Log In</NavLink>
+          <div className="signup-buttons">
+            <NavLink className="login" exact to="/login">Log In</NavLink>
+            <NavLink className="signup" exact to="/signup">Sign Up</NavLink>
+          </div>
         </nav>
-
-        <form onSubmit={this.handleSubmit}>
-          <input type="text"
-            value={this.state.username}
-            onChange={this.updateField('username')}/>
-          <br />
-          <input type="password"
-            value={this.state.password}
-            onChange={this.updateField('password')}/>
-          <br/>
-          <button>{this.props.buttonText}</button>
-        </form>
+        <section>
+          <div className="background">
+            <div className="signup-container">
+              <div className="signup-top"> Join Streamline today, it's Free </div>
+                <div className="form-container">
+                  <form className="signup-form" onSubmit={this.handleSubmit}>
+                    <div></div>
+                    <input type="text" placeholder="First Name"
+                        value={this.state.username}
+                        onChange={this.updateField('fn')}/>
+                    <input type="text" placeholder="Last Name"
+                      value={this.state.username}
+                      onChange={this.updateField('ln')}/>
+                    <input type="text" placeholder="Your Email"
+                      value={this.state.username}
+                      onChange={this.updateField('username')}/>
+                    <input type="password" placeholder="Password"
+                      value={this.state.password}
+                      onChange={this.updateField('password')}/>
+                    <div></div>
+                    <button>{this.props.buttonText}</button>
+                  </form>
+                </div>
+            </div>
+          </div>
+        </section>
       </div>
+
     );
   }
 }

@@ -22,7 +22,7 @@ class LogIn extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.formAction(Object.assign({}, this.state));
+    this.props.login(Object.assign({}, this.state));
   }
 
   render() {
@@ -36,15 +36,19 @@ class LogIn extends React.Component {
           <div className="background">
             <div className="login-container">
               <div className="login-top"> Log In </div>
-              <form className="login-form" onSubmit={this.handleSubmit}>
-                <input type="text" placeholder="Your Email"
-                  value={this.state.username}
-                  onChange={this.updateField('username')}/>
-                <input type="password" placeholder="Password"
-                  value={this.state.password}
-                  onChange={this.updateField('password')}/>
-                <button>{this.props.buttonText}</button>
-              </form>
+                <div className="form-container">
+                  <form className="login-form" onSubmit={this.handleSubmit}>
+                    <div></div>
+                    <input type="text" placeholder="Your Email"
+                      value={this.state.username}
+                      onChange={this.updateField('username')}/>
+                    <input type="password" placeholder="Password"
+                      value={this.state.password}
+                      onChange={this.updateField('password')}/>
+                    <div></div>
+                    <button>{this.props.buttonText}</button>
+                  </form>
+                </div>
             </div>
           </div>
         </section>
