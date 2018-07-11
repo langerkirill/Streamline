@@ -15,7 +15,7 @@ function App({ loggedIn, user, logout }) {
       <div>
         { !loggedIn ?
           <div>
-            
+
           </div>
           :
           <div>
@@ -26,6 +26,7 @@ function App({ loggedIn, user, logout }) {
         }
 
         <AuthRoute exact component={SignupContainer} path="/signup" />
+        <AuthRoute exact component={SignupContainer} path="/" />
         <AuthRoute component={LoginContainer} path="/login" />
         <ProtectedRoute component={Dashboard} path="/dashboard" />
 

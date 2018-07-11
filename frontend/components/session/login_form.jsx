@@ -34,7 +34,8 @@ class LogIn extends React.Component {
         </nav>
         <section>
           <div className="background">
-            <div className="login-form-container">
+            <div className="login-container">
+              <div className="login-top"> Log In </div>
               <form className="login-form" onSubmit={this.handleSubmit}>
                 <input type="text" placeholder="Your Email"
                   value={this.state.username}
