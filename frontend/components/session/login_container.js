@@ -4,14 +4,13 @@ import { login } from '../../actions/session_actions';
 
 function mapStateToProps(state, ownProps) {
   return {
-    buttonText: "LOGIN"
+    buttonText: "Log In"
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  // here we want to dispatch an action to login a user and call it formAction
   return {
-    formAction: user => dispatch(login(user))
+    login: user => dispatch(login(user))
   };
 }
 

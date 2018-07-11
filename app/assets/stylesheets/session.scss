@@ -1,0 +1,28 @@
+
+
+.session-nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ff4500;
+  border-bottom: 1px solid lightgray;
+  font-size: 25px;
+  padding: 5px 80px;
+  font-family: impact, serif;
+}
+
+.icon {
+  font-weight:bolder;
+}
+
+.login{
+  font-family: sans-serif;
+  padding: 10px 20px;
+  font-size: 12px;
+  font-weight: bold;
+  border: 1px solid lightgray;
+  color: #ff4500;
+  outline-style:none;
+  box-shadow:none;
+  text-decoration: none;
+}
