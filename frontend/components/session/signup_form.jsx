@@ -29,10 +29,10 @@ class SignUp extends React.Component {
     return (
       <div>
         <nav className="session-nav-signup">
-          <div className="icon" href="#home">StreamLine</div>
+          <NavLink className="icon" exact to="/" href="#home">StreamLine</NavLink>
           <div className="signup-buttons">
-            <NavLink className="login" exact to="/login">Log In</NavLink>
-            <NavLink className="signup" exact to="/signup">Sign Up</NavLink>
+            <NavLink className="login-signup" exact to="/login">Log In</NavLink>
+            <NavLink className="signup" exact to="/signup">Sign up</NavLink>
           </div>
         </nav>
         <section>
@@ -55,8 +55,10 @@ class SignUp extends React.Component {
                       value={this.state.password}
                       onChange={this.updateField('password')}/>
                     <div></div>
-                    <button>{this.props.buttonText}</button>
+                    <button className="signup-signup">{this.props.buttonText}</button>
                   </form>
+                  <p className="signup-text">By signing up for Streamline, you agree to the <strong>Terms of Service</strong>.<br/>
+                    View our <strong>Privacy Policy</strong>.</p>
                 </div>
             </div>
           </div>

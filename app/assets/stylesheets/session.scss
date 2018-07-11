@@ -13,6 +13,10 @@
 
 .icon {
   font-weight:bolder;
+  outline-style:none;
+  box-shadow:none;
+  text-decoration: none;
+  color: #e53e00;
 }
 
 .signup{
@@ -24,6 +28,11 @@
   outline-style:none;
   box-shadow:none;
   text-decoration: none;
+}
+
+.signup:hover{
+  background: #e53e00;
+  transition: .5s;
 }
 
 .main-text{

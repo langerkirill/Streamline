@@ -1,5 +1,5 @@
 
-.signup{
+.signup {
   font-family: sans-serif;
   padding: 10px 20px;
   font-size: 12px;
@@ -13,6 +13,7 @@
 }
 
 .background {
+  background-color: inherit;
   background: url(http://wallpaperstop.net/wp-content/uploads/2018/02/Mountain%20Bikes%20High%20Definition.jpg);
   max-width:100%;
   min-height: 1000px;
@@ -25,7 +26,7 @@
 .signup-buttons{
   display: flex;
   width: 200px;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .session-nav-signup{
@@ -35,7 +36,7 @@
   color: #ff4500;
   border-bottom: 1px solid lightgray;
   font-size: 25px;
-  padding: 5px 200px;
+  padding: 5px 400px;
   font-family: impact, serif;
 }
 
@@ -45,7 +46,7 @@
   position: absolute;
   border-radius: 3px;
   margin: 0 auto;
-  height: 500px;
+  height: 600px;
   background-color: rgba(0,0,0, 0.7);
   width: 400px;
   border: 1px solid black;
@@ -95,4 +96,30 @@
   background: #ff4500;
   margin-top: 30px;
   border: none;
+}
+
+.signup-form > button:hover {
+  background: #e53e00;
+  transition: .5s;
+  cursor: pointer;
+}
+
+.signup-text{
+  text-align: center;
+  color: white;
+  margin: 0 auto;
+  width: 300px;
+  font-size: 15px;
+  margin-top: 30px;
+}
+
+.login-signup{
+  font-family: sans-serif;
+  padding: 10px 20px;
+  font-size: 12px;
+  border: 1px solid lightgray;
+  color: gray;
+  outline-style:none;
+  box-shadow:none;
+  text-decoration: none;
 }
