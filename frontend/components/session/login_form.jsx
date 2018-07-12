@@ -36,7 +36,7 @@ class LogIn extends React.Component {
       let newState = Object.assign({}, this.state);
       delete newState['black'];
       this.props.signup(newState);
-      debugger
+
     } else {
       this.props.login(Object.assign({}, this.state));
     }

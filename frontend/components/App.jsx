@@ -10,7 +10,7 @@ import { logout } from '../actions/session_actions';
 
 
 function App({ loggedIn, user, logout }) {
-  debugger
+
   return (
     <HashRouter >
       <div>
@@ -37,7 +37,7 @@ function App({ loggedIn, user, logout }) {
 }
 
 const mapStateToProps = state => {
-  debugger
+
   return {
     loggedIn: Boolean(state.session.id),
     user: state.entities.users[state.session.id]
