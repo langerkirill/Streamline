@@ -20,7 +20,6 @@ const receiveUser = user => {
 export const fetchUsers = () => {
   return dispatch => {
     return UserApiUtil.fetchUsers().then(users => {
-      
       return dispatch(receiveUsers(users));
     });
   };

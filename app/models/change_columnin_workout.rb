@@ -1,0 +1,2 @@
+class ChangeColumninWorkout < ApplicationRecord
+end

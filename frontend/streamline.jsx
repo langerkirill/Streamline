@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Root from './components/Root';
 import configureStore from "./store/store";
-import {fetchUsers, createUser} from './actions/user_actions';
-import {login, signup, logout} from './actions/session_actions';
+import { fetchWorkouts } from './actions/workout_actions';
+import { login, signup, logout } from './actions/session_actions';
 
 document.addEventListener("DOMContentLoaded", () => {
   // We only create the store when this event fires
@@ -24,6 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     store = configureStore();
   }
+
+  window.store = store;
+  window.fetchWorkouts = fetchWorkouts;
+
   const root = document.getElementById("root");
   ReactDOM.render(<Root store={store} />, root);
 });
