@@ -14,11 +14,10 @@
 
 .background {
   background-color: inherit;
-  background: url(http://wallpaperstop.net/wp-content/uploads/2018/02/Mountain%20Bikes%20High%20Definition.jpg);
-  max-width:100%;
+  min-width:100%;
   min-height: 1000px;
   height: 1000px;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   position: relative;
 }
@@ -36,12 +35,11 @@
   color: #ff4500;
   border-bottom: 1px solid lightgray;
   font-size: 25px;
-  padding: 5px 400px;
   font-family: impact, serif;
 }
 
 .signup-container{
-  top: 6%;
+  top: 15%;
   right: 35%;
   position: absolute;
   border-radius: 3px;

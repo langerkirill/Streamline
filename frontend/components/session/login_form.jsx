@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
+import { bpicker } from './background_picker';
 
 class LogIn extends React.Component {
   constructor(props) {
@@ -13,6 +13,11 @@ class LogIn extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    let back = bpicker();
+    this.setState({image: back});
   }
 
   changeColor(){
@@ -38,6 +43,20 @@ class LogIn extends React.Component {
   }
 
   render() {
+    let errors;
+    const errorDisplay = () => {
+      if (Object.keys(this.props.errors).length > 0) {
+        errors = this.props.errors.join();
+        return (
+          <h3 className="errors">{`${errors}`}</h3>
+        );
+      } else {
+        errors = "";
+        return (
+          <div className="errors">{`${errors}`}</div>
+        );
+      }
+    }
 
     let btn_class = this.state.black ? "blackButton" : "whiteButton";
     let signUpModal;
@@ -76,30 +95,32 @@ class LogIn extends React.Component {
       <div >
         <nav className={`${btn_class} session-nav-login`}>
           <NavLink className="icon" exact to="/" href="#home">StreamLine</NavLink>
-          <button className={btn_class} id="login-signup" onClick={this.changeColor.bind(this)}>Sign Up</button>
+          <button id="login-signup" onClick={this.changeColor.bind(this)}>Sign Up</button>
         </nav>
         <section >
-          <div className="background">
-            <div className={btn_class}>
-              <div className="login-container">
-                {signUpModal()}
-                <div className="login-top"> Log In </div>
-                  <div className="form-container">
-                    <form className="login-form" onSubmit={this.handleSubmit}>
-                      <div></div>
-                      <input type="text" placeholder="Your Email"
-                        value={this.state.username}
-                        onChange={this.updateField('username')}/>
-                      <input type="password" placeholder="Password"
-                        value={this.state.password}
-                        onChange={this.updateField('password')}/>
-                      <div></div>
-                      <button className="login-button">{this.props.buttonText}</button>
-                      <div className="line"></div>
-                    </form>
-                  </div>
+          <div >
+            <img className={`background ${btn_class}`} src={`${this.state.image}`}/>
+              <div>
+                <div className="login-container">
+                  {signUpModal()}
+                  <div className="login-top"> Log In </div>
+                  {errorDisplay()}
+                    <div className="form-container">
+                      <form className="login-form" onSubmit={this.handleSubmit}>
+                        <div></div>
+                        <input type="text" placeholder="Your Email"
+                          value={this.state.username}
+                          onChange={this.updateField('username')}/>
+                        <input type="password" placeholder="Password"
+                          value={this.state.password}
+                          onChange={this.updateField('password')}/>
+                        <div></div>
+                        <button className="login-button">{this.props.buttonText}</button>
+                        <div className="line"></div>
+                      </form>
+                    </div>
+                </div>
               </div>
-            </div>
           </div>
         </section>
       </div>

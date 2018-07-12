@@ -3,7 +3,9 @@ import SignUpForm from './signup_form';
 import { signup } from '../../actions/session_actions';
 
 function mapStateToProps(state, ownProps) {
+  const image = "";
   return {
+    image,
     buttonText: "Sign Up"
   };
 }
