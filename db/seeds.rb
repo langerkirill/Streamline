@@ -18,27 +18,27 @@ brian = User.new(username: "Brie-an", password: "hunter12")
 
 
 file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/9MtdRUSbWbnfi8nobuX3JVAw')
-mashu.photo.attach(io: file, filename: '9MtdRUSbWbnfi8nobuX3JVAw')
+mashu.image.attach(io: file, filename: '9MtdRUSbWbnfi8nobuX3JVAw.jpg')
 mashu.save!
 
 file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/WgyqympQM5D1qY1HfvZns5LX')
-brian.photo.attach(io: file, filename: 'WgyqympQM5D1qY1HfvZns5LX')
+brian.image.attach(io: file, filename: 'WgyqympQM5D1qY1HfvZns5LX')
 brian.save!
 
 file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/f2esHiWwHAS2tRAgXGQFyTih')
-maurice.photo.attach(io: file, filename: 'f2esHiWwHAS2tRAgXGQFyTih')
+maurice.image.attach(io: file, filename: 'f2esHiWwHAS2tRAgXGQFyTih.jpg')
 maurice.save!
 
 file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/ntuZxViKfZ9ubWYSPDPRWnGG')
-abby.photo.attach(io: file, filename: 'ntuZxViKfZ9ubWYSPDPRWnGG')
+abby.image.attach(io: file, filename: 'ntuZxViKfZ9ubWYSPDPRWnGG.jpg')
 abby.save!
 
 file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/rDf1cFFSZ2Jhvv9Vqv6SzKzJ')
-oscar.photo.attach(io: file, filename: 'rDf1cFFSZ2Jhvv9Vqv6SzKzJ')
+oscar.image.attach(io: file, filename: 'rDf1cFFSZ2Jhvv9Vqv6SzKzJ.jpg')
 oscar.save!
 
 file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/uTGLfqceLDFRASg3j8pL6eiB')
-matthias.photo.attach(io: file, filename: 'uTGLfqceLDFRASg3j8pL6eiB')
+matthias.image.attach(io: file, filename: 'uTGLfqceLDFRASg3j8pL6eiB.jpg')
 matthias.save!
 
 Workout.create!(workout_type: "running", duration: 85,  miles: 13, date: DateTime.new(2201,8,12), user_id: mashu.id)
