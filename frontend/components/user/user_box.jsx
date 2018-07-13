@@ -34,8 +34,15 @@ class UserBox extends React.Component {
         </div>
         <div className="username">{this.props.user.username}</div>
         <div className="user-info"></div>
-        <div className="user-activity"></div>
-        <NavLink className="nav-left-links" to="/training"> Training </NavLink>
+        <div className="user-activity">
+          <div>
+          Latest Activity
+          </div>
+          <div>
+          <strong>Night Ride</strong> • May 3, 2018
+          </div>
+        </div>
+        <NavLink className="user-training-link" to="/training"> Your Training Log </NavLink>
       </section>
     )
   }
