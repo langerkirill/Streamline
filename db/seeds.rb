@@ -8,35 +8,34 @@
 
 User.destroy_all
 Workout.destroy_all
-
-mashu = User.create!(username: "Mashu-rella", password: "hunter12")
-oscar = User.create!(username: "Osc-iago", password: "hunter12")
-abby = User.create!(username: "Feta!", password: "hunter12")
-maurice = User.create!(username: "Peppa-J", password: "hunter12")
-matthias = User.create!(username: "Mr. Swiss", password: "hunter12")
-brian = User.create!(username: "Brie-an", password: "hunter12")
 #
 #
+mashu = User.new(username: "Mashu-rella", password: "hunter12")
 file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/9MtdRUSbWbnfi8nobuX3JVAw')
 mashu.image.attach(io: file, filename: '9MtdRUSbWbnfi8nobuX3JVAw')
 mashu.save!
 
+brian = User.new(username: "Brie-an", password: "hunter12")
 file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/WgyqympQM5D1qY1HfvZns5LX')
 brian.image.attach(io: file, filename: 'WgyqympQM5D1qY1HfvZns5LX')
 brian.save!
 
+maurice = User.new(username: "Peppa-J", password: "hunter12")
 file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/f2esHiWwHAS2tRAgXGQFyTih')
 maurice.image.attach(io: file, filename: 'f2esHiWwHAS2tRAgXGQFyTih')
 maurice.save!
 
+abby = User.new(username: "Feta!", password: "hunter12")
 file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/ntuZxViKfZ9ubWYSPDPRWnGG')
 abby.image.attach(io: file, filename: 'ntuZxViKfZ9ubWYSPDPRWnGG')
 abby.save!
 
+oscar = User.new(username: "Osc-iago", password: "hunter12")
 file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/rDf1cFFSZ2Jhvv9Vqv6SzKzJ')
 oscar.image.attach(io: file, filename: 'rDf1cFFSZ2Jhvv9Vqv6SzKzJ')
 oscar.save!
 
+matthias = User.new(username: "Mr. Swiss", password: "hunter12")
 file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/uTGLfqceLDFRASg3j8pL6eiB')
 matthias.image.attach(io: file, filename: 'uTGLfqceLDFRASg3j8pL6eiB')
 matthias.save!
