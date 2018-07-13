@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_12_192036) do
+ActiveRecord::Schema.define(version: 2018_07_13_181902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,11 @@ ActiveRecord::Schema.define(version: 2018_07_12_192036) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "add_columns_to_workouts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "change_columnin_workouts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -47,6 +52,8 @@ ActiveRecord::Schema.define(version: 2018_07_12_192036) do
     t.string "session_token", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "fname"
+    t.string "lname"
     t.index ["username"], name: "index_users_on_username"
   end
 
@@ -59,6 +66,9 @@ ActiveRecord::Schema.define(version: 2018_07_12_192036) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
+    t.string "elevation"
+    t.integer "achievments"
   end
 
 end

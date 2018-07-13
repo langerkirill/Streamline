@@ -99,7 +99,7 @@ class LogIn extends React.Component {
         </nav>
         <section >
           <div >
-            <img className={`background ${btn_class}`} src={`${this.state.image}`}/>
+            <img className={`background ${btn_class}`} src={this.state.image}/>
               <div>
                 <div className="login-container">
                   {signUpModal()}

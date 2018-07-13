@@ -33,6 +33,9 @@ class SignUp extends React.Component {
   }
 
   render() {
+
+    let photo = this.state.image;
+
     return (
       <div>
         <nav className="session-nav-signup">
@@ -44,7 +47,7 @@ class SignUp extends React.Component {
         </nav>
         <section>
           <div >
-            <img className="background" src={`${this.state.image}`}/>
+            <img className="background" src={this.state.image}/>
               <div className="signup-container">
                 <div className="signup-top"> Join Streamline today, it's Free </div>
                   <div className="form-container">
