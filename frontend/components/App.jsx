@@ -40,7 +40,7 @@ function App({ loggedIn, user, logout }) {
         <AuthRoute exact component={SignupContainer} path="/signup" />
         <AuthRoute exact component={SplashPage} path="/" />
         <AuthRoute component={LoginContainer} path="/login" />
-        <ProtectedRoute component={Dashboard} path="/dashboard" />
+        <ProtectedRoute user={user} component={Dashboard} path="/dashboard" />
 
       </div>
     </HashRouter>

@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 class WorkoutIndexItem extends React.Component {
 
   render () {
-    debugger
+
     const icon = () => {
       if (this.props.workout.workout_type === "biking") {
         return (<i className="material-icons">&#xe52f;</i>);
@@ -16,16 +16,24 @@ class WorkoutIndexItem extends React.Component {
 
     return (
       <div className="workout-box">
-        <div class="top-let-wbox">
+        <div className="top-left-image">
           <img className="dash-feed-image" src={`${this.props.user.photoUrl}`}/>
-          {icon()}
         </div>
+        {icon()}
         <div className="wbox-header">
-          <div>{this.props.user.username}</div>
-          <div>Date: {this.props.workout.date}</div>
+          <div className="wbox-name">{this.props.user.username}</div>
+          <div className="wbox-date"> {this.props.workout.date}</div>
         </div>
-        <div class="distance">Distance: {this.props.workout.miles}</div>
-        <div>Time: {this.props.workout.duration}</div>
+        <div className="wbox-stats-container">
+          <div className="wbox-workout-stats">
+            <div className="stats-label">Distance:</div>
+            <div className="distance">{this.props.workout.miles} mi</div>
+          </div>
+          <div>
+            <div className="stats-label"> Time: </div>
+            <div className="time"> {this.props.workout.duration}</div>
+          </div>
+        </div>
       </div>
     );
   }
