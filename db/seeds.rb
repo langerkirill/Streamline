@@ -9,12 +9,12 @@
 User.destroy_all
 Workout.destroy_all
 
-mashu = User.create!(username: "Mashu-rella", password: "hunter12")
-oscar = User.create!(username: "Osc-iago", password: "hunter12")
-abby = User.create!(username: "Feta!", password: "hunter12")
-maurice = User.create!(username: "Peppa-J", password: "hunter12")
-matthias = User.create!(username: "Mr. Swiss", password: "hunter12")
-brian = User.create!(username: "Brie-an", password: "hunter12")
+mashu = User.new(username: "Mashu-rella", password: "hunter12")
+oscar = User.new(username: "Osc-iago", password: "hunter12")
+abby = User.new(username: "Feta!", password: "hunter12")
+maurice = User.new(username: "Peppa-J", password: "hunter12")
+matthias = User.new(username: "Mr. Swiss", password: "hunter12")
+brian = User.new(username: "Brie-an", password: "hunter12")
 
 
 file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/9MtdRUSbWbnfi8nobuX3JVAw')
