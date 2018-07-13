@@ -20,9 +20,20 @@ function App({ loggedIn, user, logout }) {
           </div>
           :
           <div>
-            <h1>{user.username}</h1>
-            <button onClick={logout}>Log Out</button>
-            <br/>
+            <nav className="top-nav">
+              <div className="nav-left">
+                <NavLink className="nav-icon" to="/dashboard"> Streamline </NavLink>
+                <i className="material-icons">&#xe8b6;</i>
+                <NavLink className="nav-left-links" to="/dashboard"> Dashboard </NavLink>
+                <NavLink className="nav-left-links" to="/training"> Training </NavLink>
+                <NavLink className="nav-left-links" to="/explore"> Explore </NavLink>
+                <NavLink className="nav-left-links" to="/challenges"> Challenges </NavLink>
+              </div>
+              <div className="nav-right">
+                <h1>{user.username}</h1>
+                <button onClick={logout}>Log Out</button>
+              </div>
+            </nav>
           </div>
         }
 
