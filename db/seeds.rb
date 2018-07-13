@@ -16,6 +16,31 @@ maurice = User.create!(username: "Peppa-J", password: "hunter12")
 matthias = User.create!(username: "Mr. Swiss", password: "hunter12")
 brian = User.create!(username: "Brie-an", password: "hunter12")
 
+
+file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/9MtdRUSbWbnfi8nobuX3JVAw')
+mashu.image.attach(io: file, filename: '9MtdRUSbWbnfi8nobuX3JVAw.jpg')
+mashu.save!
+
+file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/WgyqympQM5D1qY1HfvZns5LX')
+brian.image.attach(io: file, filename: 'WgyqympQM5D1qY1HfvZns5LX.jpg')
+brian.save!
+
+file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/f2esHiWwHAS2tRAgXGQFyTih')
+maurice.image.attach(io: file, filename: 'f2esHiWwHAS2tRAgXGQFyTih.jpg')
+maurice.save!
+
+file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/ntuZxViKfZ9ubWYSPDPRWnGG')
+abby.image.attach(io: file, filename: 'ntuZxViKfZ9ubWYSPDPRWnGG.jpg')
+abby.save!
+
+file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/rDf1cFFSZ2Jhvv9Vqv6SzKzJ')
+oscar.image.attach(io: file, filename: 'rDf1cFFSZ2Jhvv9Vqv6SzKzJ.jpg')
+oscar.save!
+
+file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/uTGLfqceLDFRASg3j8pL6eiB')
+matthias.image.attach(io: file, filename: 'uTGLfqceLDFRASg3j8pL6eiB.jpg')
+matthias.save!
+
 Workout.create!(workout_type: "running", duration: 85,  miles: 13, date: DateTime.new(2201,8,12), user_id: mashu.id)
 Workout.create!(workout_type: "running", duration: 99,  miles: 9, date: DateTime.new(2016,9,4), user_id: mashu.id)
 Workout.create!(workout_type: "running", duration: 15,  miles: 2, date: DateTime.new(2018,5,6), user_id: mashu.id)
