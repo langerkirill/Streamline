@@ -11,33 +11,33 @@ Workout.destroy_all
 #
 #
 mashu = User.new(username: "Mashu-rella", password: "hunter12")
-file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/9MtdRUSbWbnfi8nobuX3JVAw')
-mashu.image.attach(io: file, filename: '9MtdRUSbWbnfi8nobuX3JVAw')
+file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/MashuDuek.jpg')
+mashu.image.attach(io: file, filename: 'MashuDuek.jpg')
 mashu.save!
 
 brian = User.new(username: "Brie-an", password: "hunter12")
-file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/WgyqympQM5D1qY1HfvZns5LX')
-brian.image.attach(io: file, filename: 'WgyqympQM5D1qY1HfvZns5LX')
+file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/BrianScott.jpg')
+brian.image.attach(io: file, filename: 'BrianScott.jpg')
 brian.save!
 
 maurice = User.new(username: "Peppa-J", password: "hunter12")
-file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/f2esHiWwHAS2tRAgXGQFyTih')
-maurice.image.attach(io: file, filename: 'f2esHiWwHAS2tRAgXGQFyTih')
+file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/MauriceRoach.jpg')
+maurice.image.attach(io: file, filename: 'MauriceRoach.jpg')
 maurice.save!
 
 abby = User.new(username: "Feta!", password: "hunter12")
-file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/ntuZxViKfZ9ubWYSPDPRWnGG')
-abby.image.attach(io: file, filename: 'ntuZxViKfZ9ubWYSPDPRWnGG')
+file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/AbigailHersh.jpg')
+abby.image.attach(io: file, filename: 'AbigailHersh.jpg')
 abby.save!
 
 oscar = User.new(username: "Osc-iago", password: "hunter12")
-file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/rDf1cFFSZ2Jhvv9Vqv6SzKzJ')
-oscar.image.attach(io: file, filename: 'rDf1cFFSZ2Jhvv9Vqv6SzKzJ')
+file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/OscarAlvarez.jpg')
+oscar.image.attach(io: file, filename: 'OscarAlvarez.jpg')
 oscar.save!
 
 matthias = User.new(username: "Mr. Swiss", password: "hunter12")
-file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/uTGLfqceLDFRASg3j8pL6eiB')
-matthias.image.attach(io: file, filename: 'uTGLfqceLDFRASg3j8pL6eiB')
+file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/MatthiasJenny.jpg')
+matthias.image.attach(io: file, filename: 'MatthiasJenny.jpg')
 matthias.save!
 
 Workout.create!(workout_type: "running", duration: 85,  miles: 13, date: DateTime.new(2201,8,12), user_id: mashu.id)
