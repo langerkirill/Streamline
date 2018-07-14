@@ -1,7 +1,7 @@
 class Api::WorkoutsController < ApplicationController
 
   def index
-    @workouts = Workout.all
+    @workouts = Workout.all.includes(user: :workouts)
     render :index
   end
 

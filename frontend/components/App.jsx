@@ -30,8 +30,15 @@ function App({ loggedIn, user, logout }) {
                 <NavLink className="nav-left-links" to="/challenges"> Challenges </NavLink>
               </div>
               <div className="nav-right">
-                <h1>{user.username}</h1>
-                <button onClick={logout}>Log Out</button>
+                <div>
+                  <i className="fa fa-bell-o"></i>
+                </div>
+                <div className="bell-icon">
+                  <img className="nav-image" src={user.photoUrl}/>
+                </div>
+                <div className="plus-icon">
+                  <i className="fa fa-plus-circle"></i>
+                </div>
               </div>
             </nav>
           </div>

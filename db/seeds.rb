@@ -39,26 +39,29 @@ file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/Matt
 matthias.image.attach(io: file, filename: 'MatthiasJenny.jpg')
 matthias.save!
 
-Workout.create!(workout_type: "running", duration: 85,  miles: 13, date: DateTime.new(2201,8,12), user_id: mashu.id)
-Workout.create!(workout_type: "running", duration: 99,  miles: 9, date: DateTime.new(2016,9,4), user_id: mashu.id)
-Workout.create!(workout_type: "running", duration: 15,  miles: 2, date: DateTime.new(2018,5,6), user_id: mashu.id)
+route1 = Route.create!(startlat: 40.799676, startlong: -73.935754, endlat:40.781130, endlong:-73.984469)
+route2 = Route.create!(startlat: 40.711421, startlong: -73.999611, endlat:40.788974, endlong:-73.947805)
 
-Workout.create!(workout_type: "running", duration: 16,  miles: 12, date: DateTime.new(2006,5,25), user_id: oscar.id)
-Workout.create!(workout_type: "running", duration: 54,  miles: 11, date: DateTime.new(2009,12,12), user_id: oscar.id)
-Workout.create!(workout_type: "running", duration: 44,  miles: 16, date: DateTime.new(2010,5,30), user_id: oscar.id)
+Workout.create!(workout_type: "running", title: "Long Run", route_id: route1.id, elevation: "50 feet", achievments: "15", duration: 85,  miles: 13, date: DateTime.new(2201,8,12), user_id: mashu.id)
+Workout.create!(workout_type: "running", title: "3 Marathons", route_id: route2.id, elevation: "50 feet", achievments: "15", duration: 99,  miles: 9, date: DateTime.new(2016,9,4), user_id: mashu.id)
+Workout.create!(workout_type: "running", title: "Over the Hill", route_id: 3, elevation: "50 feet", achievments: "15", duration: 15,  miles: 2, date: DateTime.new(2018,5,6), user_id: mashu.id)
 
-Workout.create!(workout_type: "running", duration: 64,  miles: 5, date: DateTime.new(2018,5,12), user_id: abby.id)
-Workout.create!(workout_type: "running", duration: 88,  miles: 11, date: DateTime.new(2017,4,15), user_id: abby.id)
-Workout.create!(workout_type: "running", duration: 20,  miles: 10, date: DateTime.new(2015,6,16), user_id: abby.id)
+Workout.create!(workout_type: "running", title: "I did a jog", route_id: 4, elevation: "50 feet", achievments: "15", duration: 16,  miles: 12, date: DateTime.new(2006,5,25), user_id: oscar.id)
+Workout.create!(workout_type: "running", title: "Better than coding", route_id: 5, elevation: "50 feet", achievments: "15", duration: 54,  miles: 11, date: DateTime.new(2009,12,12), user_id: oscar.id)
+Workout.create!(workout_type: "running", title: "Active Record", route_id: 6, elevation: "50 feet", achievments: "15", duration: 44,  miles: 16, date: DateTime.new(2010,5,30), user_id: oscar.id)
 
-Workout.create!(workout_type: "biking", duration: 15,  miles: 10, date: DateTime.new(2009,8,7), user_id: maurice.id)
-Workout.create!(workout_type: "biking", duration: 46,  miles: 15, date: DateTime.new(2008,7,8), user_id: maurice.id)
-Workout.create!(workout_type: "biking", duration: 22,  miles: 10, date: DateTime.new(2070,9,1), user_id: maurice.id)
+Workout.create!(workout_type: "running", title: "Fast AF", route_id: 7, elevation: "50 feet", achievments: "15", duration: 64,  miles: 5, date: DateTime.new(2018,5,12), user_id: abby.id)
+Workout.create!(workout_type: "running", title: "Impossible Run", route_id: 8, elevation: "50 feet", achievments: "15", duration: 88,  miles: 11, date: DateTime.new(2017,4,15), user_id: abby.id)
+Workout.create!(workout_type: "running", title: "Jog", route_id: 9, elevation: "50 feet", achievments: "15", duration: 20,  miles: 10, date: DateTime.new(2015,6,16), user_id: abby.id)
 
-Workout.create!(workout_type: "biking", duration: 13,  miles: 5, date: DateTime.new(2020,12,16), user_id: matthias.id)
-Workout.create!(workout_type: "biking", duration: 11,  miles: 63, date: DateTime.new(2061,9,18), user_id: matthias.id)
-Workout.create!(workout_type: "biking", duration: 41,  miles: 22, date: DateTime.new(2016,5,22), user_id: matthias.id)
+Workout.create!(workout_type: "biking", title: "Outing", route_id: 10, elevation: "50 feet", achievments: "15", duration: 15,  miles: 10, date: DateTime.new(2009,8,7), user_id: maurice.id)
+Workout.create!(workout_type: "biking", title: "Bike in Place", route_id: 11, elevation: "50 feet", achievments: "15", duration: 46,  miles: 15, date: DateTime.new(2008,7,8), user_id: maurice.id)
+Workout.create!(workout_type: "biking", title: "Ride Bike", route_id: 12, elevation: "50 feet", achievments: "15", duration: 22,  miles: 10, date: DateTime.new(2070,9,1), user_id: maurice.id)
 
-Workout.create!(workout_type: "biking", duration: 453, miles: 10, date: DateTime.new(2020,9,10), user_id: brian.id)
-Workout.create!(workout_type: "biking", duration: 54,  miles: 32, date: DateTime.new(2012,9,11), user_id: brian.id)
-Workout.create!(workout_type: "biking", duration: 33,  miles: 3, date: DateTime.new(2018,9,1), user_id: brian.id)
+Workout.create!(workout_type: "biking", title: "Ride It", route_id: 13, elevation: "50 feet", achievments: "15", duration: 13,  miles: 5, date: DateTime.new(2020,12,16), user_id: matthias.id)
+Workout.create!(workout_type: "biking", title: "Get Biked", route_id: 14, elevation: "50 feet", achievments: "15", duration: 11,  miles: 63, date: DateTime.new(2061,9,18), user_id: matthias.id)
+Workout.create!(workout_type: "biking", title: "Bike with friends", route_id: 15, elevation: "50 feet", achievments: "15", duration: 41,  miles: 22, date: DateTime.new(2016,5,22), user_id: matthias.id)
+
+Workout.create!(workout_type: "biking", title: "Bike for 3 days straight", route_id: 16, elevation: "50 feet", achievments: "15", duration: 453, miles: 10, date: DateTime.new(2020,9,10), user_id: brian.id)
+Workout.create!(workout_type: "biking", title: "Much Bike", route_id: 17, elevation: "50 feet", achievments: "15", duration: 54,  miles: 32, date: DateTime.new(2012,9,11), user_id: brian.id)
+Workout.create!(workout_type: "biking", title: "BIIIKKKEE", route_id: 18, elevation: "50 feet", achievments: "15", duration: 33,  miles: 3, date: DateTime.new(2018,9,1), user_id: brian.id)

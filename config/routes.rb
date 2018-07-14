@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     resources :users
     resources :workouts
     resource :session
+    resources :routes
   end
 end
