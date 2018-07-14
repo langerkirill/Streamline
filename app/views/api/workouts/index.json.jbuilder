@@ -10,8 +10,8 @@ json.users do
   @workouts.each do |workout|
     json.set! workout.user.id do
       json.extract! workout.user, :id, :username
-      if workout.user.photo.present?
-        json.photoUrl url_for(workout.user.photo)
+      if workout.user.image.present?
+        json.photoUrl url_for(workout.user.image)
       end
     end
   end

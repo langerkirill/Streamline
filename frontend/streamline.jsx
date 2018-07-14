@@ -29,5 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.fetchWorkouts = fetchWorkouts;
 
   const root = document.getElementById("root");
-  ReactDOM.render(<Root store={store} />, root);
+  ReactDOM.render(<h1>Hello World</h1>);
 });
+
+//ReactDOM.render(<Root store={store} />, root);

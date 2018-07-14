@@ -8,8 +8,7 @@
 
 User.destroy_all
 Workout.destroy_all
-#
-#
+
 mashu = User.new(username: "Mashu-rella", password: "hunter12")
 file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/MashuDuek.jpg')
 mashu.image.attach(io: file, filename: 'MashuDuek.jpg')
