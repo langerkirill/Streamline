@@ -41,6 +41,7 @@ function App({ loggedIn, user, logout }) {
                 </div>
               </div>
             </nav>
+            <button onClick={logout}>Logout</button>
           </div>
         }
 

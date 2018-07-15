@@ -20,37 +20,36 @@ class WorkoutRoute extends React.Component {
     this.createMarkersFromRoute(nextProps.route);
   }
 
-    createMarkersFromRoute(route){
-      let myStart = new google.maps.LatLng(route.startlat, route.startlong);
-      let myEnd = new google.maps.LatLng(route.endlat, route.endlong);
-      let directionMap = this.map;
-        this.calcRoute(myStart, myEnd, directionMap);
+  createMarkersFromRoute(route){
+    let myStart = new google.maps.LatLng(route.startlat, route.startlong);
+    let myEnd = new google.maps.LatLng(route.endlat, route.endlong);
+    let directionMap = this.map;
+      this.calcRoute(myStart, myEnd, directionMap);
+    }
+
+  calcRoute(start, end, map) {
+    let directionsDisplay = new google.maps.DirectionsRenderer;
+    let directionsService = new google.maps.DirectionsService();
+    let bounds = new google.maps.LatLngBounds();
+
+    let request = {
+        origin: start,
+        destination: end,
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+
+    directionsService.route(request, function (response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+            debugger
+            directionsDisplay.setMap(map);
+            debugger
+        } else {
+            alert("Directions Request from " + start.toUrlValue(6) + " to " + end.toUrlValue(6) + " failed: " + status);
       }
-
-      calcRoute(start, end, map) {
-        let directionsDisplay = new google.maps.DirectionsRenderer;
-        let directionsService = new google.maps.DirectionsService();
-        let bounds = new google.maps.LatLngBounds();
-
-        bounds.extend(start);
-        bounds.extend(end);
-        this.map.fitBounds(bounds);
-
-        var request = {
-            origin: start,
-            destination: end,
-            travelMode: google.maps.TravelMode.DRIVING
-        };
-
-        directionsService.route(request, function (response, status) {
-            if (status == google.maps.DirectionsStatus.OK) {
-                directionsDisplay.setDirections(response);
-                directionsDisplay.setMap(map);
-            } else {
-                alert("Directions Request from " + start.toUrlValue(6) + " to " + end.toUrlValue(6) + " failed: " + status);
-          }
-        });
-      }
+    });
+    setTimeout(function () { map.setZoom(map.getZoom() + 1); }, 4000);
+  }
 
   render() {
     return (
