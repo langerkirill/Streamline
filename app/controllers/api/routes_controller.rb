@@ -1,7 +1,7 @@
 class Api::RoutesController < ApplicationController
 
   def index
-    @routes = Route.all.includes()
+    @routes = Route.all.includes(:workouts)
     render :index
   end
 

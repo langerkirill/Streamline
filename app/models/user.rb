@@ -25,7 +25,7 @@ class User < ApplicationRecord
     foreign_key: :user_id,
     class_name: :Workout
 
-    has_one_attached :image
+  has_one_attached :image
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
