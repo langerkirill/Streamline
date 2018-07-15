@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import LoginContainer from './session/login_container';
 import SignupContainer from './session/signup_container';
 import SplashPage from './session/splash_page';
-import Dashboard from './dashboard/dash_container';
+import Dashboard from './dashboard/dashboard';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { logout } from '../actions/session_actions';
+import NavBar from './navbar';
 
 
 function App({ loggedIn, user, logout }) {
@@ -20,28 +21,7 @@ function App({ loggedIn, user, logout }) {
           </div>
           :
           <div>
-            <nav className="top-nav">
-              <div className="nav-left">
-                <NavLink className="nav-icon" to="/dashboard"> Streamline </NavLink>
-                <i className="material-icons">&#xe8b6;</i>
-                <NavLink className="nav-left-links" to="/dashboard"> Dashboard </NavLink>
-                <NavLink className="nav-left-links" to="/training"> Training </NavLink>
-                <NavLink className="nav-left-links" to="/explore"> Explore </NavLink>
-                <NavLink className="nav-left-links" to="/challenges"> Challenges </NavLink>
-              </div>
-              <div className="nav-right">
-                <div>
-                  <i className="fa fa-bell-o"></i>
-                </div>
-                <div className="bell-icon">
-                  <img className="nav-image" src={user.photoUrl}/>
-                </div>
-                <div className="plus-icon">
-                  <i className="fa fa-plus-circle"></i>
-                </div>
-              </div>
-            </nav>
-            <button onClick={logout}>Logout</button>
+            <NavBar user={user}/>
           </div>
         }
 

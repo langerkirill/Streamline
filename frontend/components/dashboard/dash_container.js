@@ -1,9 +1,8 @@
 import { connect } from 'react-redux';
 import { fetchWorkouts } from '../../actions/workout_actions';
-import Dashboard from './dashboard'
+import Dashboard from './dashboard';
 
 function mapStateToProps(state) {
-  
   const workouts = state.entities.workouts;
   const users = state.entities.users;
   return {

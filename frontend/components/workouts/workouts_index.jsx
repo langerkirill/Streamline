@@ -1,19 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import WorkoutIndexItem from './workouts_index_item'
+import WorkoutIndexItem from './workouts_index_item';
+import {fetchWorkouts} from '../../actions/workout_actions';
 
 class WorkoutIndex extends React.Component {
 
-  componentDidMount() {
-
-    this.props.fetchWorkouts();
-  }
-
   render () {
+    let workoutIndex;
 
-    const workoutIndex = this.props.workouts.map(workout => {
+    if (Object.values(this.props.workouts).length === 0) {
+      workoutIndex = ""; 
+    } else {
+      workoutIndex = this.props.workouts.map(workout => {
         return (<WorkoutIndexItem workout={workout} key={workout.id} />);
       });
+    }
 
     return (
       <div className="dashboard-parent">
@@ -23,18 +24,4 @@ class WorkoutIndex extends React.Component {
   }
 }
 
-const msp = (state) => {
-  const workouts = Object.values(state.entities.workouts);
-
-  return {
-    workouts
-  }
-}
-
-const mdp = (dispatch) => {
-  return {
-    fetchWorkouts: () => dispatch(fetchWorkouts())
-  }
-}
-
-export default connect(msp, mdp)(WorkoutIndex);
+export default WorkoutIndex;

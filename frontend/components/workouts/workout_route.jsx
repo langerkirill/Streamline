@@ -10,14 +10,11 @@ class WorkoutRoute extends React.Component {
       center: { lat: 40.7128, lng: -74.0060 }, // this is NY
       zoom: 11
     };
-
-    // wrap the mapDOMNode in a Google Map
     this.map = new google.maps.Map(this.mapNode, mapOptions);
     this.MarkerManager = new MarkerManager(this.map);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.createMarkersFromRoute(nextProps.route);
+    if (this.props.route) {
+      this.createMarkersFromRoute(this.props.route);
+    }
   }
 
   createMarkersFromRoute(route){
@@ -41,9 +38,7 @@ class WorkoutRoute extends React.Component {
     directionsService.route(request, function (response, status) {
         if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
-            debugger
             directionsDisplay.setMap(map);
-            debugger
         } else {
             alert("Directions Request from " + start.toUrlValue(6) + " to " + end.toUrlValue(6) + " failed: " + status);
       }
@@ -53,12 +48,10 @@ class WorkoutRoute extends React.Component {
 
   render() {
     return (
-      // ...
-      <div ref={ map => this.mapNode = map }/> // this ref gives us access to the map dom node
-      // ...
-    )
+        <div ref={ map => this.mapNode = map }/>
+      // this ref gives us access to the map dom node
+    );
   }
-  //...
 }
 
 const msp = (state, ownProps) => {
