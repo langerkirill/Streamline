@@ -21,7 +21,6 @@ class CreateRoute extends React.Component {
     };
 
     this.map = new google.maps.Map(this.mapNode, mapOptions);
-    this.MarkerManager = new MarkerManager(this.map);
     this.parseData = this.parseData.bind(this);
     this.map.addListener('click', (e) => {
       this.placeMarker(e.latLng, this.map);
@@ -30,12 +29,7 @@ class CreateRoute extends React.Component {
 
   placeMarker(position, map) {
       this.markers.push([position.lat(), position.lng()]);
-
-      let marker = new google.maps.Marker({
-        position: position,
-        map: map
-      });
-      let data = this.calcRoute();
+      this.calcRoute();
     }
 
   parseData(data) {
@@ -45,7 +39,6 @@ class CreateRoute extends React.Component {
     }
     let newMiles = this.state.miles + total;
     this.setState({miles: newMiles});
-    debugger
   }
 
   calcRoute() {
@@ -53,16 +46,25 @@ class CreateRoute extends React.Component {
     let request = {
       travelMode: google.maps.TravelMode.DRIVING
     };
+
     const directionsDisplay = new google.maps.DirectionsRenderer;
     const directionsService = new google.maps.DirectionsService();
     directionsDisplay.setMap(this.map);
     let infowindow = new google.maps.InfoWindow();
 
     for (let i=0; i<this.markers.length; i++) {
-      let marker = new google.maps.Marker({
-        position: new google.maps.LatLng(this.markers[i][0], this.markers[i][1]),
-        map: this.map
-      });
+      let marker;
+      if (i===0) {
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng(this.markers[i][0], this.markers[i][1]),
+          map: this.map
+        });
+      } else {
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng(this.markers[i][0], this.markers[i][1]),
+          draggable: true
+        });
+      }
 
       if (i == 0) request.origin = marker.getPosition();
       else if (i == this.markers.length - 1) request.destination = marker.getPosition();
