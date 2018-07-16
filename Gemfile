@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'rack-cors'
+
 gem 'google_maps_service'
 
 gem 'listen', '>= 3.0.5', '< 3.2'
