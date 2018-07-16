@@ -6,6 +6,9 @@ class CreateRoute extends React.Component {
 
   constructor (props){
     super(props);
+    this.state = {
+      miles: 0
+    }
     this.markers = [];
   }
 
@@ -19,6 +22,7 @@ class CreateRoute extends React.Component {
 
     this.map = new google.maps.Map(this.mapNode, mapOptions);
     this.MarkerManager = new MarkerManager(this.map);
+    this.parseData = this.parseData.bind(this);
     this.map.addListener('click', (e) => {
       this.placeMarker(e.latLng, this.map);
     });
@@ -31,8 +35,18 @@ class CreateRoute extends React.Component {
         position: position,
         map: map
       });
-      this.calcRoute();
+      let data = this.calcRoute();
     }
+
+  parseData(data) {
+    let total = 0;
+    for (let i=0;i<data.length;i++){
+      total += parseFloat(data[i].distance.text.split(" ")[0]);
+    }
+    let newMiles = this.state.miles + total;
+    this.setState({miles: newMiles});
+    debugger
+  }
 
   calcRoute() {
 
@@ -61,16 +75,31 @@ class CreateRoute extends React.Component {
         }
       }
 
+      let routeData;
+
       directionsService.route(request, function(result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
           directionsDisplay.setDirections(result);
+          routeData = directionsDisplay.directions.routes[0].legs;
         }
       });
+
+      let that = this;
+      debugger
+
+      setTimeout(() => {
+        debugger
+        that.parseData(routeData);
+      }, 500);
     }
 
   render() {
+    debugger
     return (
+      <div>
         <div className="create-route-map" ref={ map => this.mapNode = map }/>
+        <h3> Miles: {this.state.miles} </h3>
+      </div>
       // this ref gives us access to the map dom node
     );
   }

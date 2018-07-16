@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { HashRouter, Route, NavLink } from 'react-router-dom';
 import PlusBox from './plus_box';
+import {logout} from '../actions/session_actions'
 
 class NavBar extends React.Component {
 
@@ -31,6 +32,7 @@ class NavBar extends React.Component {
 
     return (
     <nav className="top-nav">
+      <button onClick={this.props.logout}>logout</button>
       <div className="nav-left">
         <NavLink className="nav-icon" to="/dashboard"> Streamline </NavLink>
         <i className="material-icons">&#xe8b6;</i>
@@ -59,4 +61,17 @@ class NavBar extends React.Component {
   }
 }
 
-export default NavBar;
+const mapStateToProps = (state, ownProps) => {
+  const user = state.users[ownProps.match.params.userId];
+  return {
+    user
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => dispatch(logout())
+  };
+};
+
+export default connect(null, mapDispatchToProps)(NavBar);
