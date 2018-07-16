@@ -1,6 +1,8 @@
 import React from 'react'
 import MarkerManager from '../../util/marker_manager';
 import {connect} from 'react-redux';
+import {NavLink} from 'react-router-dom';
+import {createRoute} from '../../actions/route_actions'
 
 class CreateRoute extends React.Component {
 
@@ -47,7 +49,8 @@ class CreateRoute extends React.Component {
       total += parseFloat(data[i].distance.text.split(" ")[0]);
     }
     let newMiles = this.state.miles + total;
-    this.setState({miles: newMiles});
+    let roundedMiles = Math.round(newMiles*10)/10;
+    this.setState({miles: roundedMiles});
   }
 
   getDuration(data){
@@ -60,7 +63,7 @@ class CreateRoute extends React.Component {
   }
 
   getElevation(locations){
-    debugger
+
     let elevator = new google.maps.ElevationService();
     let dif;
     let request = {
@@ -78,17 +81,17 @@ class CreateRoute extends React.Component {
                 }
               }
               dif = Math.floor(Math.max(...eCalc) - Math.min(...eCalc));
-              debugger
+
             }
           }
         });
         let that = this;
 
         setTimeout(() => {
-          debugger
+
           that.setState({elevation: dif});
         }, 500);
-        debugger
+
     }
 
 //  function createUpdateProfile(){
@@ -197,32 +200,48 @@ class CreateRoute extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="create-route-map" ref={ map => this.mapNode = map }/>
-          <div className="path-info">
-            <div className="path-left">
-              <div className="info-bar-labels">
-                <h4 className="path-stats"> Ride </h4>
-                <div className="mini-labels" >Route Type</div>
+      <div className="route-container">
+        <nav className="create-route-nav">
+          <div className="left-nav-cr">
+            <div className="route-icon">Streamline</div>
+            <div className="route-nav-text">ROUTE BUILDER</div>
+            <div className="route-nav-beta">Hiya</div>
+          </div>
+          <div className="right-nav-cr">
+            <NavLink style={{textDecoration: 'none'}} className="route-navlink" to="/dashboard">Exit Builder</NavLink>
+          </div>
+          <button onClick={createRoute}>Save Route</button>
+        </nav>
+          <div className="create-route-map" ref={ map => this.mapNode = map }/>
+            <div className="path-info">
+              <div className="path-left">
+                <div className="info-bar-labels">
+                  <h4 className="path-stats"> Ride </h4>
+                  <div className="mini-labels" >Route Type</div>
+                </div>
+                <div className="info-bar-labels">
+                  <h4 className="path-stats">{this.state.miles} mi</h4>
+                  <div className="mini-labels" > Distance </div>
+                </div>
+                <div className="info-bar-labels">
+                  <h4 className="path-stats">{this.state.duration} minutes</h4>
+                  <div className="mini-labels" >Est. Moving Time </div>
+                </div>
+                <div className="info-bar-labels">
+                  <h4 className="path-stats">{this.state.elevation} ft</h4>
+                  <div className="mini-labels" >Elevation Gain</div>
+                </div>
               </div>
-              <div className="info-bar-labels">
-                <h4 className="path-stats">{this.state.miles} mi</h4>
-                <div className="mini-labels" > Distance </div>
-              </div>
-              <div className="info-bar-labels">
-                <h4 className="path-stats">{this.state.duration} minutes</h4>
-                <div className="mini-labels" >Est. Moving Time </div>
-              </div>
-              <div className="info-bar-labels">
-                <h4 className="path-stats">{this.state.elevation} ft</h4>
-                <div className="mini-labels" >Elevation Gain</div>
-              </div>
-            </div>
+          </div>
         </div>
-      </div>
     );
   }
 }
 
+const mdp = (dispatch) => {
+  return {
+    createRoute: (route) => dispatch(createRoute(route))
+  }
+}
 
-export default CreateRoute;
+export default connect(null, mdp)(CreateRoute);

@@ -3,9 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .create-route-map {
-  height: 800px;
-  width: 90%;
-  margin: 0 auto;
+  height: 950px;
+  width: 100%;
   z-index: 1;
   position: relative;
 }
@@ -21,7 +20,7 @@
   z-index: 3;
   position: absolute;
   left: 8%;
-  bottom: 16%;
+  bottom: 5%;
 }
 
 .mini-labels {
@@ -43,4 +42,56 @@
   font-weight: lighter;
   font-size: 22px;
   font-family: sans-serif;
+}
+
+.create-route-nav{
+  margin: 0 auto;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+}
+
+.left-nav-cr {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 30%;
+  align-items: center;
+}
+
+.route-icon{
+  outline-style:none;
+  text-decoration: none;
+  font-family: impact;
+  font-size: 30px;
+  font-weight:bolder;
+  color: #e53e00;
+  border: none;
+}
+
+.route-nav-text {
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+.route-nav-beta {
+  color: orange;
+  font-family: sans-serif;
+  font-size: 12px;
+}
+
+.route-navlink {
+  padding-right: 20px;
+  color: gray;
+  font-weight: normal;
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+.route-container{
+  height: 100%;
+  width: 100%;
 }

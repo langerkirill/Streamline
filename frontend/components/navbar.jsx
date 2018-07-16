@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { HashRouter, Route, NavLink } from 'react-router-dom';
+import { Route, NavLink, withRouter } from 'react-router-dom';
 import PlusBox from './plus_box';
 import {logout} from '../actions/session_actions'
 
@@ -22,6 +22,10 @@ class NavBar extends React.Component {
   }
 
   render () {
+    if (this.props.location.pathname === "/route/create"){
+      return "";
+    }
+
     const plusHover = () => {
       if (this.state.plusHover) {
         return (<PlusBox />);
@@ -74,4 +78,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(NavBar);
+export default withRouter(connect(null, mapDispatchToProps)(NavBar));

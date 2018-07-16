@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom'
 class PlusBox extends React.Component {
 
   render() {
-    debugger
+
     return (
         <div className="plus-box">
           <button>Upload activity</button>
