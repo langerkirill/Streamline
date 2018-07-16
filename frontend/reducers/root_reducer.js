@@ -5,9 +5,8 @@ import Workouts from './workouts_reducer';
 import Routes from './routes_reducer';
 import { combineReducers } from 'redux';
 
-
 export default combineReducers({
   entities: Entities,
   session: Session,
-  errors: Errors
+  errors: Errors,
 });

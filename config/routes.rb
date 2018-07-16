@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # 'everything inside of this block should be organized under api'
   # these controllers will live under a directory of api
   namespace :api, defaults: { format: 'json' } do  # <-- responses by default should be json
+    resources :markers
     resources :users
     resources :workouts
     resource :session

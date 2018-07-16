@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom'
+import {NavLink, Redirect} from 'react-router-dom'
 
 class PlusBox extends React.Component {
 
@@ -9,7 +9,7 @@ class PlusBox extends React.Component {
         <div className="plus-box">
           <button>Upload activity</button>
           <button>Add manual entry</button>
-          <NavLink style={{textDecoration: 'none'}} className="create-route" to="/route/create">Create a route</NavLink >
+          <Redirect style={{textDecoration: 'none'}} className="create-route" to="/route/create">Create a route</Redirect >
           <button>Create a post</button>
         </div>
     );

@@ -1,8 +1,8 @@
 import React from 'react'
-import MarkerManager from '../../util/marker_manager';
 import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
-import {createRoute} from '../../actions/route_actions'
+import {createRoute} from '../../actions/route_actions';
+import {createMarker} from '../../actions/marker_actions';
 
 class CreateRoute extends React.Component {
 
@@ -11,10 +11,12 @@ class CreateRoute extends React.Component {
     this.state = {
       miles: 0,
       duration: 0,
-      elevation: 0
+      elevation: 0,
+      black: false
     }
     this.coordinates = [];
     this.markers = [];
+    this.handleSave = this.handleSave.bind(this);
   }
 
 
@@ -94,54 +96,6 @@ class CreateRoute extends React.Component {
 
     }
 
-//  function createUpdateProfile(){
-//     var path=[];
-//     for (var i = 0; i < markers.length; i++) {
-//       path.push(markers[i].getPosition());
-//       };
-//     var elevator = new google.maps.ElevationService;
-//     // Draw the path, using the Visualization API and the Elevation service.
-//     displayPathElevation(path, elevator, map);
-//   }
-//
-// function displayPathElevation(path, elevator, map) {
-//   elevator.getElevationAlongPath({
-//   'path': path,
-//   'samples': 256
-//   }, plotElevation);
-// }
-//
-// function plotElevation(elevations, status) {
-//   var chartDiv = document.getElementById('elevation_chart');
-//   if (status !== google.maps.ElevationStatus.OK) {
-//    // Show the error code inside the chartDiv.
-//    chartDiv.innerHTML = 'Cannot show elevation: request failed because ' +
-//       status;
-//    return;
-//  }
-//  // Create a new chart in the elevation_chart DIV.
-//   var chart = new google.visualization.ColumnChart(chartDiv);
-//
-//  // Extract the data from which to populate the chart.
-//  // Because the samples are equidistant, the 'Sample'
-//  // column here does double duty as distance along the
-//  // X axis.
-//   var data = new google.visualization.DataTable();
-//   data.addColumn('string', 'Sample');
-//   data.addColumn('number', 'Elevation');
-//   for (var i = 0; i < elevations.length; i++) {
-//   data.addRow(['', elevations[i].elevation]);
-// }
-//
-//  // Draw the chart using the data within its DIV.
-// chart.draw(data, {
-//  height: 200,
-// legend: 'none',
-// titleY: 'Elevation (m)'
-//
-//
-// });
-
   calcRoute() {
 
     let request = {
@@ -198,9 +152,76 @@ class CreateRoute extends React.Component {
       }, 500);
     }
 
+  handleSave() {
+    let copy = this.state;
+    delete copy['black'];
+    copy.startlat = parseFloat(this.coordinates[0][0]);
+    copy.startlong = parseFloat(this.coordinates[0][1]);
+    copy.endlat = parseFloat(this.coordinates[this.coordinates.length-1][0]);
+    copy.endlong = parseFloat(this.coordinates[this.coordinates.length-1][1]);
+    copy.user_id = this.props.userId;
+    copy.route_type = "biking";
+    let newRoute = this.props.createRoute(copy);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let routeId = nextProps.route;
+    this.setMarkers(routeId);
+    this.setState({black:true});
+  }
+
+  setMarkers(routeId) {
+    let coords = this.coordinates;
+    for (let i=0; i<coords.length; i++){
+      let marker = {};
+      marker.lat = coords[i][0];
+      marker.lng = coords[i][1];
+      marker.route_id = routeId;
+      this.props.createMarker(marker);
+    }
+  }
+
+  changeColor(){
+    this.setState({black: !this.state.black})
+  }
+
+  updateField(field) {
+    return e => {
+      this.setState({ [field]: e.currentTarget.value });
+    };
+  }
+
   render() {
+    let savedModal;
+    if (this.state.black) {
+      savedModal = () => {
+        return (
+          <div className="modal">
+            <button className="modal-exit" onClick={this.changeColor.bind(this)}>X</button>
+            <div></div>
+            <div className="modal-title"> Sign up for free</div>
+            <div className="modal-text"> Join for the tracking. Stay for the community.</div>
+            <form className="modal-form" onSubmit={this.handleSubmit}>
+              <div>
+                <label>Route Name</label><br/>
+                <input type="text" className="modal-email" value={this.state.username}
+                onChange={this.updateField('username')}></input>
+              </div>
+              <button className="signup-modal">Sign Up</button>
+            </form>
+          </div>
+        );
+      };
+    } else {
+      savedModal = () => {
+        return ("");
+      }
+    }
+
+
     return (
       <div className="route-container">
+        {savedModal()}
         <nav className="create-route-nav">
           <div className="left-nav-cr">
             <div className="route-icon">Streamline</div>
@@ -210,7 +231,7 @@ class CreateRoute extends React.Component {
           <div className="right-nav-cr">
             <NavLink style={{textDecoration: 'none'}} className="route-navlink" to="/dashboard">Exit Builder</NavLink>
           </div>
-          <button onClick={createRoute}>Save Route</button>
+          <button onClick={this.handleSave}>Save Route</button>
         </nav>
           <div className="create-route-map" ref={ map => this.mapNode = map }/>
             <div className="path-info">
@@ -238,10 +259,27 @@ class CreateRoute extends React.Component {
   }
 }
 
-const mdp = (dispatch) => {
+const msp = (state) => {
+  let route;
+  let routesArray = Object.values(state.entities.routes);
+  if (routesArray.length > 0){
+    route = routesArray[(routesArray.length-1)].id;
+  } else {
+    route = 0;
+  }
+
+  const userId = state.session.id;
   return {
-    createRoute: (route) => dispatch(createRoute(route))
+    route,
+    userId
   }
 }
 
-export default connect(null, mdp)(CreateRoute);
+const mdp = (dispatch) => {
+  return {
+    createRoute: (route) => dispatch(createRoute(route)),
+    createMarker: (marker) => dispatch(createMarker(marker))
+  }
+}
+
+export default connect(msp, mdp)(CreateRoute);

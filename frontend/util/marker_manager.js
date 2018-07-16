@@ -7,5 +7,4 @@ export default class MarkerManager {
   updateMarkers() {
     marker.setMap(map);
   }
-
 }
