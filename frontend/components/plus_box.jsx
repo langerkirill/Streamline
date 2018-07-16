@@ -9,7 +9,7 @@ class PlusBox extends React.Component {
         <div className="plus-box">
           <button>Upload activity</button>
           <button>Add manual entry</button>
-          <NavLink className="create-route" to="/create/route">Create a route</NavLink >
+          <NavLink style={{textDecoration: 'none'}} className="create-route" to="/route/create">Create a route</NavLink >
           <button>Create a post</button>
         </div>
     );

@@ -8,7 +8,7 @@ class NavBar extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      plusHover: true
+      plusHover: false
     }
 
     this.handleMouseHover = this.handleMouseHover.bind(this);
@@ -16,13 +16,11 @@ class NavBar extends React.Component {
   }
 
   handleMouseHover() {
-    debugger
     let bool = !this.state.plusHover;
     this.setState({plusHover: bool});
   }
 
   render () {
-    debugger
     const plusHover = () => {
       if (this.state.plusHover) {
         return (<PlusBox />);

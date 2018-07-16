@@ -8,6 +8,7 @@ import Dashboard from './dashboard/dashboard';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { logout } from '../actions/session_actions';
 import NavBar from './navbar';
+import CreateRoute from './routes/create_route';
 
 
 function App({ loggedIn, user, logout }) {
@@ -29,6 +30,7 @@ function App({ loggedIn, user, logout }) {
         <AuthRoute exact component={SplashPage} path="/" />
         <AuthRoute component={LoginContainer} path="/login" />
         <ProtectedRoute user={user} component={Dashboard} path="/dashboard" />
+        <ProtectedRoute component={CreateRoute} path="/route/create" />
 
       </div>
     </HashRouter>
