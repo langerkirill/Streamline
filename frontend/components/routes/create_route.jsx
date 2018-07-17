@@ -12,7 +12,7 @@ class CreateRoute extends React.Component {
       miles: 0,
       duration: 0,
       elevation: 0,
-      black: false
+      black: true
     }
     this.coordinates = [];
     this.markers = [];
@@ -35,9 +35,9 @@ class CreateRoute extends React.Component {
   }
 
   placeMarker(position, map) {
-      this.coordinates.push([position.lat(), position.lng()]);
-      this.calcRoute();
-    }
+    this.coordinates.push([position.lat(), position.lng()]);
+    this.calcRoute();
+  }
 
   parseData(data) {
     this.getMiles(data);
@@ -97,7 +97,6 @@ class CreateRoute extends React.Component {
     }
 
   calcRoute() {
-
     let request = {
       travelMode: google.maps.TravelMode.BICYCLING
     };
@@ -192,23 +191,29 @@ class CreateRoute extends React.Component {
   }
 
   render() {
+
+    let btn_class = this.state.black ? "blackButton" : "whiteButton";
+
     let savedModal;
+
     if (this.state.black) {
       savedModal = () => {
         return (
-          <div className="modal">
-            <button className="modal-exit" onClick={this.changeColor.bind(this)}>X</button>
+          <div className="route-modal">
             <div></div>
-            <div className="modal-title"> Sign up for free</div>
-            <div className="modal-text"> Join for the tracking. Stay for the community.</div>
-            <form className="modal-form" onSubmit={this.handleSubmit}>
+            <div className="route-modal-title"> Save</div>
+            <div className="route-modal-text"> Enter a name for your route below. On the next page, you'll be able to see, edit, and share your route.</div>
+            <form className="route-modal-form" onSubmit={this.handleSubmit}>
               <div>
                 <label>Route Name</label><br/>
                 <input type="text" className="modal-email" value={this.state.username}
                 onChange={this.updateField('username')}></input>
               </div>
-              <button className="signup-modal">Sign Up</button>
             </form>
+            <div className="route-bottom-buttons">
+              <button className="route-modal-exit" onClick={this.changeColor.bind(this)}>Cancel</button>
+              <button className="save-modal">Save</button>
+            </div>
           </div>
         );
       };
@@ -220,9 +225,9 @@ class CreateRoute extends React.Component {
 
 
     return (
-      <div className="route-container">
+      <div className={`route-container`}>
         {savedModal()}
-        <nav className="create-route-nav">
+        <nav className={`${btn_class} create-route-nav`}>
           <div className="left-nav-cr">
             <div className="route-icon">Streamline</div>
             <div className="route-nav-text">ROUTE BUILDER</div>
@@ -233,7 +238,7 @@ class CreateRoute extends React.Component {
           </div>
           <button onClick={this.handleSave}>Save Route</button>
         </nav>
-          <div className="create-route-map" ref={ map => this.mapNode = map }/>
+          <div className={`${btn_class} create-route-map`} ref={ map => this.mapNode = map }/>
             <div className="path-info">
               <div className="path-left">
                 <div className="info-bar-labels">
