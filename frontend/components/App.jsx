@@ -9,10 +9,10 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { logout } from '../actions/session_actions';
 import NavBar from './navbar';
 import CreateRoute from './routes/create_route';
+import RouteShow from './routes/route_show';
 
 
 function App({ loggedIn, user, logout }) {
-  debugger
   return (
     <HashRouter >
       <div>
@@ -31,6 +31,8 @@ function App({ loggedIn, user, logout }) {
         <AuthRoute component={LoginContainer} path="/login" />
         <ProtectedRoute user={user} component={Dashboard} path="/dashboard" />
         <ProtectedRoute component={CreateRoute} path="/route/create" />
+        <ProtectedRoute exact path="/routes/:routeId" component={RouteShow} />
+
 
       </div>
     </HashRouter>
@@ -38,7 +40,6 @@ function App({ loggedIn, user, logout }) {
 }
 
 const mapStateToProps = state => {
-
   return {
     loggedIn: Boolean(state.session.id),
     user: state.entities.users[state.session.id]

@@ -17,6 +17,7 @@ class CreateRoute extends React.Component {
     this.coordinates = [];
     this.markers = [];
     this.handleSave = this.handleSave.bind(this);
+    this.changeColor = this.changeColor.bind(this);
   }
 
 
@@ -160,22 +161,27 @@ class CreateRoute extends React.Component {
     copy.endlong = parseFloat(this.coordinates[this.coordinates.length-1][1]);
     copy.user_id = this.props.userId;
     copy.route_type = "biking";
-    let newRoute = this.props.createRoute(copy);
+    let newRoute = this.props.createRoute(copy).then(data => {
+      this.props.history.push(`/routes/${data.route.id}`)
+    });
   }
 
   componentWillReceiveProps(nextProps) {
+    
     let routeId = nextProps.route;
     this.setMarkers(routeId);
     this.setState({black:true});
   }
 
   setMarkers(routeId) {
+
     let coords = this.coordinates;
     for (let i=0; i<coords.length; i++){
       let marker = {};
       marker.lat = coords[i][0];
       marker.lng = coords[i][1];
       marker.route_id = routeId;
+      marker.order = i;
       this.props.createMarker(marker);
     }
   }
@@ -212,7 +218,7 @@ class CreateRoute extends React.Component {
             </form>
             <div className="route-bottom-buttons">
               <button className="route-modal-exit" onClick={this.changeColor.bind(this)}>Cancel</button>
-              <button className="save-modal">Save</button>
+              <button onClick={this.handleSave} className="save-modal">Save</button>
             </div>
           </div>
         );
@@ -236,7 +242,7 @@ class CreateRoute extends React.Component {
           <div className="right-nav-cr">
             <NavLink style={{textDecoration: 'none'}} className="route-navlink" to="/dashboard">Exit Builder</NavLink>
           </div>
-          <button onClick={this.handleSave}>Save Route</button>
+          <button onClick={this.changeColor}>Save Route</button>
         </nav>
           <div className={`${btn_class} create-route-map`} ref={ map => this.mapNode = map }/>
             <div className="path-info">

@@ -19,9 +19,10 @@ const receiveMarker = marker => {
   };
 };
 
-export const fetchMarkers = () => {
+export const fetchRouteMarkers = (routeId) => {
   return dispatch => {
-    return MarkerApiUtil.fetchMarkers().then(markers => {
+    
+    return MarkerApiUtil.fetchRouteMarkers(routeId).then(markers => {
       return dispatch(receiveMarkers(markers));
     });
   };

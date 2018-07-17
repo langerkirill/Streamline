@@ -31,7 +31,7 @@ class LogIn extends React.Component {
   }
 
   handleSubmit(e) {
-    debugger
+    
     e.preventDefault();
     if (this.state.black) {
       let newState = Object.assign({}, this.state);
@@ -55,7 +55,7 @@ class LogIn extends React.Component {
   // }
 
   render() {
-    debugger
+
     let errors;
     const errorDisplay = () => {
       if (Object.keys(this.props.errors).length > 0) {

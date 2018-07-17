@@ -10,7 +10,7 @@ class IconBox extends React.Component {
   }
 
   handleLogout () {
-    debugger
+
     this.props.logout().then(() =>
     this.props.history.push(`/`));
   }

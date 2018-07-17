@@ -8,11 +8,6 @@ class UserBox extends React.Component {
     super(props);
   }
 
-  // componentDidMount () {
-  //   debugger
-  //   this.props.fetchUser(this.props.user.id);
-  // }
-
   render () {
     const img = () => {
       if(this.props.user.photoUrl === undefined){

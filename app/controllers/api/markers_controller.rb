@@ -5,6 +5,11 @@ class Api::MarkersController < ApplicationController
     # render: show
   end
 
+  def index
+    @markers = Marker.where(route_id: params[:route_id])
+    render :index
+  end
+
   def create
     marker = Marker.new(marker_params)
     if marker.save
@@ -22,6 +27,6 @@ class Api::MarkersController < ApplicationController
   end
 
   def marker_params
-    params.require(:marker).permit(:lat, :lng, :route_id)
+    params.require(:marker).permit(:lat, :lng, :route_id, :order)
   end
 end

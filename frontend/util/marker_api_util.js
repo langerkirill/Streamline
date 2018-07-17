@@ -1,7 +1,8 @@
-export const fetchMarkers = () => {
+export const fetchRouteMarkers = (routeId) => {
+
   return $.ajax({
     method: 'GET',
-    url: '/api/markers'
+    url: `/api/routes/${routeId}/markers`
   });
 };
 
