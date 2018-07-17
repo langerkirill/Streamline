@@ -22,9 +22,9 @@ class NavBar extends React.Component {
   }
 
   render () {
-    if (this.props.location.pathname === "/route/create"){
-      return "";
-    }
+    // if (this.props.location.pathname === "/route/create"){
+    //   return "";
+    // }
 
     const plusHover = () => {
       if (this.state.plusHover) {

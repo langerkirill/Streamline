@@ -9,9 +9,9 @@ class LogIn extends React.Component {
     this.state = {
       black: false,
       username: '',
-      password: ''
+      password: '',
     };
-
+    this.errors = 0;
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -35,6 +35,7 @@ class LogIn extends React.Component {
     if (this.state.black) {
       let newState = Object.assign({}, this.state);
       delete newState['black'];
+      delete newState['errorCount'];
       this.props.signup(newState);
 
     } else {
@@ -42,21 +43,32 @@ class LogIn extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    debugger
+    if ((this.props.errors).length > 0) {
+      debugger
+      this.errors += 1;
+      if (this.errors > 1) {
+        this.props.clearErrors();
+        this.errors = 0;
+      }
+    }
+  }
+
   render() {
     let errors;
     const errorDisplay = () => {
       if (Object.keys(this.props.errors).length > 0) {
+        this.errors+1;
         errors = this.props.errors.join();
         return (
           <h3 className="errors">{`${errors}`}</h3>
         );
-      } else {
-        errors = "";
-        return (
-          <div className="errors">{`${errors}`}</div>
-        );
+        } else {
+          errors = "";
+          return ("");
+        }
       }
-    }
 
     let btn_class = this.state.black ? "blackButton" : "whiteButton";
     let signUpModal;

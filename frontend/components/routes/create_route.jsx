@@ -12,7 +12,7 @@ class CreateRoute extends React.Component {
       miles: 0,
       duration: 0,
       elevation: 0,
-      black: true
+      black: false
     }
     this.coordinates = [];
     this.markers = [];
