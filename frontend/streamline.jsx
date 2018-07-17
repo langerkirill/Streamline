@@ -7,6 +7,7 @@ import { login, signup, logout } from './actions/session_actions';
 
 document.addEventListener("DOMContentLoaded", () => {
   // We only create the store when this event fires
+  debugger
   let store;
   if (window.currentUser) {
     const preloadedState = {

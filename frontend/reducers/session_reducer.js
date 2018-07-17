@@ -11,7 +11,7 @@ export default function(state = defaultState, action) {
     case RECEIVE_USER:
       return { id: action.user.id };
     case LOGOUT_CURRENT_USER:
-      return state;
+      return defaultState;
     default:
       return state;
   }

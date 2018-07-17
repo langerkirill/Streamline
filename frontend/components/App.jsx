@@ -12,7 +12,7 @@ import CreateRoute from './routes/create_route';
 
 
 function App({ loggedIn, user, logout }) {
-
+  debugger
   return (
     <HashRouter >
       <div>

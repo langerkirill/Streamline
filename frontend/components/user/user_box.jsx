@@ -8,12 +8,10 @@ class UserBox extends React.Component {
     super(props);
   }
 
-  componentDidMount () {
-    this.props.fetchUser(this.props.user.id);
-  }
-  componentWillReceiveProps(newProps){
-
-  }
+  // componentDidMount () {
+  //   debugger
+  //   this.props.fetchUser(this.props.user.id);
+  // }
 
   render () {
     const img = () => {

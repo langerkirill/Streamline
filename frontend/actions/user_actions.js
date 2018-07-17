@@ -11,6 +11,7 @@ const receiveUsers = users => {
 };
 
 const receiveUser = user => {
+  debugger
   return {
     type: RECEIVE_USER,
     user

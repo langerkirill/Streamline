@@ -3,12 +3,12 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  z-index: 20;
+  z-index: 0;
   width: 150px;
   height: 190px;
   position: absolute;
   right: -1px;
-  top: 54px;
+  top: 55px;
   border: 1px solid black;
   background-color: white;
 }
@@ -19,8 +19,9 @@
   border: none;
   cursor:pointer;
   overflow: hidden;
-  height: 60px;
+  height: 58px;
   width: 150px;
+  z-index: 5;
 }
 
 .create-route{
@@ -56,6 +57,8 @@
   border-left: 1px solid transparent;
   padding: 17px 10px;
   position: relative;
+  border-bottom: 1px solid white;
+  z-index: 12;
 }
 
 .plus-icon:hover{
@@ -63,6 +66,17 @@
   border-left: 1px solid black;
   border-bottom: 1px solid white;
   z-index: 12;
+}
+
+.cover {
+  border: 1px solid white;
+  height: 1px;
+  width: 38px;
+  right: 0px;
+  top: -2px;
+  z-index: 500;
+  background: white;
+  position: absolute;
 }
 
 .top-nav{
@@ -109,4 +123,66 @@
   font-weight:bolder;
   color: #e53e00;
   border: none;
+}
+
+.icon-cover {
+  border: 1px solid white;
+  height: 1px;
+  width: 49px;
+  right: 0px;
+  top: -2px;
+  z-index: 500;
+  background: white;
+  position: absolute;
+}
+
+
+
+.icon-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 50;
+  width: 151px;
+  height: 190px;
+  position: absolute;
+  right: -1px;
+  top: 55px;
+  border: 1px solid black;
+  background-color: white;
+}
+
+.icon-box > button, .create-route{
+  font-size: 14px;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  height: 58px;
+  width: 150px;
+  z-index: 5;
+}
+.icon-box > button:hover, .create-route:hover{
+  background-color: lightgrey;
+}
+.hover-helper{
+  vertical-align: middle;
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
+  border-right: 1px solid transparent;
+  border-left: 1px solid transparent;
+  padding: 17px 10px;
+  position: relative;
+  border-bottom: 1px solid white;
+  padding-right: 21px;
+  z-index: 12;
+}
+
+.hover-helper:hover{
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  border-bottom: 1px solid white;
+  z-index: 12;
 }

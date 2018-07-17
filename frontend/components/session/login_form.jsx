@@ -31,6 +31,7 @@ class LogIn extends React.Component {
   }
 
   handleSubmit(e) {
+    debugger
     e.preventDefault();
     if (this.state.black) {
       let newState = Object.assign({}, this.state);
@@ -43,19 +44,18 @@ class LogIn extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-    debugger
-    if ((this.props.errors).length > 0) {
-      debugger
-      this.errors += 1;
-      if (this.errors > 1) {
-        this.props.clearErrors();
-        this.errors = 0;
-      }
-    }
-  }
+  // componentDidUpdate() {
+  //   if ((this.props.errors).length > 0) {
+  //     this.errors += 1;
+  //     if (this.errors > 1) {
+  //       this.props.clearErrors();
+  //       this.errors = 0;
+  //     }
+  //   }
+  // }
 
   render() {
+    debugger
     let errors;
     const errorDisplay = () => {
       if (Object.keys(this.props.errors).length > 0) {
