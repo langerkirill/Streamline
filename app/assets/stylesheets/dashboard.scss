@@ -6,7 +6,6 @@
 }
 
 .top-nav{
-  height: 55px;
   border-bottom: 1px solid #f0f0f0;
   display: flex;
   flex-direction: row;
@@ -17,6 +16,7 @@
 }
 
 .nav-left {
+  position: relative;
   width: 36%;
   display: flex;
   justify-content: space-between;
@@ -55,4 +55,81 @@
   background: #f4f4f4;
   display: flex;
   justify-content: center;
+}
+
+.dash-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 50;
+  width: 155px;
+  height: 110px;
+  position: absolute;
+  right: 200px;
+  top: 56px;
+  border: 1px solid black;
+  background-color: white;
+}
+
+.dash-box > button{
+  font-size: 14px;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  height: 58px;
+  width: 155px;
+  z-index: 5;
+}
+
+.create-route{
+  color: black;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 45px;
+  font-family: sans-serif;
+}
+
+.dash-box > button, .dash-create-route{
+  padding: 0px 2px;
+  padding-right: 3px;
+}
+
+.dash-box > button:hover, .dash-create-route:hover{
+  background-color: lightgrey;
+}
+
+.nav-plus:hover{
+  color: #e53e00;
+}
+
+.dash-cover {
+  border: 1px solid white;
+  height: 1px;
+  width: 94px;
+  right: 59px;
+  top: -2px;
+  z-index: 500;
+  background: white;
+  position: absolute;
+}
+
+.dash-hover-helper{
+  display: flex;
+  height: 26px;
+  align-items: center;
+  font-size: 10px;
+  padding-top: 30px;
+  border-right: 1px solid transparent;
+  border-left: 1px solid transparent;
+  border-bottom: 2px solid white;
+  z-index: 12;
+}
+
+.dash-hover-helper:hover{
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  border-bottom: 2px solid white;
+  z-index: 12;
 }

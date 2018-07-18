@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import { Route, NavLink, withRouter, Redirect } from 'react-router-dom';
-import PlusBox from './plus_box';
-import IconBox from './icon_box';
+import PlusBox from './boxes/plus_box';
+import IconBox from './boxes/icon_box';
+import DashBox from './boxes/dash_box';
 import {logout} from '../actions/session_actions'
 
 class NavBar extends React.Component {
@@ -11,11 +12,13 @@ class NavBar extends React.Component {
     super(props);
     this.state = {
       plusHover: false,
-      imageHover: false
+      imageHover: false,
+      dashHover: false
     }
 
     this.handlePlusHover = this.handlePlusHover.bind(this);
     this.handleImageHover = this.handleImageHover.bind(this);
+    this.handleDashHover = this.handleDashHover.bind(this);
 
   }
 
@@ -27,6 +30,11 @@ class NavBar extends React.Component {
   handleImageHover() {
     let boo = !this.state.imageHover;
     this.setState({imageHover: boo});
+  }
+
+  handleDashHover() {
+    let boole = !this.state.dashHover;
+    this.setState({dashHover: boole});
   }
 
   componentWillReceiveProps () {
@@ -47,6 +55,14 @@ class NavBar extends React.Component {
       }
     }
 
+    const dashHover = () => {
+      if (this.state.dashHover) {
+        return (<DashBox />);
+      } else {
+        return "";
+      }
+    }
+
     const imageHover = () => {
       if (this.state.imageHover) {
         return (<IconBox logout={this.props.logout} />);
@@ -60,7 +76,9 @@ class NavBar extends React.Component {
       <div className="nav-left">
         <NavLink className="nav-icon" to="/dashboard"> Streamline </NavLink>
         <i className="material-icons">&#xe8b6;</i>
-        <NavLink className="nav-left-links" to="/dashboard"> Dashboard </NavLink>
+        <NavLink onMouseEnter={this.handleDashHover} onMouseLeave={this.handleDashHover} className="dash-hover-helper nav-left-links" to="/dashboard"> Dashboard
+        {dashHover()}
+        </NavLink>
         <NavLink className="nav-left-links" to="/training"> Training </NavLink>
         <NavLink className="nav-left-links" to="/explore"> Explore </NavLink>
         <NavLink className="nav-left-links" to="/challenges"> Challenges </NavLink>
