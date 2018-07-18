@@ -277,7 +277,6 @@
 .route-details {
   display: flex;
   justify-content: space-between;
-
 }
 
 .ride-deets > h4 {
@@ -296,4 +295,96 @@
   padding-top: 20px;
   color: grey;
   padding-bottom: 30px;
+}
+
+.route-index-page {
+  background: #ededed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  align-self: center;
+  position: relative;
+  top: 50%;
+  transform: translateY(50%);
+  margin-bottom: 30px;
+}
+
+.route-index-map {
+  top: 30%;
+  height: 300px;
+  width: 400px;
+  z-index: 1;
+  position: relative;
+}
+
+.my-routes-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  justify-content: space-around;
+  align-content: center;
+  margin: 0 auto;
+}
+
+.route-show-box{
+  position: relative;
+  grid-template-rows: 4fr 5fr 3fr;
+  grid-template-columns: 1fr 1fr 2fr 2fr 2fr;
+  display: grid;
+  height: 250px;
+  width: 300px;
+  background: inherit;
+  border-radius: 5px;
+
+}
+
+.route-show-activity {
+  font-size: 12px;
+  vertical-align: middle;
+  margin-left: 16px;
+  width: 250px;
+  grid-row: 2;
+  padding-left: 14px;
+  padding-top: 25px;
+}
+
+.route-show-link {
+  width: 250px;
+  grid-row: 3;
+  padding-left: 14px;
+  padding-top: 12px;
+  outline-style:none;
+  box-shadow:none;
+  text-decoration: none;
+  color: black;
+  margin-left: 16px;
+}
+
+.my-routes-index{
+  position:relative;
+}
+
+.my-routes{
+  position:absolute;
+  left: 180px;
+  top: 80px;
+  font-size: 32px;
+  font-weight: lighter;
+  font-family: sans-serif;
+}
+
+.routes-link{
+  font-family: sans-serif;
+  position:absolute;
+  left: 180px;
+  top: 110px;
+  font-size: 14px;
+  width: 130px;
+  color: white;
+  padding: 10px;
+  background: #ff4500;
+  text-align: center;
+  margin-top: 30px;
+  border-radius: 5px;
 }

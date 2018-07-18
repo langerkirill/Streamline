@@ -33,7 +33,7 @@ function App({ loggedIn, user, logout }) {
         <ProtectedRoute user={user} component={Dashboard} path="/dashboard" />
         <ProtectedRoute component={CreateRoute} path="/route/create" />
         <ProtectedRoute exact path="/routes/:routeId" component={RouteShow} />
-        <ProtectedRoute path="/routes" component={MyRoutes} />
+        <ProtectedRoute exact path="/routes" component={MyRoutes} />
 
 
       </div>

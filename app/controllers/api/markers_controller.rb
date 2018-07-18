@@ -8,7 +8,7 @@ class Api::MarkersController < ApplicationController
   def created_routes
     user = User.find(params[:userId])
     @markers = user.markers
-    render :index
+    render :created_routes
   end
 
   def index
