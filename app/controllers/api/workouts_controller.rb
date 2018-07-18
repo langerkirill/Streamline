@@ -1,7 +1,11 @@
 class Api::WorkoutsController < ApplicationController
 
   def index
-    @workouts = Workout.all.includes(user: :workouts, route: :workouts)
+    if params[:user_id]
+      @workouts = Workout.where(user_id: params[:user_id])
+    else
+      @workouts = Workout.all.includes(user: :workouts, route: :workouts)
+    end
     render :index
   end
 

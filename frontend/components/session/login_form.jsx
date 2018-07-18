@@ -13,6 +13,7 @@ class LogIn extends React.Component {
     };
     this.errors = 0;
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.loginDemo = this.loginDemo.bind(this);
   }
 
   componentDidMount() {
@@ -30,8 +31,13 @@ class LogIn extends React.Component {
     };
   }
 
+  loginDemo() {
+    let user = {username:"Osc-iago", password:"hunter12"};
+    this.props.login(user);
+  }
+
   handleSubmit(e) {
-    
+
     e.preventDefault();
     if (this.state.black) {
       let newState = Object.assign({}, this.state);
@@ -130,6 +136,7 @@ class LogIn extends React.Component {
                         <button className="login-button">{this.props.buttonText}</button>
                         <div className="line"></div>
                       </form>
+                      <button onClick={this.loginDemo} className="demo-login">Demo User</button>
                     </div>
                 </div>
               </div>

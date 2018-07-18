@@ -1,0 +1,80 @@
+.training-week{
+  width: 90%;
+  margin: 0 auto;
+  height: 200px;
+  border-bottom: 1px solid grey;
+  position: relative;
+}
+
+.dotted {
+  border-left: 1px dotted black;
+  height: 100px;
+}
+
+.dotted-flex{
+  width: 80%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  margin-left: auto;
+  position: absolute;
+  bottom: 0px;
+  right: 72px;
+}
+
+.log-index{
+  width: 90%;
+  margin: 0 auto;
+}
+
+.top-text {
+  font-size: 30px;
+  font-family: sans-serif;
+  font-weight: lighter;
+  grid-row: 1;
+  grid-column: 1;
+  text-align: center;
+  padding-bottom: 50px;
+  padding-top: 30px;
+}
+
+.training-display {
+  display: grid;
+  grid-template-rows: 50% 50%;
+  grid-template-columns: 20% 20% 20% 20% 10% 10%;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.week-days{
+  display: flex;
+  justify-content: space-between;
+  grid-row:2;
+  grid-column: 2/6;
+}
+
+.training-miles {
+  position:absolute;
+  font-size: 28px;
+  font-weight: lighter;
+  font-family: sans-serif;
+  bottom: 30px;
+}
+
+.the-date{
+  position: absolute;
+  bottom: 120px;
+}
+
+.time-training {
+  position: absolute;
+  bottom: 105px;
+}
+
+.distance-traveled{
+  position: absolute;
+  bottom: 107px;
+  left: 100px;
+  font-size: 15px;
+  font-family: sans-serif;
+}

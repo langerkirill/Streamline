@@ -11,6 +11,7 @@ import NavBar from './navbar';
 import CreateRoute from './routes/create_route';
 import RouteShow from './routes/route_show';
 import MyRoutes from './routes/my_routes';
+import TrainingLog from './training/training_log';
 
 
 function App({ loggedIn, user, logout }) {
@@ -34,6 +35,7 @@ function App({ loggedIn, user, logout }) {
         <ProtectedRoute component={CreateRoute} path="/route/create" />
         <ProtectedRoute exact path="/routes/:routeId" component={RouteShow} />
         <ProtectedRoute exact path="/routes" component={MyRoutes} />
+        <ProtectedRoute exact path="/training/log" component={TrainingLog} />
 
 
       </div>

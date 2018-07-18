@@ -27,6 +27,14 @@ export const fetchWorkouts = () => {
   };
 };
 
+export const fetchUserWorkouts = (userId) => {
+  return dispatch => {
+    return WorkoutApiUtil.fetchUserWorkouts(userId).then(workouts => {
+      return dispatch(receiveWorkouts(workouts));
+    });
+  };
+};
+
 export const createWorkout = workout => {
   return dispatch => {
     return WorkoutApiUtil.createWorkout(workout).then(workout => {

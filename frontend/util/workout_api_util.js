@@ -12,3 +12,10 @@ export const createWorkout = workout => {
     data: { workout }
   });
 };
+
+export const fetchUserWorkouts = (userId) => {
+  return $.ajax({
+    method: 'GET',
+    url: `/api/users/${userId}/workouts`
+  });
+};

@@ -130,3 +130,26 @@
   height: 100%;
   transition: 1s;
 }
+
+.demo-login {
+  position: absolute;
+  height: 0px;
+  font-size: 15px;
+  order: 3;
+  margin: 0 auto;
+  width: 304px;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 30px;
+  background: #ff5719;
+  margin-top: 30px;
+  border: none;
+  border-radius: 3px;
+  top: 200px;
+  left: 48px;
+  cursor: pointer;
+}
+
+.form-container {
+  position: relative;
+}
