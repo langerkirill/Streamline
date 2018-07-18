@@ -20,3 +20,11 @@ export const createMarker = marker => {
     data: { marker }
   });
 };
+
+export const fetchUserMarkers = (userId) => {
+  return $.ajax({
+    method: 'GET',
+    url: `api/markers/created_routes`,
+    data: {userId}
+  })
+}

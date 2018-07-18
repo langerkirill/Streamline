@@ -5,6 +5,12 @@ class Api::MarkersController < ApplicationController
     # render: show
   end
 
+  def created_routes
+    user = User.find(params[:userId])
+    @markers = user.markers
+    render :index
+  end
+
   def index
     @markers = Marker.where(route_id: params[:route_id])
     render :index

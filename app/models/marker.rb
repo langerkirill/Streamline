@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: markers
+#
+#  id         :bigint(8)        not null, primary key
+#  lat        :float            not null
+#  lng        :float            not null
+#  route_id   :integer          not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  order      :integer
+#
+
 class Marker < ApplicationRecord
   belongs_to :route
 end

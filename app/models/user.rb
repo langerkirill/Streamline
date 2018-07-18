@@ -8,6 +8,8 @@
 #  session_token   :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  fname           :string
+#  lname           :string
 #
 
 class User < ApplicationRecord
@@ -24,6 +26,12 @@ class User < ApplicationRecord
   has_many :workouts,
     foreign_key: :user_id,
     class_name: :Workout
+
+  has_many :routes
+
+  has_many :markers,
+    through: :routes,
+    source: :markers
 
   has_one_attached :image
 

@@ -1,8 +1,14 @@
 class Api::RoutesController < ApplicationController
 
   def index
+    debugger
     @routes = Route.all.includes(:workouts)
     render :index
+  end
+
+  def created_routes
+    debugger
+    @routes = Route.all(user: :markers)
   end
 
   def update

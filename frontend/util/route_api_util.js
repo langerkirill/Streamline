@@ -5,6 +5,14 @@ export const fetchRoutes = () => {
   });
 };
 
+export const fetchUserRoutes = (userId) => {
+  return $.ajax({
+    method: 'GET',
+    url: `api/markers/created_routes`,
+    data: {userId}
+  })
+}
+
 export const fetchRoute = (routeId) => {
   return $.ajax({
     method: 'GET',

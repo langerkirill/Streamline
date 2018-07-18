@@ -21,7 +21,7 @@ const receiveMarker = marker => {
 
 export const fetchRouteMarkers = (routeId) => {
   return dispatch => {
-    
+
     return MarkerApiUtil.fetchRouteMarkers(routeId).then(markers => {
       return dispatch(receiveMarkers(markers));
     });
@@ -32,6 +32,14 @@ export const createMarker = marker => {
   return dispatch => {
     return MarkerApiUtil.createMarker(marker).then(marker => {
       return dispatch(receiveMarker(marker));
+    });
+  };
+};
+
+export const fetchUserMarkers = (userId) => {
+  return dispatch => {
+    return MarkerApiUtil.fetchUserMarkers(userId).then(routes => {
+      return dispatch(receiveMarkers(routes));
     });
   };
 };

@@ -5,9 +5,13 @@ Rails.application.routes.draw do
   # all of these controller actions will return json.  We only need data now, not html
   # 'everything inside of this block should be organized under api'
   # these controllers will live under a directory of api
-  namespace :api, defaults: { format: 'json' } do  # <-- responses by default should be json
+  namespace :api, defaults: { format: 'json' } do
+      # <-- responses by default should be json
+    get 'markers/created_routes', :to => 'markers#created_routes'
     resources :markers, except: [:show, :index]
-    resources :users
+    resources :users do
+      resources :routes, only: [:index]
+    end
     resources :workouts
     resource :session, only: [:new, :create, :destroy]
     resources :routes do
