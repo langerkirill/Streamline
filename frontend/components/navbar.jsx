@@ -76,9 +76,11 @@ class NavBar extends React.Component {
       <div className="nav-left">
         <NavLink className="nav-icon" to="/dashboard"> Streamline </NavLink>
         <i className="material-icons">&#xe8b6;</i>
-        <NavLink onMouseEnter={this.handleDashHover} onMouseLeave={this.handleDashHover} className="dash-hover-helper nav-left-links" to="/dashboard"> Dashboard
-        {dashHover()}
-        </NavLink>
+        <div onMouseEnter={this.handleDashHover} onMouseLeave={this.handleDashHover} className="dash-hover-helper">
+          <NavLink className="dash-link nav-left-links" to="/dashboard"> Dashboard
+          </NavLink>
+          {dashHover()}
+        </div>
         <NavLink className="nav-left-links" to="/training"> Training </NavLink>
         <NavLink className="nav-left-links" to="/explore"> Explore </NavLink>
         <NavLink className="nav-left-links" to="/challenges"> Challenges </NavLink>
