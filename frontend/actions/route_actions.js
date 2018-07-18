@@ -27,8 +27,16 @@ export const fetchRoutes = () => {
   };
 };
 
+export const fetchRoute = (routeId) => {
+  return dispatch => {
+    return RouteApiUtil.fetchRoute(routeId).then(route => {
+      return dispatch(receiveRoute(route));
+    });
+  };
+};
+
 export const createRoute = route => {
-  
+
   return dispatch => {
     return RouteApiUtil.createRoute(route).then(route => {
       return dispatch(receiveRoute(route));

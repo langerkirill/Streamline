@@ -29,6 +29,11 @@ class NavBar extends React.Component {
     this.setState({imageHover: boo});
   }
 
+  componentWillReceiveProps () {
+    this.setState({imageHover: false, plusHover:false});
+  }
+
+
   render () {
     if (this.props.location.pathname === "/route/create"){
       return "";

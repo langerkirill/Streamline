@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # these controllers will live under a directory of api
   namespace :api, defaults: { format: 'json' } do  # <-- responses by default should be json
     resources :markers, except: [:show, :index]
-    resources :users, only: [:new, :create]
+    resources :users
     resources :workouts
     resource :session, only: [:new, :create, :destroy]
     resources :routes do
