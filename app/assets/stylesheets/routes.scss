@@ -62,7 +62,7 @@
   align-items: center;
 }
 
-.route-icon{
+.route-create-icon{
   outline-style:none;
   text-decoration: none;
   font-family: impact;
@@ -387,4 +387,20 @@
   text-align: center;
   margin-top: 30px;
   border-radius: 5px;
+}
+
+.route-save-button {
+  background: #ff4500;
+  color: white;
+  width: 70px;
+  font-size: 16px;
+  text-align: center;
+  margin-right: 30px;
+}
+
+.create-route-bar{
+  justify-content: flex-end;
+  display: flex;
+  background-color: #ededed;
+  height: 50px;
 }

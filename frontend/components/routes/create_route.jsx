@@ -167,7 +167,7 @@ class CreateRoute extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    
+
     let routeId = nextProps.route;
     this.setMarkers(routeId);
     this.setState({black:true});
@@ -235,15 +235,17 @@ class CreateRoute extends React.Component {
         {savedModal()}
         <nav className={`${btn_class} create-route-nav`}>
           <div className="left-nav-cr">
-            <div className="route-icon">Streamline</div>
+            <NavLink className="route-create-icon" to="/dashboard">Streamline</NavLink>
             <div className="route-nav-text">ROUTE BUILDER</div>
-            <div className="route-nav-beta">Hiya</div>
+            <div className="route-nav-beta">Pedal Harder</div>
           </div>
           <div className="right-nav-cr">
             <NavLink style={{textDecoration: 'none'}} className="route-navlink" to="/dashboard">Exit Builder</NavLink>
           </div>
-          <button onClick={this.changeColor}>Save Route</button>
         </nav>
+          <div className="create-route-bar">
+            <button className="route-save-button" onClick={this.changeColor}>Save</button>
+          </div>
           <div className={`${btn_class} create-route-map`} ref={ map => this.mapNode = map }/>
             <div className="path-info">
               <div className="path-left">
