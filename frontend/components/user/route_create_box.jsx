@@ -1,11 +1,22 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, withRouter} from 'react-router-dom';
 import {fetchUser} from '../../actions/user_actions';
 
 class RouteCreateBox extends React.Component {
   constructor(props){
     super(props);
+    this.share = this.share.bind(this);
   }
+
+  share (event) {
+    event.preventDefault();
+    let tweetedLink = window.location.href;
+    let route = this.props.route.name;
+    let miles = this.props.route.miles;
+    let url = this.props.history.location.pathname;
+    debugger
+    window.open("http://twitter.com/intent/tweet?text=" + route + " - " + miles + " miles" + " " + url + "&text=", "twitterwindow", "height=450, width=550, toolbar=0, location=0, menubar=0, directories=0, scrollbars=0");
+  };
 
   render () {
     const img = () => {
@@ -46,10 +57,10 @@ class RouteCreateBox extends React.Component {
           </div>
           <div className="duration">Est. Moving Time: {this.props.route.duration} minutes</div>
         </div>
-        <NavLink className="route-share-link" to="/training"> Share this Route with Friends </NavLink>
+        <button className="tweet-route" onClick={this.share}> Tweet This Route! <i className="fa">&#xf099;</i> </button>
       </section>
     )
   }
 }
 
-export default RouteCreateBox;
+export default withRouter(RouteCreateBox);

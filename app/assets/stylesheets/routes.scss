@@ -404,3 +404,15 @@
   background-color: #ededed;
   height: 50px;
 }
+
+.tweet-route {
+  width: 100px;
+  grid-row: 3;
+  background: lightblue;
+  color: black;
+  grid-column: 1;
+  outline-style:none;
+  box-shadow:none;
+  text-decoration: none;
+  margin-left: 100px;
+}
