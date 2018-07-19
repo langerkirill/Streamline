@@ -1,10 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { Route, NavLink, withRouter, Redirect } from 'react-router-dom';
+import { Route, NavLink, withRouter, Redirect, Link } from 'react-router-dom';
 import PlusBox from './boxes/plus_box';
 import IconBox from './boxes/icon_box';
 import DashBox from './boxes/dash_box';
-import {logout} from '../actions/session_actions'
+import {logout} from '../actions/session_actions';
+import {fetchUser} from '../actions/user_actions';
+
 
 class NavBar extends React.Component {
 
@@ -38,7 +40,11 @@ class NavBar extends React.Component {
   }
 
   componentWillReceiveProps () {
+    debugger
     this.setState({imageHover: false, plusHover:false, dashHover:false});
+    if (this.props.user.photoUrl === undefined) {
+      this.props.fetchUser(this.props.user.id);
+    }
   }
 
 
@@ -74,7 +80,7 @@ class NavBar extends React.Component {
     return (
     <nav className="top-nav">
       <div className="nav-left">
-        <NavLink className="nav-icon" to="/dashboard"> Streamline </NavLink>
+        <Link className="nav-icon" to="/dashboard"> Streamline </Link>
         <i className="material-icons">&#xe8b6;</i>
         <div onMouseEnter={this.handleDashHover} onMouseLeave={this.handleDashHover} className="dash-hover-helper">
           <NavLink className="dash-link nav-left-links" to="/dashboard"> Dashboard
@@ -109,7 +115,8 @@ class NavBar extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const user = state.users[ownProps.match.params.userId];
+  debugger
+  const user = state.users[state.session.id];
   return {
     user
   }
@@ -117,7 +124,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logout: () => dispatch(logout())
+    logout: () => dispatch(logout()),
+    fetchUser: (userId) => dispatch(fetchUser(userId))
   };
 };
 

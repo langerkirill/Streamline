@@ -41,16 +41,6 @@
   border-bottom: 2px solid #e53e00;
 }
 
-.nav-icon {
-  outline-style:none;
-  text-decoration: none;
-  font-family: impact;
-  font-size: 20px;
-  font-weight:bolder;
-  color: #e53e00;
-  border: none;
-}
-
 .dash-bored {
   background: #f4f4f4;
   display: flex;
@@ -124,7 +114,7 @@
   height: 54px;
   border-right: 1px solid transparent;
   border-left: 1px solid transparent;
-  border-bottom: 2px solid white;
+  border-bottom: 1px solid white;
   z-index: 12;
   position: relative;
 }
@@ -144,4 +134,16 @@
   border-left: 1px solid black;
   border-bottom: 2px solid white;
   z-index: 12;
+}
+
+.nav-icon {
+  outline-style:none;
+  text-decoration: none;
+  font-family: impact;
+  font-size: 20px;
+  font-weight:bolder;
+  color: #e53e00;
+  border: none;
+  min-width: 140px;
+  text-align: center;
 }

@@ -32,7 +32,7 @@ class UserBox extends React.Component {
           <strong>Night Ride</strong> • May 3, 2018
           </div>
         </div>
-        <NavLink className="user-training-link" to="/training"> Your Training Log </NavLink>
+        <NavLink className="user-training-link" to="/training/log"> Your Training Log </NavLink>
       </section>
     )
   }
