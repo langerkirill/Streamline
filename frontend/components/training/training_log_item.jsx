@@ -12,7 +12,7 @@ class TrainingLogItem extends React.Component {
   }
 
   componentWillMount () {
-    this.shouldDisplay(this.props.workouts)
+    this.shouldDisplay(this.props.workouts);
   }
 
   parseData(workouts){
@@ -43,6 +43,7 @@ class TrainingLogItem extends React.Component {
   }
 
   render() {
+
     return (
       <section className="log-container">
         <div className="training-week">

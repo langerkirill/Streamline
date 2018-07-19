@@ -9,21 +9,40 @@ class TrainingLog extends React.Component {
     super(props);
     this.state = {
       myWorkouts: [],
-      weeks: []
+      weeks: [],
+      top: false
     }
     this.weeks = this.weeks.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount () {
     this.props.fetchUserWorkouts(this.props.user.id).then(() => {
       this.weeks();
     });
+    window.addEventListener('scroll', this.handleScroll);
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
 
   componentWillReceiveProps(nextProps){
     const userWorkouts = Object.values(nextProps.workouts);
     this.setState({myWorkouts: userWorkouts});
   }
+
+  handleScroll () {
+    debugger
+    let lastScrollY = window.scrollY;
+    if (lastScrollY > 142){
+      this.setState({top:true})
+    } else {
+      this.setState({top:false})
+    }
+  }
+
 
   weeks () {
     let today = new Date();
@@ -60,6 +79,10 @@ class TrainingLog extends React.Component {
   }
 
   render () {
+
+    let btn_class = this.state.black ? "blackButton" : "whiteButton";
+    let scroll_class = this.state.top ? "scroll" : "stay";
+
     const boxes = this.state.weeks.map(week => {
       return (<TrainingLogItem key={week} newer={week[1]} older={week[2]} week={week[0]} workouts={this.props.workouts}/>);
     })
@@ -69,7 +92,7 @@ class TrainingLog extends React.Component {
           <div className="top-text">
             Training Log
           </div>
-          <div className="week-days">
+          <div className={`${scroll_class} week-days`}>
             <div>Mon</div>
             <div>Tue</div>
             <div>Wed</div>

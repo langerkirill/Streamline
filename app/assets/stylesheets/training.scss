@@ -49,8 +49,14 @@
 .week-days{
   display: flex;
   justify-content: space-between;
-  grid-row:2;
-  grid-column: 2/6;
+  position: absolute;
+  padding: 20px;
+  background: white;
+  width: 58%;
+  right: 17%;
+  top: 200px;
+  padding: 20px;
+  background: white;
 }
 
 .training-miles {
@@ -77,4 +83,17 @@
   left: 100px;
   font-size: 15px;
   font-family: sans-serif;
+}
+
+.scroll {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  width: 58%;
+  text-align: right;
+  right: 17%;
+  padding: 30px;
+  background: white;
+  z-index: 60;
+  top: 0px;
 }
