@@ -243,7 +243,7 @@ class CreateRoute extends React.Component {
             <NavLink style={{textDecoration: 'none'}} className="route-navlink" to="/dashboard">Exit Builder</NavLink>
           </div>
         </nav>
-          <div className="create-route-bar">
+          <div className={`${btn_class} create-route-bar`}>
             <button className="route-save-button" onClick={this.changeColor}>Save</button>
           </div>
           <div className={`${btn_class} create-route-map`} ref={ map => this.mapNode = map }/>

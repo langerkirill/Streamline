@@ -38,7 +38,7 @@ class NavBar extends React.Component {
   }
 
   componentWillReceiveProps () {
-    this.setState({imageHover: false, plusHover:false});
+    this.setState({imageHover: false, plusHover:false, dashHover:false});
   }
 
 
@@ -81,7 +81,7 @@ class NavBar extends React.Component {
           </NavLink>
           {dashHover()}
         </div>
-        <NavLink className="nav-left-links" to="/training"> Training </NavLink>
+        <NavLink className="nav-left-links" to="/training/log"> Training </NavLink>
         <NavLink className="nav-left-links" to="/explore"> Explore </NavLink>
         <NavLink className="nav-left-links" to="/challenges"> Challenges </NavLink>
       </div>

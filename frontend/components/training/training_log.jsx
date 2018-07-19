@@ -8,7 +8,7 @@ class TrainingLog extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      myWorkouts: [{miles: 0, duration:0, elevation:0}],
+      myWorkouts: [],
       weeks: []
     }
     this.weeks = this.weeks.bind(this);
