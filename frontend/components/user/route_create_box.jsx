@@ -21,7 +21,7 @@ class RouteCreateBox extends React.Component {
         <div className="route-icon-container">
           <img className="route-icon" src={img()} ></img>
         </div>
-        <h5 className="route-username"> By {this.props.user.username}</h5>
+        <h5 className="route-username">{this.props.route.name} <br/> By {this.props.user.username}</h5>
         <div className="route-info"></div>
         <div className="route-activity">
           <div className="route-details">

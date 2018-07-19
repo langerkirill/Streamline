@@ -81,7 +81,7 @@ class RouteShow extends React.Component {
     }
 
   render () {
-
+    debugger
 
     const createBox = () => {
       if (this.props.creator.length !== 0) {

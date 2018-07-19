@@ -32,6 +32,6 @@ class Api::RoutesController < ApplicationController
   end
 
   def route_params
-    params.require(:route).permit(:startlat, :startlong, :endlat, :endlong, :miles, :duration, :elevation, :user_id, :route_type)
+    params.require(:route).permit(:startlat, :startlong, :endlat, :endlong, :miles, :duration, :elevation, :user_id, :route_type, :name)
   end
 end

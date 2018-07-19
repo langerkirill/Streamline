@@ -39,13 +39,13 @@ class NavBar extends React.Component {
     this.setState({dashHover: boole});
   }
 
-  componentWillReceiveProps () {
-    debugger
-    this.setState({imageHover: false, plusHover:false, dashHover:false});
-    if (this.props.user.photoUrl === undefined) {
-      this.props.fetchUser(this.props.user.id);
-    }
-  }
+  // componentWillReceiveProps () {
+  //   debugger
+  //   this.setState({imageHover: false, plusHover:false, dashHover:false});
+  //   if (this.props.user.photoUrl === undefined) {
+  //     this.props.fetchUser(this.props.user.id);
+  //   }
+  // }
 
 
   render () {

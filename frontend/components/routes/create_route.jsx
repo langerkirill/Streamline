@@ -12,12 +12,14 @@ class CreateRoute extends React.Component {
       miles: 0,
       duration: 0,
       elevation: 0,
-      black: false
+      black: false,
+      name: ""
     }
     this.coordinates = [];
     this.markers = [];
     this.handleSave = this.handleSave.bind(this);
     this.changeColor = this.changeColor.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
 
@@ -161,6 +163,8 @@ class CreateRoute extends React.Component {
     copy.endlong = parseFloat(this.coordinates[this.coordinates.length-1][1]);
     copy.user_id = this.props.userId;
     copy.route_type = "biking";
+    copy.name = this.state.name
+    debugger
     let newRoute = this.props.createRoute(copy).then(data => {
       this.props.history.push(`/routes/${data.route.id}`)
     });
@@ -190,10 +194,11 @@ class CreateRoute extends React.Component {
     this.setState({black: !this.state.black})
   }
 
-  updateField(field) {
-    return e => {
-      this.setState({ [field]: e.currentTarget.value });
-    };
+  handleChange(event) {
+    debugger
+    this.setState({
+      name: event.target.value
+    });
   }
 
   render() {
@@ -210,11 +215,9 @@ class CreateRoute extends React.Component {
             <div className="route-modal-title"> Save</div>
             <div className="route-modal-text"> Enter a name for your route below. On the next page, you'll be able to see, edit, and share your route.</div>
             <form className="route-modal-form" onSubmit={this.handleSubmit}>
-              <div>
-                <label>Route Name</label><br/>
-                <input type="text" className="modal-email" value={this.state.username}
-                onChange={this.updateField('username')}></input>
-              </div>
+              <label>Route Name</label><br/>
+              <input type="text" className="modal-email"
+              onChange={this.handleChange}></input>
             </form>
             <div className="route-bottom-buttons">
               <button className="route-modal-exit" onClick={this.changeColor.bind(this)}>Cancel</button>
