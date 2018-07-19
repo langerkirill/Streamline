@@ -20,13 +20,12 @@ class Api::WorkoutsController < ApplicationController
   end
 
   def create
-    workout = Workout.new(workout_params)
-    workout.author_id = current_user.id
-    if workout.save
-      redirect_to workout_url(workout)
+    @workout = Workout.new(workout_params)
+    @workout.user_id = current_user.id
+    if @workout.save
       render :show
     else
-      render json: workout.errors.full_messages, status: :unprocessable_entity
+      render json: @workout.errors.full_messages, status: :unprocessable_entity
       render :new, status: 422
     end
   end
@@ -57,6 +56,6 @@ class Api::WorkoutsController < ApplicationController
 
   private
   def workout_params
-    params.require(:workout).permit(:workout_type, :duration, :miles, :date, :route_id, :user_id)
+    params.require(:workout).permit(:elevation, :title, :workout_type, :duration, :miles, :date, :route_id, :user_id)
   end
 end

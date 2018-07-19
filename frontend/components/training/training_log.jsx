@@ -70,7 +70,7 @@ class TrainingLog extends React.Component {
         if(mm<10) {
             mm2 = '0'+mm2
         }
-        let date = mm + '/' + dd + '-' + mm2 + '/' + dd2
+        let date = mm2 + '/' + dd2 + '-' + mm + '/' + dd
         dates.push([date, first, second]);
         today.setDate(today.getDate() - 1);
       }

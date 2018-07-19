@@ -9,6 +9,7 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { logout } from '../actions/session_actions';
 import NavBar from './navbar';
 import CreateRoute from './routes/create_route';
+import CreateWorkout from './workouts/create_workout';
 import RouteShow from './routes/route_show';
 import MyRoutes from './routes/my_routes';
 import TrainingLog from './training/training_log';
@@ -33,6 +34,7 @@ function App({ loggedIn, user, logout }) {
         <AuthRoute component={LoginContainer} path="/login" />
         <ProtectedRoute user={user} component={Dashboard} path="/dashboard" />
         <ProtectedRoute component={CreateRoute} path="/route/create" />
+        <ProtectedRoute component={CreateWorkout} path="/workout/create" />
         <ProtectedRoute exact path="/routes/:routeId" component={RouteShow} />
         <ProtectedRoute exact path="/routes" component={MyRoutes} />
         <ProtectedRoute exact path="/training/log" component={TrainingLog} />

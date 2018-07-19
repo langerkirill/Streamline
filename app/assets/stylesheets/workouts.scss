@@ -106,3 +106,108 @@
   padding-bottom: 30px;
   padding-top: 20px;
 }
+
+.workout-upload {
+  // dispay: grid;
+  // grid-template-rows: 20% 20% 20% 20% 20%;
+  // grid-template-columns: 20% 20% 20% 20% 20%;
+  width: 70vw;
+  height: 80vh;
+  margin: 0 auto;
+
+  margin-top:  50px;
+}
+
+.upload-top{
+  display: flex;
+  flex-direction: column;
+}
+
+.workout-entry {
+  display: flex;
+  flex-direction: row;
+
+  width: 89.9%;
+  height: 80%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.top-upload-box{
+    width: 100%;
+    height: 200px;
+    border-bottom: 1px solid #d7d7d7;
+}
+
+.middle-upload-box{
+    width: 100%;
+    height: 300px;
+    border-bottom: 1px solid #d7d7d7;
+    display: flex;
+    flex-direction: column;
+}
+
+.sport-date {
+  margin-left: 70px;
+  margin-top: 80px;
+  display: flex;
+  width: 45%;
+
+  justify-content: space-between;
+}
+
+.title-box {
+  margin-left: 70px;
+  margin-top: 40px;
+  width: 45%;
+
+}
+
+.entry-text{
+  margin-left: 50px;
+  font-size: 26px;
+  font-family: sans-serif;
+  font-weight: lighter;
+}
+
+.workout-create{
+  font-family: sans-serif;
+  font-size: 14px;
+  width: 70px;
+  height: 30px;
+  color: white;
+  background: #ff4500;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.workout-create-buttons {
+  margin-top: 60px;
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.workout-cancel {
+  margin-left: 20px;
+  color: blue;
+  font-family: sans-serif;
+  font-weight: lighter;
+  font-size: 12px;
+}
+
+.workout-entry > label, .sport-date > label, .title-box > label {
+  font-family: sans-serif;
+  font-weight: lighter;
+}
+
+.title-input {
+  width: 415px;
+}
+
+.workout-upload-input {
+  height: 20px;
+}
