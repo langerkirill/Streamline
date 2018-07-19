@@ -39,10 +39,12 @@ class WorkoutRoute extends React.Component {
         if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
             directionsDisplay.setMap(map);
-        } else {
-            alert("Directions Request from " + start.toUrlValue(6) + " to " + end.toUrlValue(6) + " failed: " + status);
+        } else if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
+            let wait = true;
+            setTimeout("wait = true", 2000);
       }
     });
+
     setTimeout(function () { map.setZoom(map.getZoom() + 1); }, 4000);
   }
 

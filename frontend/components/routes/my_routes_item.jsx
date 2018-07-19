@@ -1,7 +1,13 @@
 import React from 'react';
 import RouteShowBox from '../user/route_show_box';
+import {withRouter} from 'react-router-dom';
 
 class MyRoutesItem extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.handleRedirect = this.handleRedirect.bind(this);
+  }
 
   componentDidMount () {
     const mapOptions = {
@@ -10,7 +16,7 @@ class MyRoutesItem extends React.Component {
     };
 
     this.map = new google.maps.Map(this.mapNode, mapOptions);
-    this.calcRoute(this.props.markers)
+    this.calcRoute(this.props.markers);
   }
 
     calcRoute(markers) {
@@ -54,14 +60,22 @@ class MyRoutesItem extends React.Component {
           if (status == google.maps.DirectionsStatus.OK) {
 
             directionsDisplay.setDirections(result);
-          }
+          } else if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
+              let wait = true;
+              setTimeout("wait = true", 2000);
+            }
         });
       }
+
+    handleRedirect () {
+      debugger
+      this.props.history.push(`/routes/${this.props.route.id}`)
+    }
 
     render () {
 
       return (
-        <div className="route-index-page">
+        <div onClick={this.handleRedirect} className="route-index-page">
           <div className="route-show-container">
             <div className='route-index-map' ref={ map => this.mapNode = map }/>
           </div>
@@ -71,4 +85,4 @@ class MyRoutesItem extends React.Component {
     };
   }
 
-export default MyRoutesItem;
+export default withRouter(MyRoutesItem);
