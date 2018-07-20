@@ -49,7 +49,7 @@ export const login = user => {
 export const signup = user => {
   return dispatch => {
     return SessionApiUtil.signup(user).then(user => {
-      return dispatch(receiveCurrentUser(user));
+      return dispatch(loginCurrentUser(user));
     }, errors => (
         dispatch(receiveErrors(errors.responseJSON))
     ));

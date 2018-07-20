@@ -40,9 +40,10 @@ class MyRoutes extends React.Component {
   }
 
   render () {
+    debugger
     const routes = this.state.markers.map(markers => {
       let route = this.props.routes[markers[0].route_id];
-      return(<MyRoutesItem route={route} key={markers[0].route_id} markers={markers}/>);
+      return(<MyRoutesItem route={route} key={markers[0].id} markers={markers}/>);
     })
 
     return (
@@ -58,6 +59,7 @@ class MyRoutes extends React.Component {
 }
 
 const msp = state => {
+  debugger
   const routes = state.entities.routes;
   const user = state.entities.users[state.session.id] || [];
   const markers = Object.values(state.entities.markers);

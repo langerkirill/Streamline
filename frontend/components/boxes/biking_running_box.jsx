@@ -75,8 +75,6 @@ class BikingRunningBox extends React.Component {
 
   render () {
 
-    debugger
-
     let bikeback = this.state.bike ? "greyBack" : "whiteBack";
     let runback = this.state.run ? "greyBack" : "whiteBack";
     let penguinback = this.state.penguin ? "greyBack" : "whiteBack";
