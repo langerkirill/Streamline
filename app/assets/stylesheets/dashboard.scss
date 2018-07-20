@@ -150,6 +150,7 @@
 
 .the-br-box{
   grid-template-rows: 20% 10% 25% 25% 20%;
+  grid-template-columns: 20% 20% 20% 20% 20%;
   display: grid;
   flex-direction: column;
   height: 400px;
@@ -162,6 +163,8 @@
 }
 
 .tabs-container {
+  grid-row: 1;
+  grid-column: 1/6;
   height: 50px;
   display: flex;
   justify-content: space-around;
@@ -169,16 +172,17 @@
 }
 
 .tag {
-  border: 1px solid black;
-  width: 91px;
+  padding-left: 1px;
+  width: 92px;
   height: 50px;
   margin: 0 auto;
   text-align: center;
   line-height: 60px;
+  cursor: pointer;
 }
 
 .greyBack {
-  background: grey;
+  background: #f4f4f4;
 }
 
 .whiteBack {
@@ -186,14 +190,53 @@
 }
 
 .penguin-icon {
-  border: 1px solid black;
   width: 91px;
   height: 50px;
   margin: 0 auto;
   text-align: center;
   line-height: 50px;
+  cursor: pointer;
 }
 
 .run-icon {
   padding-right: 2px;
+}
+
+.br-box-icon {
+  grid-row: 4;
+  grid-column: 4;
+  color: lightgrey;
+  border: 1px solid lightgrey;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  line-height: 65px;
+  border-radius: 50%
+}
+
+.week-miles {
+  text-align: center;
+  grid-row: 3;
+  grid-column: 2/5;
+}
+
+.br-box-distance {
+  margin-top: 16px;
+  color: teal;
+  font-family: sans-serif;
+  font-size: 25px;
+}
+
+.br-box-stats {
+  font-family: sans-serif;
+  font-size: 12px;
+}
+
+.br-time-elevation {
+  display: flex;
+  grid-row: 5;
+  grid-column: 1/5;
+  justify-content: space-around;
+  width: 280px;
+  color: lightgrey;
 }

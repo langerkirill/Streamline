@@ -15,7 +15,7 @@ class Dashboard extends React.Component {
       <div className="dash-bored">
         <div>
           <UserBox />
-          <BikingRunningBox />
+          <BikingRunningBox user={this.props.user} workouts={this.props.workouts}/>
         </div>
         <WorkoutIndex workouts={this.props.workouts}/>
       </div>
@@ -26,9 +26,11 @@ class Dashboard extends React.Component {
 const mapStateToProps = (state) => {
   const workouts = Object.values(state.entities.workouts);
   const users = state.entities.users;
+  const user = state.entities.users[state.session.id];
   return {
     workouts,
-    users
+    users,
+    user
   };
 };
 

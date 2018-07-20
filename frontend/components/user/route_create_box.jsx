@@ -19,7 +19,7 @@ class RouteCreateBox extends React.Component {
   };
 
   render () {
-    debugger
+    
     const img = () => {
       if(this.props.user.photoUrl === undefined){
         return("");

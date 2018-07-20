@@ -26,7 +26,7 @@ class RouteShow extends React.Component {
   }
 
   componentWillReceiveProps(nextProps, ownProps) {
-    debugger
+    
     let coordinates = [];
     for (let i=0; i<nextProps.markers.length; i++) {
       if (nextProps.markers[i].route_id == nextProps.match.params.routeId) {
@@ -83,7 +83,7 @@ class RouteShow extends React.Component {
 
   render () {
 
-    debugger
+    
     const createBox = () => {
       if (this.props.creator.length !== 0) {
         return (<RouteCreateBox route={this.props.route} user={this.props.creator}/>);
@@ -109,7 +109,7 @@ class RouteShow extends React.Component {
 const msp = (state, ownProps) => {
 
   const route = state.entities.routes[ownProps.match.params.routeId] || [];
-  debugger
+  
   const markers = Object.values(state.entities.markers) || [];
   const creator = state.entities.users[route.user_id] || [];
   return {

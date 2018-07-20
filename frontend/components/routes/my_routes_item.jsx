@@ -68,7 +68,7 @@ class MyRoutesItem extends React.Component {
       }
 
     handleRedirect () {
-      debugger
+      
       this.props.history.push(`/routes/${this.props.route.id}`)
     }
 
