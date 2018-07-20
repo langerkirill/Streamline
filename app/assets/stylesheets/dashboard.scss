@@ -45,6 +45,7 @@
   background: #f4f4f4;
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .dash-box{
@@ -242,16 +243,23 @@
 }
 
 .scroll-dash {
+  width: 220px;
   position: fixed;
   z-index: 60;
-  top: 0px;
-  left: 175px;
   border-bottom: grey;
-  transition: 1s;
+  padding-right: 660px;
 }
 
 .dont {
   width: 280px;
   margin-right: 30px;
   background: transparent;
+}
+
+.f-wrapper{
+  width: 220px;
+  position: absolute;
+  top: 0;
+  right: 500px;
+
 }

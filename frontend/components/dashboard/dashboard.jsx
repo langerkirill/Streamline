@@ -43,12 +43,13 @@ class Dashboard extends React.Component {
 
     return (
       <div className="dash-bored">
+        <div className="f-wrapper"></div>
         <div className={`${stay_class} invisipad`}></div>
         <div className={`${scroll_class}`}>
           <UserBox />
           <BikingRunningBox user={this.props.user} workouts={this.props.workouts}/>
         </div>
-        <WorkoutIndex workouts={this.props.workouts}/>
+        <WorkoutIndex className="workout-index" workouts={this.props.workouts}/>
       </div>
     );
   }
