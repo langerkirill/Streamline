@@ -12,12 +12,12 @@ class WorkoutIndexItem extends React.Component {
   }
 
   handleRedirect () {
-    
+
     this.props.history.push(`/routes/${this.props.route.id}`)
   }
 
   render () {
-    
+
     const icon = () => {
       if (this.props.workout.workout_type === "biking") {
         return (<i className="index-icon material-icons">&#xe52f;</i>);
@@ -25,7 +25,7 @@ class WorkoutIndexItem extends React.Component {
         return (<i className="index-icon material-icons">&#xe566;</i>);
       }
     }
-    
+
 
     return (
       <div onClick={this.handleRedirect} className="workout-box">
@@ -47,11 +47,11 @@ class WorkoutIndexItem extends React.Component {
           </div>
           <div className="workout-elevation">
             <div className="stats-label">Elevation Gain:</div>
-            <div className="elevation">{this.props.workout.elevation}</div>
+            <div className="elevation">{this.props.workout.elevation} ft</div>
           </div>
           <div>
             <div className="stats-label"> Time: </div>
-            <div className="time"> {this.props.workout.duration}</div>
+            <div className="time"> {this.props.workout.duration} minutes</div>
           </div>
         </div>
         <div className="map-container">
@@ -63,7 +63,7 @@ class WorkoutIndexItem extends React.Component {
 }
 
 const msp = (state, ownProps) => {
-  
+
   const user = state.entities.users[ownProps.workout['user_id']];
   const route = state.entities.routes[ownProps.workout['route_id']]
   return {

@@ -6,14 +6,45 @@ import { connect } from 'react-redux';
 
 class Dashboard extends React.Component {
 
+  constructor(props){
+    super(props);
+    this.handleScroll = this.handleScroll.bind(this);
+    this.state = {
+      top:false
+    }
+  }
+
   componentDidMount() {
     this.props.fetchWorkouts();
   }
 
+  componentWillMount () {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll () {
+    let lastScrollY = window.scrollY;
+    if (lastScrollY > 142){
+      this.setState({top:true})
+    } else {
+      this.setState({top:false})
+    }
+  }
+
   render () {
+
+    let scroll_class = this.state.top ? "scroll-dash" : "stay";
+    let stay_class = this.state.top ? "dont" : "appear";
+
+
     return (
       <div className="dash-bored">
-        <div>
+        <div className={`${stay_class} invisipad`}></div>
+        <div className={`${scroll_class}`}>
           <UserBox />
           <BikingRunningBox user={this.props.user} workouts={this.props.workouts}/>
         </div>

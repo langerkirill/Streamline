@@ -240,3 +240,18 @@
   width: 280px;
   color: lightgrey;
 }
+
+.scroll-dash {
+  position: fixed;
+  z-index: 60;
+  top: 0px;
+  left: 175px;
+  border-bottom: grey;
+  transition: 1s;
+}
+
+.dont {
+  width: 280px;
+  margin-right: 30px;
+  background: transparent;
+}
