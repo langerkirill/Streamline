@@ -224,7 +224,12 @@
   width: 300px;
   background: white;
   border-radius: 5px;
+}
 
+.route-name{
+  grid-row: 1;
+  grid-column: 1;
+  font-size: 26px;
 }
 
 .route-icon-container{
@@ -308,6 +313,7 @@
   top: 50%;
   transform: translateY(50%);
   margin-bottom: 30px;
+  cursor: pointer;
 }
 
 .route-index-map {

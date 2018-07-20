@@ -14,11 +14,12 @@ class RouteCreateBox extends React.Component {
     let route = this.props.route.name;
     let miles = this.props.route.miles;
     let url = this.props.history.location.pathname;
-    debugger
+
     window.open("http://twitter.com/intent/tweet?text=" + route + " - " + miles + " miles" + " " + url + "&text=", "twitterwindow", "height=450, width=550, toolbar=0, location=0, menubar=0, directories=0, scrollbars=0");
   };
 
   render () {
+    debugger
     const img = () => {
       if(this.props.user.photoUrl === undefined){
         return("");
@@ -32,7 +33,7 @@ class RouteCreateBox extends React.Component {
         <div className="route-icon-container">
           <img className="route-icon" src={img()} ></img>
         </div>
-        <h5 className="route-username">{this.props.route.name} <br/> By {this.props.user.username}</h5>
+        <h5 className="route-username">{this.props.route.name}{this.props.route.title} <br/> By {this.props.user.username}</h5>
         <div className="route-info"></div>
         <div className="route-activity">
           <div className="route-details">
@@ -49,9 +50,9 @@ class RouteCreateBox extends React.Component {
               </div>
             </div>
             <div className="ride-deets">
-              <h4> {this.props.route.route_type}
+              <h4> {this.props.route.route_type}{this.props.route.workout_type}
               </h4>
-              <div> Ride Type
+              <div> Workout Type
               </div>
             </div>
           </div>

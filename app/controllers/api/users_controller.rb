@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
   def index
-    @users = User.all.includes(:workouts)
+    @users = User.all.includes(image_attachment: :blob)
     render :index
   end
 

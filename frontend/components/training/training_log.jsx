@@ -34,7 +34,7 @@ class TrainingLog extends React.Component {
   }
 
   handleScroll () {
-    debugger
+
     let lastScrollY = window.scrollY;
     if (lastScrollY > 142){
       this.setState({top:true})

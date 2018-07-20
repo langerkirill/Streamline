@@ -135,7 +135,7 @@
   align-items: center;
   z-index: 50;
   width: 151px;
-  height: 190px;
+  height: 60px;
   position: absolute;
   right: -1px;
   top: 55px;
@@ -175,4 +175,25 @@
   border-left: 1px solid black;
   border-bottom: 1px solid white;
   z-index: 12;
+}
+
+.logout-button{
+  font-size: 14px;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  height: 60px;
+  width: 150px;
+  padding-right: 1px;
+  text-align: center;
+  vertical-align: middle;
+  z-index: 5;
+  line-height: 58px;
+  font-family: sans-serif;
+  color: black;
+}
+
+.logout-button:hover{
+  background-color: lightgrey;
 }

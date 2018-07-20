@@ -27,6 +27,7 @@ class WorkoutIndex extends React.Component {
   }
 
   render () {
+    debugger
     let workoutIndex;
     if (Object.values(this.state.workouts).length === 0) {
       workoutIndex = "";

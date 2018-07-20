@@ -164,7 +164,7 @@ class CreateRoute extends React.Component {
     copy.user_id = this.props.userId;
     copy.route_type = "biking";
     copy.name = this.state.name
-    debugger
+    
     let newRoute = this.props.createRoute(copy).then(data => {
       this.props.history.push(`/routes/${data.route.id}`)
     });
@@ -195,7 +195,7 @@ class CreateRoute extends React.Component {
   }
 
   handleChange(event) {
-    debugger
+    
     this.setState({
       name: event.target.value
     });

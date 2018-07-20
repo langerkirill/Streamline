@@ -13,6 +13,7 @@ json.users do
       if workout.user.image.present?
         json.photoUrl url_for(workout.user.image)
       end
+      json.workoutIds workout.user.workouts.order('date DESC').ids
     end
   end
 end

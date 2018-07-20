@@ -22,10 +22,9 @@ class Workout < ApplicationRecord
 
   belongs_to :user,
     foreign_key: :user_id,
-    class_name: :User,
-    optional: true
+    class_name: :User
 
   belongs_to :route,
-  optional:true
+    optional:true
 
 end

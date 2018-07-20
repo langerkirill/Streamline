@@ -22,11 +22,11 @@ class Api::WorkoutsController < ApplicationController
   def create
     @workout = Workout.new(workout_params)
     @workout.user_id = current_user.id
+    debugger
     if @workout.save
       render :show
     else
       render json: @workout.errors.full_messages, status: :unprocessable_entity
-      render :new, status: 422
     end
   end
 

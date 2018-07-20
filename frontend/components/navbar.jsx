@@ -77,7 +77,7 @@ class NavBar extends React.Component {
     <nav className="top-nav">
       <div className="nav-left">
         <Link className="nav-icon" to="/dashboard"> Streamline </Link>
-        <i className="material-icons">&#xe8b6;</i>
+        <i className="search-icon material-icons">&#xe8b6;</i>
         <div onMouseEnter={this.handleDashHover} onMouseLeave={this.handleDashHover} className="dash-hover-helper">
           <NavLink className="dash-link nav-left-links" to="/dashboard"> Dashboard
           </NavLink>
@@ -111,7 +111,7 @@ class NavBar extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  debugger
+
   const user = state.users[state.session.id];
   return {
     user

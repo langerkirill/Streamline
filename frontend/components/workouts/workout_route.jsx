@@ -45,7 +45,7 @@ class WorkoutRoute extends React.Component {
       }
     });
 
-    setTimeout(function () { map.setZoom(map.getZoom() + 1); }, 4000);
+    setTimeout(function () { map.setZoom(map.getZoom() + 1); }, 5000);
   }
 
   render() {

@@ -15,6 +15,7 @@
   grid-template-rows: 1.5fr .8fr .8fr 4fr 1fr;
   grid-template-columns: 15% 50% 10% 10% 10%;
   z-index: 5;
+  cursor: pointer;
 }
 
 .material-icons{
@@ -22,7 +23,6 @@
   grid-column: 1;
   grid-row: 2;
   text-align: center;
-  padding-right: 10px;
 }
 
 .fal {
@@ -210,4 +210,16 @@
 
 .workout-upload-input {
   height: 20px;
+}
+
+.search-icons {
+  display: grid;
+  grid-column: 1;
+  grid-row: 2;
+  text-align: center;
+  padding:none;
+}
+
+.index-icon{
+  padding-top: 20px;
 }

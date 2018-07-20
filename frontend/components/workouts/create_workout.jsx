@@ -27,7 +27,7 @@ class CreateWorkout extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    debugger
+
 
     this.props.createWorkout(Object.assign({}, this.state));
   }

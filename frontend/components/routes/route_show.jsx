@@ -14,18 +14,19 @@ class RouteShow extends React.Component {
 
   componentDidMount () {
     this.props.fetchRoute(this.props.match.params.routeId).then(data => {
-      this.props.fetchUser(data.route.user_id);
+      this.props.fetchUser(data.route.user_id).then(() => {
+        this.props.fetchRouteMarkers(this.props.match.params.routeId);
+      })
     });
-    this.props.fetchRouteMarkers(this.props.match.params.routeId);
     const mapOptions = {
       center: { lat: 40.778541, lng: -73.968195 }, // this is NY
       zoom: 14
     };
-
     this.map = new google.maps.Map(this.mapNode, mapOptions);
   }
 
   componentWillReceiveProps(nextProps, ownProps) {
+    debugger
     let coordinates = [];
     for (let i=0; i<nextProps.markers.length; i++) {
       if (nextProps.markers[i].route_id == nextProps.match.params.routeId) {
@@ -81,8 +82,8 @@ class RouteShow extends React.Component {
     }
 
   render () {
-    debugger
 
+    debugger
     const createBox = () => {
       if (this.props.creator.length !== 0) {
         return (<RouteCreateBox route={this.props.route} user={this.props.creator}/>);
@@ -108,6 +109,7 @@ class RouteShow extends React.Component {
 const msp = (state, ownProps) => {
 
   const route = state.entities.routes[ownProps.match.params.routeId] || [];
+  debugger
   const markers = Object.values(state.entities.markers) || [];
   const creator = state.entities.users[route.user_id] || [];
   return {
@@ -120,8 +122,8 @@ const msp = (state, ownProps) => {
 const mdp = (dispatch) => {
   return {
     fetchRouteMarkers: (routeId) => dispatch(fetchRouteMarkers(routeId)),
-    fetchUser: (userId) => dispatch(fetchUser(userId)),
-    fetchRoute: (routeId) => dispatch(fetchRoute(routeId))
+    fetchRoute: (routeId) => dispatch(fetchRoute(routeId)),
+    fetchUser: (userId) => dispatch(fetchUser(userId))
   }
 }
 

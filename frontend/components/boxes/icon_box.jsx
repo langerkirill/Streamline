@@ -19,7 +19,7 @@ class IconBox extends React.Component {
       return (
           <div className="icon-box">
             <div className="icon-cover"></div>
-            <Link onClick={this.handleLogout} to="/">LogOut</Link>
+            <Link className="logout-button" style={{textDecoration: "none"}} onClick={this.handleLogout} to="/">Log Out</Link>
           </div>
       );
     }

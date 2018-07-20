@@ -8,6 +8,7 @@ class RouteShowBox extends React.Component {
   }
 
   render () {
+    debugger
     const img = () => {
       if(this.props.user.photoUrl === undefined){
         return("");
@@ -16,10 +17,18 @@ class RouteShowBox extends React.Component {
       }
     }
 
+    let name;
+      if (this.props.route.name) {
+        name = this.props.route.name;
+      } else {
+        name = "Escapade";
+      }
+
     return(
       <section className="route-show-box">
         <div className="route-show-activity">
           <div className="route-details">
+            <div className="route-name"> {name} </div>
             <div className="ride-deets">
               <h4 > {this.props.route.miles} mi
               </h4>

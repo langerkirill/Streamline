@@ -15,8 +15,8 @@ class Api::RoutesController < ApplicationController
   end
 
   def show
-
     @route = Route.find(params[:id])
+    @workout = Workout.find_by(route_id: @route.id)
     render :show
   end
 
