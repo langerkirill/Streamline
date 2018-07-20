@@ -226,12 +226,6 @@
   border-radius: 5px;
 }
 
-.route-name{
-  grid-row: 1;
-  grid-column: 1;
-  font-size: 26px;
-}
-
 .route-icon-container{
   margin-top: 20px;
   grid-row: 1;
@@ -282,6 +276,7 @@
 .route-details {
   display: flex;
   justify-content: space-between;
+  padding-bottom: 30px;
 }
 
 .ride-deets > h4 {
@@ -297,7 +292,6 @@
 
 .duration {
   grid-row: 3;
-  padding-top: 20px;
   color: grey;
   padding-bottom: 30px;
 }
@@ -335,14 +329,21 @@
 
 .route-show-box{
   position: relative;
-  grid-template-rows: 4fr 5fr 3fr;
+  grid-template-rows: 3fr 4fr 5fr 3fr;
   grid-template-columns: 1fr 1fr 2fr 2fr 2fr;
   display: grid;
   height: 250px;
   width: 300px;
   background: inherit;
   border-radius: 5px;
+}
 
+.route-name {
+  grid-row: 1;
+  padding-bottom: 30px;
+  grid-column: 2;
+  font-size: 25px;
+  font-family: Courier;
 }
 
 .route-show-activity {
@@ -350,7 +351,7 @@
   vertical-align: middle;
   margin-left: 16px;
   width: 250px;
-  grid-row: 2;
+  grid-row: 3;
   padding-left: 14px;
   padding-top: 25px;
 }

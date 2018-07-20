@@ -27,8 +27,8 @@ class RouteShowBox extends React.Component {
     return(
       <section className="route-show-box">
         <div className="route-show-activity">
+          <div className="route-name"> {name} </div>
           <div className="route-details">
-            <div className="route-name"> {name} </div>
             <div className="ride-deets">
               <h4 > {this.props.route.miles} mi
               </h4>

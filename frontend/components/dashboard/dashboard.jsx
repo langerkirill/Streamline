@@ -1,6 +1,7 @@
 import React from 'react';
 import WorkoutIndex from '../workouts/workouts_index';
 import UserBox from '../user/user_box';
+import BikingRunningBox from '../boxes/biking_running_box';
 import { connect } from 'react-redux';
 
 class Dashboard extends React.Component {
@@ -12,7 +13,10 @@ class Dashboard extends React.Component {
   render () {
     return (
       <div className="dash-bored">
-        <UserBox />
+        <div>
+          <UserBox />
+          <BikingRunningBox />
+        </div>
         <WorkoutIndex workouts={this.props.workouts}/>
       </div>
     );
