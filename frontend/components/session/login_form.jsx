@@ -5,7 +5,6 @@ import { bpicker } from './background_picker';
 class LogIn extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       black: false,
       username: '',

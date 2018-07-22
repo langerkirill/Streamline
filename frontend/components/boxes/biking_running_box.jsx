@@ -18,9 +18,8 @@ class BikingRunningBox extends React.Component {
     this.parseWorkouts = this.parseWorkouts.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    let userWorkouts = nextProps.user.workoutIds;
-    let workouts = nextProps.workouts;
+  componentWillMount () {
+    debugger
     this.parseWorkouts("biking");
   }
 
@@ -74,6 +73,8 @@ class BikingRunningBox extends React.Component {
   }
 
   render () {
+
+    debugger
 
     let bikeback = this.state.bike ? "greyBack" : "whiteBack";
     let runback = this.state.run ? "greyBack" : "whiteBack";

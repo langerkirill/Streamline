@@ -10,6 +10,10 @@ import RouteCreateBox from '../user/route_create_box';
 class RouteShow extends React.Component {
   constructor(props) {
     super(props);
+    this.plotElevation = this.plotElevation.bind(this);
+    google.load('visualization', '1', {
+      packages: ['columnchart']
+    });
   }
 
   componentDidMount () {
@@ -26,7 +30,7 @@ class RouteShow extends React.Component {
   }
 
   componentWillReceiveProps(nextProps, ownProps) {
-    
+
     let coordinates = [];
     for (let i=0; i<nextProps.markers.length; i++) {
       if (nextProps.markers[i].route_id == nextProps.match.params.routeId) {
@@ -35,6 +39,13 @@ class RouteShow extends React.Component {
     }
     this.calcRoute(coordinates);
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.markers.length !== this.props.markers.length) {
+      this.elevationChart(this.props.markers);
+    }
+  }
+
 
   calcRoute(markers) {
     let request = {
@@ -81,9 +92,61 @@ class RouteShow extends React.Component {
       });
     }
 
+  elevationChart(markers) {
+    debugger
+    if (markers.length === 0) return;
+    let elevator = new google.maps.ElevationService;
+    let path = [];
+
+    markers.forEach(marker => {
+      let lat = marker.lat;
+      let lng = marker.lng;
+      let pos = {lat, lng};
+      path.push(pos);
+    })
+
+    debugger
+
+    elevator.getElevationAlongPath({
+      'path': path,
+      'samples': 256
+    }, this.plotElevation);
+  }
+
+  draw (chart, data) {
+
+    chart.draw(data, {
+      height: 150,
+      legend: 'none',
+      titleY: 'Elevation (m)'
+    });
+  }
+
+  plotElevation(elevations, status) {
+
+    let chartDiv = this.refs.echart;
+    if (status !== 'OK') {
+      // Show the error code inside the chartDiv.
+      chartDiv.innerHTML = 'Cannot show elevation: request failed because ' +
+          status;
+      return;
+    }
+    // Create a new chart in the elevation_chart DIV.
+    let chart = new google.visualization.ColumnChart(chartDiv);
+    let data = new google.visualization.DataTable();
+
+    data.addColumn('string', 'Sample');
+    data.addColumn('number', 'Elevation');
+
+    for (var i = 0; i < elevations.length; i++) {
+      data.addRow(['', elevations[i].elevation]);
+    }
+
+    google.maps.event.addDomListener(window, "load", this.draw(chart, data));
+  }
+
   render () {
 
-    
     const createBox = () => {
       if (this.props.creator.length !== 0) {
         return (<RouteCreateBox route={this.props.route} user={this.props.creator}/>);
@@ -92,24 +155,24 @@ class RouteShow extends React.Component {
       }
     }
 
-
     return (
-      <div className="map-show-page">
-        <div className="show-map-container">
-          <div className='show-route-map' ref={ map => this.mapNode = map }/>
+      <section className="route-show-container">
+        <div className="map-show-page">
+          <div className="show-map-container">
+            <div className='show-route-map' ref={ map => this.mapNode = map }/>
+          </div>
+          <div className="user-info-stats">
+            {createBox()}
+          </div>
         </div>
-        <div className="user-info-stats">
-          {createBox()}
-        </div>
-      </div>
+        <div className="elevation-chart" ref="echart"></div>
+      </section>
     );
   };
 }
 
 const msp = (state, ownProps) => {
-
   const route = state.entities.routes[ownProps.match.params.routeId] || [];
-  
   const markers = Object.values(state.entities.markers) || [];
   const creator = state.entities.users[route.user_id] || [];
   return {
