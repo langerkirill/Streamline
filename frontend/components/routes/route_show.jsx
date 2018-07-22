@@ -86,14 +86,12 @@ class RouteShow extends React.Component {
 
       directionsService.route(request, function(result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
-
           directionsDisplay.setDirections(result);
         }
       });
     }
 
   elevationChart(markers) {
-    debugger
     if (markers.length === 0) return;
     let elevator = new google.maps.ElevationService;
     let path = [];
@@ -104,8 +102,6 @@ class RouteShow extends React.Component {
       let pos = {lat, lng};
       path.push(pos);
     })
-
-    debugger
 
     elevator.getElevationAlongPath({
       'path': path,
@@ -138,9 +134,18 @@ class RouteShow extends React.Component {
     data.addColumn('string', 'Sample');
     data.addColumn('number', 'Elevation');
 
+    let elevationGain = 0;
+    let lastElevation = 0;
+
     for (var i = 0; i < elevations.length; i++) {
       data.addRow(['', elevations[i].elevation]);
+      if (elevations[i].elevation > lastElevation) {
+        elevationGain += (elevations[i].elevation - lastElevation);
+      }
+      lastElevation = elevations[i].elevation;
     }
+
+    debugger
 
     google.maps.event.addDomListener(window, "load", this.draw(chart, data));
   }

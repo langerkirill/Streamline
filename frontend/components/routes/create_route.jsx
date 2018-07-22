@@ -20,6 +20,7 @@ class CreateRoute extends React.Component {
     this.handleSave = this.handleSave.bind(this);
     this.changeColor = this.changeColor.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.plotElevation = this.plotElevation.bind(this);
   }
 
 
@@ -45,7 +46,7 @@ class CreateRoute extends React.Component {
   parseData(data) {
     this.getMiles(data);
     this.getDuration(data);
-    this.getElevation(this.markers);
+    this.elevationChart(this.coordinates);
   }
 
   getMiles(data) {
@@ -67,37 +68,64 @@ class CreateRoute extends React.Component {
     this.setState({duration: newDuration});
   }
 
-  getElevation(locations){
-
+  elevationChart(markers){
+    debugger
     let elevator = new google.maps.ElevationService();
-    let dif;
-    let request = {
-      'locations': locations
-    };
-      elevator.getElevationForLocations(request, function(results, status) {
-        let total;
-        if (status == google.maps.ElevationStatus.OK) {
-            if (results[0]) {
-              let elevations = results;
-              let eCalc = [];
-              for (let i=0; i<elevations.length; i++){
-                if (!eCalc.includes(elevations[i].elevation)) {
-                  eCalc.push(elevations[i].elevation);
-                }
-              }
-              dif = Math.floor(Math.max(...eCalc) - Math.min(...eCalc));
+    let path = [];
 
-            }
-          }
-        });
-        let that = this;
+    markers.forEach(marker => {
+      let lat = marker[0];
+      let lng = marker[1];
+      let pos = {lat, lng};
+      path.push(pos);
+    })
 
-        setTimeout(() => {
+    elevator.getElevationAlongPath({
+      'path': path,
+      'samples': 256
+    }, this.plotElevation);
+  }
 
-          that.setState({elevation: dif});
-        }, 500);
-
+    draw (chart, data) {
+      chart.draw(data, {
+        height: 150,
+        legend: 'none',
+        titleY: 'Elevation (m)'
+      });
     }
+
+  plotElevation(elevations, status) {
+
+    let chartDiv = this.refs.cechart;
+    if (status !== 'OK') {
+      // Show the error code inside the chartDiv.
+      chartDiv.innerHTML = 'Cannot show elevation: request failed because ' +
+          status;
+      return;
+    }
+    // Create a new chart in the elevation_chart DIV.
+    let chart = new google.visualization.ColumnChart(chartDiv);
+    let data = new google.visualization.DataTable();
+
+    data.addColumn('string', 'Sample');
+    data.addColumn('number', 'Elevation');
+
+    let elevationGain = 0;
+    let lastElevation = 0;
+
+    for (var i = 0; i < elevations.length; i++) {
+      data.addRow(['', elevations[i].elevation]);
+      if (elevations[i].elevation > lastElevation) {
+        elevationGain += (elevations[i].elevation - lastElevation);
+      }
+      lastElevation = elevations[i].elevation;
+    }
+
+    let roundedElevation = Math.round(elevationGain*10)/10;
+    this.setState({elevation: roundedElevation});
+
+    google.maps.event.addDomListener(window, "load", this.draw(chart, data));
+  }
 
   calcRoute() {
     let request = {
@@ -164,7 +192,7 @@ class CreateRoute extends React.Component {
     copy.user_id = this.props.userId;
     copy.route_type = "biking";
     copy.name = this.state.name
-    
+
     let newRoute = this.props.createRoute(copy).then(data => {
       this.props.history.push(`/routes/${data.route.id}`)
     });
@@ -195,7 +223,7 @@ class CreateRoute extends React.Component {
   }
 
   handleChange(event) {
-    
+
     this.setState({
       name: event.target.value
     });
@@ -270,6 +298,7 @@ class CreateRoute extends React.Component {
                 </div>
               </div>
           </div>
+          <div ref="cechart"></div>
         </div>
     );
   }
