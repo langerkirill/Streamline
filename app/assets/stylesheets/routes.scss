@@ -436,3 +436,12 @@
   align-items: center;
   height: 80vh;
 }
+
+.nochart > iframe {
+  height: 0;
+  width: 0;
+  border: 0;
+}
+
+.chart > iframe {
+}

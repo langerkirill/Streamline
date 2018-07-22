@@ -13,7 +13,8 @@ class CreateRoute extends React.Component {
       duration: 0,
       elevation: 0,
       black: false,
-      name: ""
+      name: "",
+      chart: true
     }
     this.coordinates = [];
     this.markers = [];
@@ -21,6 +22,7 @@ class CreateRoute extends React.Component {
     this.changeColor = this.changeColor.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.plotElevation = this.plotElevation.bind(this);
+    this.showChart = this.showChart.bind(this);
   }
 
 
@@ -87,6 +89,7 @@ class CreateRoute extends React.Component {
   }
 
     draw (chart, data) {
+      debugger
       chart.draw(data, {
         height: 150,
         legend: 'none',
@@ -125,6 +128,20 @@ class CreateRoute extends React.Component {
     this.setState({elevation: roundedElevation});
 
     google.maps.event.addDomListener(window, "load", this.draw(chart, data));
+
+    $(window).resize(function() {
+      if(this.resizeTO) clearTimeout(this.resizeTO);
+      this.resizeTO = setTimeout(function() {
+          $(this).trigger('resizeEnd');
+      }, 500);
+    });
+
+    let that = this;
+
+    //redraw graph when window resize is completed
+    $(window).on('resizeEnd', function() {
+      that.draw(chart, data);
+    });
   }
 
   calcRoute() {
@@ -185,6 +202,7 @@ class CreateRoute extends React.Component {
   handleSave() {
     let copy = this.state;
     delete copy['black'];
+    delete copy['chart'];
     copy.startlat = parseFloat(this.coordinates[0][0]);
     copy.startlong = parseFloat(this.coordinates[0][1]);
     copy.endlat = parseFloat(this.coordinates[this.coordinates.length-1][0]);
@@ -222,8 +240,12 @@ class CreateRoute extends React.Component {
     this.setState({black: !this.state.black})
   }
 
-  handleChange(event) {
+  showChart(){
+    debugger
+    this.setState({chart: !this.state.chart})
+  }
 
+  handleChange(event) {
     this.setState({
       name: event.target.value
     });
@@ -232,6 +254,7 @@ class CreateRoute extends React.Component {
   render() {
 
     let btn_class = this.state.black ? "blackButton" : "whiteButton";
+    let chartDisplay = this.state.chart ? "chart" : "nochart";
 
     let savedModal;
 
@@ -259,7 +282,6 @@ class CreateRoute extends React.Component {
         return ("");
       }
     }
-
 
     return (
       <div className={`route-container`}>
@@ -297,8 +319,13 @@ class CreateRoute extends React.Component {
                   <div className="mini-labels" >Elevation Gain</div>
                 </div>
               </div>
+              <div className="path-right">PathRight
+                <div onClick={this.showChart}>Show Elevation Chart</div>
+              </div>
           </div>
-          <div ref="cechart"></div>
+          <div>
+            <div className={chartDisplay} ref="cechart"></div>
+          </div>
         </div>
     );
   }
