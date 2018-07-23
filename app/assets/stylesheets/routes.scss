@@ -444,4 +444,33 @@
 }
 
 .chart > iframe {
+  z-index: 70;
+  width: 84%;
+  height: 12%;
+  background: #fafafa;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  z-index: 3;
+  position: absolute;
+  left: 8%;
+  bottom: 10%;
+}
+
+.path-info-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.chart {
+  width: 84%;
+}
+
+.path-right {
+  font-family: sans-serif;
+  font-size: 16px;
+  color: grey;
+  line-height: 70px;
+  width: 150px;
+  cursor: pointer;
 }

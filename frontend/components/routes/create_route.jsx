@@ -52,6 +52,7 @@ class CreateRoute extends React.Component {
   }
 
   getMiles(data) {
+    if (data === undefined) return;
     let total = 0;
     for (let i=0;i<data.length;i++){
       total += parseFloat(data[i].distance.text.split(" ")[0]);
@@ -62,6 +63,7 @@ class CreateRoute extends React.Component {
   }
 
   getDuration(data){
+    if (data === undefined) return;
     let total = 0;
     for (let i=0;i<data.length;i++){
       total += parseFloat(data[i].duration.text.split(" ")[0]);
@@ -71,7 +73,7 @@ class CreateRoute extends React.Component {
   }
 
   elevationChart(markers){
-    debugger
+    if (markers.length < 2) return;
     let elevator = new google.maps.ElevationService();
     let path = [];
 
@@ -91,10 +93,10 @@ class CreateRoute extends React.Component {
     draw (chart, data) {
       chart.draw(data, {
         height: 150,
-        width: '100%',
+        width: '50%',
         legend: 'none',
         titleY: 'Elevation (m)',
-        chartArea:{left:0,top:0,width:"100%",height:"100%"}
+        chartArea:{left:0,top:0,width:"50%",height:"100%"}
       });
     }
 
@@ -257,6 +259,7 @@ class CreateRoute extends React.Component {
 
     let btn_class = this.state.black ? "blackButton" : "whiteButton";
     let chartDisplay = this.state.chart ? "chart" : "nochart";
+    let chartButton = this.state.chart ? "On" : "Off";
 
     let savedModal;
 
@@ -302,6 +305,8 @@ class CreateRoute extends React.Component {
             <button className="route-save-button" onClick={this.changeColor}>Save</button>
           </div>
           <div className={`${btn_class} create-route-map`} ref={ map => this.mapNode = map }/>
+          <div className="path-info-container">
+            <div className={chartDisplay} ref="cechart"></div>
             <div className="path-info">
               <div className="path-left">
                 <div className="info-bar-labels">
@@ -321,14 +326,12 @@ class CreateRoute extends React.Component {
                   <div className="mini-labels" >Elevation Gain</div>
                 </div>
               </div>
-              <div className="path-right">PathRight
-                <div onClick={this.showChart}>Show Elevation Chart</div>
+              <div className="path-right">
+                <div onClick={this.showChart}>Elevation {chartButton}</div>
               </div>
           </div>
-          <div>
-            <div className={chartDisplay} ref="cechart"></div>
-          </div>
         </div>
+      </div>
     );
   }
 }
