@@ -113,8 +113,10 @@ class RouteShow extends React.Component {
 
     chart.draw(data, {
       height: 150,
+      width: '50%',
       legend: 'none',
-      titleY: 'Elevation (m)'
+      titleY: 'Elevation (m)',
+      chartArea:{left:0,top:0,width:"50%",height:"100%"}
     });
   }
 
@@ -148,6 +150,21 @@ class RouteShow extends React.Component {
     debugger
 
     google.maps.event.addDomListener(window, "load", this.draw(chart, data));
+
+    $(window).resize(function() {
+      if(this.resizeTO) clearTimeout(this.resizeTO);
+      this.resizeTO = setTimeout(function() {
+          $(this).trigger('resizeEnd');
+      }, 500);
+    });
+
+    let that = this;
+    let points = this.props.markers;
+
+    //redraw graph when window resize is completed
+    $(window).on('resizeEnd', function() {
+      that.elevationChart(points);
+    });
   }
 
   render () {

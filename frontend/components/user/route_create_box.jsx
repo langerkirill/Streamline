@@ -19,7 +19,7 @@ class RouteCreateBox extends React.Component {
   };
 
   render () {
-    
+
     const img = () => {
       if(this.props.user.photoUrl === undefined){
         return("");
@@ -46,7 +46,7 @@ class RouteCreateBox extends React.Component {
             <div className="ride-deets">
               <h4> {this.props.route.elevation} ft
               </h4>
-              <div> Elevation <br/> Difference
+              <div> Elevation <br/> Gain
               </div>
             </div>
             <div className="ride-deets">
