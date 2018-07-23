@@ -89,11 +89,12 @@ class CreateRoute extends React.Component {
   }
 
     draw (chart, data) {
-      debugger
       chart.draw(data, {
         height: 150,
+        width: '100%',
         legend: 'none',
-        titleY: 'Elevation (m)'
+        titleY: 'Elevation (m)',
+        chartArea:{left:0,top:0,width:"100%",height:"100%"}
       });
     }
 
@@ -137,10 +138,11 @@ class CreateRoute extends React.Component {
     });
 
     let that = this;
+    let points = this.coordinates;
 
     //redraw graph when window resize is completed
     $(window).on('resizeEnd', function() {
-      that.draw(chart, data);
+      that.elevationChart(points);
     });
   }
 
