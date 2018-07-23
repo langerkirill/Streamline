@@ -17,12 +17,15 @@ class CreateRoute extends React.Component {
       chart: true
     }
     this.coordinates = [];
+    this.latlngs = [];
     this.markers = [];
     this.handleSave = this.handleSave.bind(this);
     this.changeColor = this.changeColor.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.plotElevation = this.plotElevation.bind(this);
     this.showChart = this.showChart.bind(this);
+    this.setMapOnAll = this.setMapOnAll.bind(this);
+    this.clearMarkers = this.clearMarkers.bind(this);
   }
 
 
@@ -72,12 +75,12 @@ class CreateRoute extends React.Component {
     this.setState({duration: newDuration});
   }
 
-  elevationChart(markers){
-    if (markers.length < 2) return;
+  elevationChart(latlngs){
+    if (latlngs.length < 2) return;
     let elevator = new google.maps.ElevationService();
     let path = [];
 
-    markers.forEach(marker => {
+    latlngs.forEach(marker => {
       let lat = marker[0];
       let lng = marker[1];
       let pos = {lat, lng};
@@ -148,6 +151,16 @@ class CreateRoute extends React.Component {
     });
   }
 
+  setMapOnAll(map) {
+    for (var i = 0; i < this.markers.length; i++) {
+      this.markers[i].setMap(map);
+    }
+  }
+
+  clearMarkers() {
+    this.setMapOnAll(null);
+  }
+
   calcRoute() {
     let request = {
       travelMode: google.maps.TravelMode.BICYCLING
@@ -161,20 +174,22 @@ class CreateRoute extends React.Component {
     for (let i=0; i<this.coordinates.length; i++) {
       let marker;
       let pos;
-      if (i===0) {
+      if (this.coordinates.length===1) {
         pos = new google.maps.LatLng(this.coordinates[i][0], this.coordinates[i][1]);
         marker = new google.maps.Marker({
           position: pos,
           map: this.map
         });
       } else {
+        this.clearMarkers();
           pos = new google.maps.LatLng(this.coordinates[i][0], this.coordinates[i][1]);
           marker = new google.maps.Marker({
             position: pos,
             draggable: true
           });
       }
-      this.markers.push(pos);
+      this.latlngs.push(pos);
+      this.markers.push(marker);
 
       if (i == 0) request.origin = marker.getPosition();
       else if (i == this.coordinates.length - 1) request.destination = marker.getPosition();
