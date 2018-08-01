@@ -28,7 +28,6 @@ class CreateRoute extends React.Component {
     this.clearMarkers = this.clearMarkers.bind(this);
   }
 
-
   componentDidMount() {
     // set the map to show NY
     const mapOptions = {
@@ -41,6 +40,11 @@ class CreateRoute extends React.Component {
     this.map.addListener('click', (e) => {
       this.placeMarker(e.latLng, this.map);
     });
+  }
+
+  componentWillUnmount() {
+    $(window).off('resizeEnd');
+    $(window).off('resize');
   }
 
   placeMarker(position, map) {
@@ -135,12 +139,14 @@ class CreateRoute extends React.Component {
 
     google.maps.event.addDomListener(window, "load", this.draw(chart, data));
 
-    $(window).resize(function() {
-      if(this.resizeTO) clearTimeout(this.resizeTO);
-      this.resizeTO = setTimeout(function() {
-          $(this).trigger('resizeEnd');
-      }, 500);
-    });
+    if (window.resize === undefined){
+      $(window).resize(function() {
+        if(this.resizeTO) clearTimeout(this.resizeTO);
+        this.resizeTO = setTimeout(function() {
+            $(this).trigger('resizeEnd');
+        }, 500);
+      });
+    }
 
     let that = this;
     let points = this.coordinates;
@@ -202,6 +208,8 @@ class CreateRoute extends React.Component {
         }
       }
 
+      if (this.coordinates.length === 1) return;
+
       let routeData;
 
       directionsService.route(request, function(result, status) {
@@ -228,7 +236,7 @@ class CreateRoute extends React.Component {
     copy.endlong = parseFloat(this.coordinates[this.coordinates.length-1][1]);
     copy.user_id = this.props.userId;
     copy.route_type = "biking";
-    copy.name = this.state.name
+    copy.name = this.state.name;
 
     let newRoute = this.props.createRoute(copy).then(data => {
       this.props.history.push(`/routes/${data.route.id}`)
@@ -260,7 +268,6 @@ class CreateRoute extends React.Component {
   }
 
   showChart(){
-    debugger
     this.setState({chart: !this.state.chart})
   }
 
@@ -337,7 +344,7 @@ class CreateRoute extends React.Component {
                   <div className="mini-labels" >Est. Moving Time </div>
                 </div>
                 <div className="info-bar-labels">
-                  <h4 className="path-stats">{this.state.elevation} ft</h4>
+                  <h4 className="path-stats">{this.state.elevation} m</h4>
                   <div className="mini-labels" >Elevation Gain</div>
                 </div>
               </div>

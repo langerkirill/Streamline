@@ -46,8 +46,15 @@ class RouteShow extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    $(window).off('resizeEnd');
+    $(window).off('resize');
+  }
 
   calcRoute(markers) {
+
+    if (markers.length === 0) return;
+
     let request = {
       travelMode: google.maps.TravelMode.BICYCLING
     };
@@ -59,19 +66,11 @@ class RouteShow extends React.Component {
     for (let i=0; i<markers.length; i++) {
       let marker;
       let pos;
-      if (i===0) {
-        pos = new google.maps.LatLng(markers[i].lat, markers[i].lng);
-        marker = new google.maps.Marker({
-          position: pos,
-          map: this.map
-        });
-      } else {
-          pos = new google.maps.LatLng(markers[i].lat, markers[i].lng);
-          marker = new google.maps.Marker({
-            position: pos,
-            draggable: true
-          });
-      }
+      pos = new google.maps.LatLng(markers[i].lat, markers[i].lng);
+      marker = new google.maps.Marker({
+        position: pos,
+        draggable: true
+      });
 
       if (i == 0) request.origin = marker.getPosition();
       else if (i == markers.length - 1) request.destination = marker.getPosition();
@@ -146,8 +145,6 @@ class RouteShow extends React.Component {
       }
       lastElevation = elevations[i].elevation;
     }
-
-    debugger
 
     google.maps.event.addDomListener(window, "load", this.draw(chart, data));
 
