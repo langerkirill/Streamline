@@ -402,13 +402,18 @@
   font-size: 16px;
   text-align: center;
   margin-right: 30px;
+  position: absolute;
+  right: -10px;
+  padding: 14px 10px;
 }
 
 .create-route-bar{
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: center;
   display: flex;
   background-color: #ededed;
   height: 50px;
+  position: relative;
 }
 
 .tweet-route {
@@ -446,7 +451,7 @@
 .chart > iframe {
   z-index: 70;
   width: 84%;
-  height: 12%;
+  height: 140px;
   background: #fafafa;
   display: flex;
   flex-direction: row;
@@ -455,6 +460,7 @@
   position: absolute;
   left: 8%;
   bottom: 10%;
+  margin-bottom: 5px;
 }
 
 .path-info-container {
@@ -473,4 +479,14 @@
   line-height: 70px;
   width: 150px;
   cursor: pointer;
+}
+
+.savebar-icons {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 20px;
+}
+
+.savei {
+  margin-left: 30px;
 }

@@ -14,7 +14,8 @@ class CreateRoute extends React.Component {
       elevation: 0,
       black: false,
       name: "",
-      chart: true
+      chart: true,
+      route_type: "biking"
     }
     this.coordinates = [];
     this.latlngs = [];
@@ -26,6 +27,8 @@ class CreateRoute extends React.Component {
     this.showChart = this.showChart.bind(this);
     this.setMapOnAll = this.setMapOnAll.bind(this);
     this.clearMarkers = this.clearMarkers.bind(this);
+    // this.changeType = this.changeType.bind(this);
+
   }
 
   componentDidMount() {
@@ -72,11 +75,12 @@ class CreateRoute extends React.Component {
   getDuration(data){
     if (data === undefined) return;
     let total = 0;
-    for (let i=0;i<data.length;i++){
-      total += parseFloat(data[i].duration.text.split(" ")[0]);
+    for (let i=0; i<data.length; i++){
+      total += data[i].duration.value;
     }
-    let newDuration = this.state.duration + total;
-    this.setState({duration: newDuration});
+    let minutes = Math.floor(total / 60);
+    debugger
+    this.setState({duration: minutes});
   }
 
   elevationChart(latlngs){
@@ -168,8 +172,14 @@ class CreateRoute extends React.Component {
   }
 
   calcRoute() {
+    let type = {
+      'biking': google.maps.TravelMode.BICYCLING,
+      'running': google.maps.TravelMode.WALKING
+    };
+
+    let tmode = type[this.state.route_type];
     let request = {
-      travelMode: google.maps.TravelMode.BICYCLING
+      travelMode: tmode
     };
 
     const directionsDisplay = new google.maps.DirectionsRenderer;
@@ -235,7 +245,6 @@ class CreateRoute extends React.Component {
     copy.endlat = parseFloat(this.coordinates[this.coordinates.length-1][0]);
     copy.endlong = parseFloat(this.coordinates[this.coordinates.length-1][1]);
     copy.user_id = this.props.userId;
-    copy.route_type = "biking";
     copy.name = this.state.name;
 
     let newRoute = this.props.createRoute(copy).then(data => {
@@ -265,6 +274,14 @@ class CreateRoute extends React.Component {
 
   changeColor(){
     this.setState({black: !this.state.black})
+  }
+
+  changeType(field){
+    return () => {
+      this.setState({
+        route_type: field
+      });
+    }
   }
 
   showChart(){
@@ -324,6 +341,14 @@ class CreateRoute extends React.Component {
           </div>
         </nav>
           <div className={`${btn_class} create-route-bar`}>
+            <button onClick={this.changeType('biking')} className="savebar-icons">
+              <i className="material-icons">&#xe52f;</i>
+              <div>Ride</div>
+            </button>
+            <button onClick={this.changeType('running')} className="savei savebar-icons">
+              <i className="material-icons">&#xe566;</i>
+              <div>Run</div>
+            </button>
             <button className="route-save-button" onClick={this.changeColor}>Save</button>
           </div>
           <div className={`${btn_class} create-route-map`} ref={ map => this.mapNode = map }/>
@@ -333,7 +358,7 @@ class CreateRoute extends React.Component {
               <div className="path-left">
                 <div className="info-bar-labels">
                   <h4 className="path-stats"> Ride </h4>
-                  <div className="mini-labels" >Route Type</div>
+                  <div className="mini-labels" >{(this.state.route_type.charAt(0).toUpperCase()) + this.state.route_type.slice(1)}</div>
                 </div>
                 <div className="info-bar-labels">
                   <h4 className="path-stats">{this.state.miles} mi</h4>
