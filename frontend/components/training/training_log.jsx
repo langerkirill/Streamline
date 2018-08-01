@@ -71,10 +71,18 @@ class TrainingLog extends React.Component {
             mm2 = '0'+mm2
         }
         let date = mm2 + '/' + dd2 + '-' + mm + '/' + dd
-        dates.push([date, first, second]);
+        let splat = date.split('');
+        let shoved = []
+        for(let i=0; i<splat.length; i++){
+          if (i===0 && splat[i]==="0") continue;
+          if (splat[i]==="0" && splat[i-1]=="-") continue;
+          shoved.push(splat[i]);
+        }
+        let editedDate = shoved.join('');
+        dates.push([editedDate, first, second]);
         today.setDate(today.getDate() - 1);
       }
-
+      debugger
     this.setState({weeks:dates});
   }
 

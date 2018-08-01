@@ -29,8 +29,6 @@ class CreateRoute extends React.Component {
     this.clearMarkers = this.clearMarkers.bind(this);
     this.directionsDisplay = new google.maps.DirectionsRenderer;
     this.directionsService = new google.maps.DirectionsService();
-    // this.changeType = this.changeType.bind(this);
-
   }
 
   componentDidMount() {
