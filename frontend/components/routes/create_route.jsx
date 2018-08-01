@@ -27,6 +27,8 @@ class CreateRoute extends React.Component {
     this.showChart = this.showChart.bind(this);
     this.setMapOnAll = this.setMapOnAll.bind(this);
     this.clearMarkers = this.clearMarkers.bind(this);
+    this.directionsDisplay = new google.maps.DirectionsRenderer;
+    this.directionsService = new google.maps.DirectionsService();
     // this.changeType = this.changeType.bind(this);
 
   }
@@ -65,10 +67,11 @@ class CreateRoute extends React.Component {
     if (data === undefined) return;
     let total = 0;
     for (let i=0;i<data.length;i++){
-      total += parseFloat(data[i].distance.text.split(" ")[0]);
+      total += data[0].distance.value;
     }
-    let newMiles = this.state.miles + total;
+    let newMiles = total*0.000621371192;
     let roundedMiles = Math.round(newMiles*10)/10;
+    debugger
     this.setState({miles: roundedMiles});
   }
 
@@ -182,9 +185,9 @@ class CreateRoute extends React.Component {
       travelMode: tmode
     };
 
-    const directionsDisplay = new google.maps.DirectionsRenderer;
-    const directionsService = new google.maps.DirectionsService();
-    directionsDisplay.setMap(this.map);
+    this.directionsDisplay.setDirections({routes: []});
+    this.directionsDisplay.setMap(this.map);
+
     let infowindow = new google.maps.InfoWindow();
 
     for (let i=0; i<this.coordinates.length; i++) {
@@ -221,15 +224,15 @@ class CreateRoute extends React.Component {
       if (this.coordinates.length === 1) return;
 
       let routeData;
+      let that = this;
 
-      directionsService.route(request, function(result, status) {
+      this.directionsService.route(request, function(result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
-          directionsDisplay.setDirections(result);
-          routeData = directionsDisplay.directions.routes[0].legs;
+          that.directionsDisplay.setDirections(result);
+          routeData = that.directionsDisplay.directions.routes[0].legs;
         }
       });
 
-      let that = this;
 
       setTimeout(() => {
         that.parseData(routeData);
@@ -281,6 +284,8 @@ class CreateRoute extends React.Component {
       this.setState({
         route_type: field
       });
+      this.clearMarkers();
+      this.calcRoute();
     }
   }
 
