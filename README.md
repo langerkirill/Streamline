@@ -29,3 +29,5 @@ After this elevation array is generated, I iterated through every elevation and 
 #### The training log:
 
 Once the user adds a manual workout using the workout create page, the workout ends up saved in the workouts database. If the user navigates to either the front page or the training log pages, the workout is displayed based on the specific week when the workout was completed. I had to integrate javascript Date methods to create the display that shows all weeks in the past year backwards from the current date. In addition, I use React to render a new component for each week, that only has information about a workout (in the component’s props) if the workout falls within the days of the week that represent the start and end of the week in the specific training log item that is being rendered. 
+
+Check out the [link to the wiki](https://github.com/langerkirill/Streamline/wiki) for more design information
