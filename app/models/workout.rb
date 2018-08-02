@@ -27,4 +27,6 @@ class Workout < ApplicationRecord
   belongs_to :route,
     optional:true
 
+  has_many :comments
+
 end

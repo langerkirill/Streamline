@@ -44,7 +44,7 @@ class RouteCreateBox extends React.Component {
               </div>
             </div>
             <div className="ride-deets">
-              <h4> {this.props.route.elevation} ft
+              <h4> {this.props.route.elevation} m
               </h4>
               <div> Elevation <br/> Gain
               </div>

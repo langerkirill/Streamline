@@ -33,6 +33,6 @@ class Api::MarkersController < ApplicationController
   end
 
   def marker_params
-    params.require(:marker).permit(:lat, :lng, :route_id, :order)
+    params.require(:marker).permit(:lat, :lng, :route_id, :order, :created_at)
   end
 end

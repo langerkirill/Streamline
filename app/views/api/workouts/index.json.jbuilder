@@ -27,3 +27,15 @@ json.routes do
     end
   end
 end
+
+json.comments do
+  @workouts.each do |workout|
+    if workout.comments.present?
+      workout.comments.each do |comment|
+        json.set! comment.id do
+          json.extract! comment, :text, :user_id, :workout_id
+        end
+      end
+    end
+  end
+end

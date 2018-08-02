@@ -240,10 +240,10 @@
   position: absolute;
   left: 85px;
   top: 30px;
-  width: 200px;
+  width: 300px;
   font-family: sans-serif;
 
-  font-size: 20px;
+  font-size: 16px;
   font-weight: lighter;
 }
 
@@ -434,6 +434,14 @@
 }
 
 .route-show-container {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  justify-content: center;
+  align-items: center;
+}
+
+.route-show-show {
   display: flex;
   flex-direction: column;
   align-content: space-between;

@@ -12,7 +12,6 @@ class WorkoutIndexItem extends React.Component {
   }
 
   handleRedirect () {
-
     this.props.history.push(`/routes/${this.props.route.id}`)
   }
 
@@ -26,6 +25,32 @@ class WorkoutIndexItem extends React.Component {
       }
     }
 
+    let comments;
+
+    if (this.props.comment.length > 0) {
+      let i = 0;
+      comments = this.props.comment.map((comment) => {
+        i+=1;
+
+        let commentator = this.props.commenters.map(commenter => {
+          if (commenter.id === comment.user_id){
+            return commenter;
+          }
+        })
+
+        return (
+          <div key={i+1} className="wbox-comment">
+            <img src={commentator[0].photoUrl} className="commenter-image"></img>
+            <div className="comment-text">
+              <strong>{commentator[0].username}</strong>
+              <div key={i}>{comment.text}</div>
+            </div>
+          </div>
+        );
+      });
+    } else {
+      comment = "";
+    }
 
     return (
       <div onClick={this.handleRedirect} className="workout-box">
@@ -55,7 +80,12 @@ class WorkoutIndexItem extends React.Component {
           </div>
         </div>
         <div className="map-container">
-          <WorkoutRoute routeId={this.props.workout.route_id}/>
+          <WorkoutRoute key={this.props.workout.route_id} routeId={this.props.workout.route_id}/>
+        </div>
+        {comments}
+        <div className="like-comment">
+          <button className="lc"><i className="fa">&#xf0a4;</i></button>
+          <button className="lc"><i className="fa">&#xf0e5;</i></button>
         </div>
       </div>
     );
@@ -65,10 +95,20 @@ class WorkoutIndexItem extends React.Component {
 const msp = (state, ownProps) => {
 
   const user = state.entities.users[ownProps.workout['user_id']];
-  const route = state.entities.routes[ownProps.workout['route_id']]
+  const route = state.entities.routes[ownProps.workout['route_id']];
+  let commenterIds = ownProps.comment.map((comment) => {
+    return comment.user_id;
+  });
+  let commenters = [];
+  Object.values(state.entities.users).forEach((person) => {
+    if (commenterIds.includes(person.id)){
+      commenters.push(person);
+    }
+  });
   return {
     user,
-    route
+    route,
+    commenters
   }
 }
 

@@ -281,9 +281,8 @@ class CreateRoute extends React.Component {
     return () => {
       this.setState({
         route_type: field
-      });
+      }, this.calcRoute);
       this.clearMarkers();
-      this.calcRoute();
     }
   }
 
@@ -304,7 +303,7 @@ class CreateRoute extends React.Component {
     let chartButton = this.state.chart ? "On" : "Off";
 
     let savedModal;
-
+    
     if (this.state.black) {
       savedModal = () => {
         return (

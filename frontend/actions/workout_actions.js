@@ -3,13 +3,13 @@ import * as WorkoutApiUtil from "../util/workout_api_util";
 export const RECEIVE_WORKOUTS = "RECEIVE_WORKOUTS";
 export const RECEIVE_WORKOUT = "RECEIVE_WORKOUT";
 
-const receiveWorkouts = ({ workouts, users, routes }) => {
-  
+const receiveWorkouts = ({ workouts, users, routes, comments }) => {
   return {
     type: RECEIVE_WORKOUTS,
     workouts,
     users,
-    routes
+    routes,
+    comments
   };
 };
 

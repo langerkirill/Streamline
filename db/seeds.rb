@@ -128,3 +128,7 @@ Workout.create!(workout_type: "biking", title: "#{Faker::GreekPhilosophers.quote
 Workout.create!(workout_type: "biking", title: "#{Faker::GreekPhilosophers.quote} Much Bike", route_id: r17.id, elevation: 50, achievments: "15", duration: 54,  miles: 65, date: DateTime.new(2018,9,11), user_id: maurice.id)
 Workout.create!(workout_type: "biking", title: "#{Faker::GreekPhilosophers.quote} BIIIKKKEE", route_id: r18.id, elevation: 50, achievments: "15", duration: 33,  miles: 3, date: DateTime.new(2018,9,3), user_id: brian.id)
 Workout.create!(workout_type: "biking", title: "#{Faker::GreekPhilosophers.quote} pedalz", route_id: r19.id, elevation: 23, achievments: "15", duration: 33,  miles: 3, date: DateTime.new(2018,9,5), user_id: brian.id)
+
+Workout.all.each do |workout|
+  Comment.create!(workout_id: workout.id, text: Faker::Hipster.sentence(5), user_id: User.order("RANDOM()").first.id)
+end

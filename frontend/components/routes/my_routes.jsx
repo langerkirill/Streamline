@@ -36,11 +36,17 @@ class MyRoutes extends React.Component {
         allMarkers.push(current);
         current = [];
       }
+    let sorted = allMarkers.sort(function(a,b){
+      
+      return b[0].created_at > a[0].created_at;
+    });
+
+    
     this.setState({markers: allMarkers});
   }
 
   render () {
-    
+
     const routes = this.state.markers.map(markers => {
       let route = this.props.routes[markers[0].route_id];
       return(<MyRoutesItem route={route} key={markers[0].id} markers={markers}/>);
@@ -59,7 +65,7 @@ class MyRoutes extends React.Component {
 }
 
 const msp = state => {
-  
+
   const routes = state.entities.routes;
   const user = state.entities.users[state.session.id] || [];
   const markers = Object.values(state.entities.markers);

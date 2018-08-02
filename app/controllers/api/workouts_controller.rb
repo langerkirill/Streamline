@@ -4,7 +4,7 @@ class Api::WorkoutsController < ApplicationController
     if params[:user_id]
       @workouts = Workout.where(user_id: params[:user_id])
     else
-      @workouts = Workout.all.includes(user: :workouts, route: :workouts)
+      @workouts = Workout.all.includes(user: :workouts, route: :workouts, comments: :workout)
     end
     render :index
   end
@@ -22,7 +22,7 @@ class Api::WorkoutsController < ApplicationController
   def create
     @workout = Workout.new(workout_params)
     @workout.user_id = current_user.id
-    
+
     if @workout.save
       render :show
     else

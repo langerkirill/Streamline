@@ -34,7 +34,7 @@ class WorkoutIndex extends React.Component {
         }
       });
     }
-    
+
     this.dateSorter(filteredWorkouts);
   }
 
@@ -54,7 +54,14 @@ class WorkoutIndex extends React.Component {
       workoutIndex = "";
     } else {
       workoutIndex = this.state.workouts.map(workout => {
-        return (<WorkoutIndexItem workout={workout} key={workout.id} />);
+        let comments = [];
+        this.props.comments.forEach((comment) => {
+          if (comment.workout_id === workout.id){
+            comments.push(comment);
+          }
+        })
+        
+        return (<WorkoutIndexItem comment={comments} workout={workout} key={workout.id} />);
       });
     }
 

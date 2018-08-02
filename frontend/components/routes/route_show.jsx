@@ -175,7 +175,7 @@ class RouteShow extends React.Component {
     }
 
     return (
-      <section className="route-show-container">
+      <section className="route-show-show">
         <div className="map-show-page">
           <div className="show-map-container">
             <div className='show-route-map' ref={ map => this.mapNode = map }/>
