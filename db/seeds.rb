@@ -1,3 +1,4 @@
+require 'faker'
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -103,27 +104,27 @@ Marker.create!(route_id: r19.id, lat:40.711781 ,lng:-73.999511 )
 Marker.create!(route_id: r19.id, lat:40.788454 ,lng:-73.947805 )
 
 
-Workout.create!(workout_type: "running", title: "Long Run", route_id: r1.id, elevation: 50, achievments: "15", duration: 85,  miles: 13, date: DateTime.new(2018,8,12), user_id: mashu.id)
-Workout.create!(workout_type: "running", title: "3 Marathons", route_id: r2.id, elevation: 50, achievments: "15", duration: 99,  miles: 9, date: DateTime.new(2018,9,4), user_id: mashu.id)
-Workout.create!(workout_type: "running", title: "Over the Hill", route_id: r3.id, elevation: 50, achievments: "15", duration: 15,  miles: 2, date: DateTime.new(2018,5,6), user_id: mashu.id)
+Workout.create!(workout_type: "running", title: Faker::GreekPhilosophers.quote, route_id: r1.id, elevation: 50, achievments: "15", duration: 85,  miles: 13, date: DateTime.new(2018,8,12), user_id: mashu.id)
+Workout.create!(workout_type: "running", title: "#{Faker::GreekPhilosophers.quote} 3 Marathons", route_id: r2.id, elevation: 50, achievments: "15", duration: 99,  miles: 9, date: DateTime.new(2018,9,4), user_id: mashu.id)
+Workout.create!(workout_type: "running", title: "#{Faker::GreekPhilosophers.quote} Over the Hill", route_id: r3.id, elevation: 50, achievments: "15", duration: 15,  miles: 2, date: DateTime.new(2018,5,6), user_id: mashu.id)
 
-Workout.create!(workout_type: "running", title: "I did a jog", route_id: r4.id, elevation: 50, achievments: "15", duration: 16,  miles: 12, date: DateTime.new(2018,5,25), user_id: matthias.id)
-Workout.create!(workout_type: "running", title: "Better than coding", route_id: r5.id, elevation: 50, achievments: "15", duration: 54,  miles: 11, date: DateTime.new(2018,12,12), user_id: matthias.id)
-Workout.create!(workout_type: "running", title: "Active Record", route_id: r6.id, elevation: 50, achievments: "15", duration: 44,  miles: 16, date: DateTime.new(2018,5,30), user_id: matthias.id)
+Workout.create!(workout_type: "running", title: "#{Faker::GreekPhilosophers.quote} I did a jog", route_id: r4.id, elevation: 50, achievments: "15", duration: 16,  miles: 12, date: DateTime.new(2018,5,25), user_id: matthias.id)
+Workout.create!(workout_type: "running", title: "#{Faker::GreekPhilosophers.quote} Better than coding", route_id: r5.id, elevation: 50, achievments: "15", duration: 54,  miles: 11, date: DateTime.new(2018,12,12), user_id: matthias.id)
+Workout.create!(workout_type: "running", title: "#{Faker::GreekPhilosophers.quote} Active Record", route_id: r6.id, elevation: 50, achievments: "15", duration: 44,  miles: 16, date: DateTime.new(2018,5,30), user_id: matthias.id)
 
-Workout.create!(workout_type: "running", title: "Fast AF", route_id: r7.id, elevation: 50, achievments: "15", duration: 64,  miles: 5, date: DateTime.new(2018,5,12), user_id: oscar.id)
-Workout.create!(workout_type: "running", title: "Impossible Run", route_id: r8.id, elevation: 50, achievments: "15", duration: 88,  miles: 11, date: DateTime.new(2018,4,15), user_id: oscar.id)
-Workout.create!(workout_type: "running", title: "Jog", route_id: r9.id, elevation: 50, achievments: "15", duration: 20,  miles: 10, date: DateTime.new(2018,6,16), user_id: oscar.id)
+Workout.create!(workout_type: "running", title: "#{Faker::GreekPhilosophers.quote} Fast AF", route_id: r7.id, elevation: 50, achievments: "15", duration: 64,  miles: 5, date: DateTime.new(2018,5,12), user_id: oscar.id)
+Workout.create!(workout_type: "running", title: "#{Faker::GreekPhilosophers.quote} Impossible Run", route_id: r8.id, elevation: 50, achievments: "15", duration: 88,  miles: 11, date: DateTime.new(2018,4,15), user_id: oscar.id)
+Workout.create!(workout_type: "running", title: "#{Faker::GreekPhilosophers.quote} Jog", route_id: r9.id, elevation: 50, achievments: "15", duration: 20,  miles: 10, date: DateTime.new(2018,6,16), user_id: oscar.id)
 
-Workout.create!(workout_type: "biking", title: "Outing", route_id: r10.id, elevation: 50, achievments: "15", duration: 15,  miles: 10, date: DateTime.new(2018,8,7), user_id: mashu.id)
-Workout.create!(workout_type: "biking", title: "Bike in Place", route_id: r11.id, elevation: 50, achievments: "15", duration: 46,  miles: 15, date: DateTime.new(2018,7,8), user_id: mashu.id)
-Workout.create!(workout_type: "biking", title: "Ride Bike", route_id: r12.id, elevation: 50, achievments: "15", duration: 22,  miles: 10, date: DateTime.new(2018,9,1), user_id: abby.id)
+Workout.create!(workout_type: "biking", title: "#{Faker::GreekPhilosophers.quote} Outing", route_id: r10.id, elevation: 50, achievments: "15", duration: 15,  miles: 10, date: DateTime.new(2018,8,7), user_id: mashu.id)
+Workout.create!(workout_type: "biking", title: "#{Faker::GreekPhilosophers.quote} Bike in Place", route_id: r11.id, elevation: 50, achievments: "15", duration: 46,  miles: 15, date: DateTime.new(2018,7,8), user_id: mashu.id)
+Workout.create!(workout_type: "biking", title: "#{Faker::GreekPhilosophers.quote} Ride Bike", route_id: r12.id, elevation: 50, achievments: "15", duration: 22,  miles: 10, date: DateTime.new(2018,9,1), user_id: abby.id)
 
-Workout.create!(workout_type: "biking", title: "Ride Dems Bikes", route_id: r13.id, elevation: 50, achievments: "15", duration: 13,  miles: 5, date: DateTime.new(2018,12,16), user_id: abby.id)
-Workout.create!(workout_type: "biking", title: "Get Biked", route_id: r14.id, elevation: 50, achievments: "15", duration: 11,  miles: 63, date: DateTime.new(2018,9,18), user_id: abby.id)
-Workout.create!(workout_type: "biking", title: "Bike with friends", route_id: r15.id, elevation: 50, achievments: "15", duration: 41,  miles: 22, date: DateTime.new(2018,5,22), user_id: abby.id)
+Workout.create!(workout_type: "biking", title: "#{Faker::GreekPhilosophers.quote} Ride Dems Bikes", route_id: r13.id, elevation: 50, achievments: "15", duration: 13,  miles: 5, date: DateTime.new(2018,12,16), user_id: abby.id)
+Workout.create!(workout_type: "biking", title: "#{Faker::GreekPhilosophers.quote} Get Biked", route_id: r14.id, elevation: 50, achievments: "15", duration: 11,  miles: 63, date: DateTime.new(2018,9,18), user_id: abby.id)
+Workout.create!(workout_type: "biking", title: "#{Faker::GreekPhilosophers.quote} Bike with friends", route_id: r15.id, elevation: 50, achievments: "15", duration: 41,  miles: 22, date: DateTime.new(2018,5,22), user_id: abby.id)
 
-Workout.create!(workout_type: "biking", title: "Bike for 3 days straight", route_id: r16.id, elevation: 50, achievments: "15", duration: 453, miles: 10, date: DateTime.new(2018,9,10), user_id: maurice.id)
-Workout.create!(workout_type: "biking", title: "Much Bike", route_id: r17.id, elevation: 50, achievments: "15", duration: 54,  miles: 65, date: DateTime.new(2018,9,11), user_id: maurice.id)
-Workout.create!(workout_type: "biking", title: "BIIIKKKEE", route_id: r18.id, elevation: 50, achievments: "15", duration: 33,  miles: 3, date: DateTime.new(2018,9,3), user_id: brian.id)
-Workout.create!(workout_type: "biking", title: "pedalz", route_id: r19.id, elevation: 23, achievments: "15", duration: 33,  miles: 3, date: DateTime.new(2018,9,5), user_id: brian.id)
+Workout.create!(workout_type: "biking", title: "#{Faker::GreekPhilosophers.quote} Bike for 3 days straight", route_id: r16.id, elevation: 50, achievments: "15", duration: 453, miles: 10, date: DateTime.new(2018,9,10), user_id: maurice.id)
+Workout.create!(workout_type: "biking", title: "#{Faker::GreekPhilosophers.quote} Much Bike", route_id: r17.id, elevation: 50, achievments: "15", duration: 54,  miles: 65, date: DateTime.new(2018,9,11), user_id: maurice.id)
+Workout.create!(workout_type: "biking", title: "#{Faker::GreekPhilosophers.quote} BIIIKKKEE", route_id: r18.id, elevation: 50, achievments: "15", duration: 33,  miles: 3, date: DateTime.new(2018,9,3), user_id: brian.id)
+Workout.create!(workout_type: "biking", title: "#{Faker::GreekPhilosophers.quote} pedalz", route_id: r19.id, elevation: 23, achievments: "15", duration: 33,  miles: 3, date: DateTime.new(2018,9,5), user_id: brian.id)
