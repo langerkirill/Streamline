@@ -96,7 +96,7 @@ class NavBar extends React.Component {
       }
     }
 
-    debugger
+
 
     return (
     <nav className={`${scroll_class} top-nav`}>
