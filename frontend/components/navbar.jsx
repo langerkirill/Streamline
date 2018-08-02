@@ -15,13 +15,30 @@ class NavBar extends React.Component {
     this.state = {
       plusHover: false,
       imageHover: false,
-      dashHover: false
+      dashHover: false,
+      stick:false
     }
-
     this.handlePlusHover = this.handlePlusHover.bind(this);
     this.handleImageHover = this.handleImageHover.bind(this);
     this.handleDashHover = this.handleDashHover.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
+  }
 
+  componentWillMount () {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll () {
+    let lastScrollY = window.scrollY;
+    if (lastScrollY > 2){
+      this.setState({stick:true})
+    } else {
+      this.setState({stick:false})
+    }
   }
 
   handlePlusHover() {
@@ -49,6 +66,12 @@ class NavBar extends React.Component {
       return "";
     }
 
+    let scroll_class;
+
+    if (this.props.location.pathname === "/dashboard"){
+      scroll_class = this.state.stick ? "stick-nav" : "stay";
+    }
+
     const plusHover = () => {
       if (this.state.plusHover) {
         return (<PlusBox />);
@@ -73,8 +96,10 @@ class NavBar extends React.Component {
       }
     }
 
+    debugger
+
     return (
-    <nav className="top-nav">
+    <nav className={`${scroll_class} top-nav`}>
       <div className="nav-left">
         <Link className="nav-icon" to="/dashboard"> Streamline </Link>
         <i className="search-icon material-icons">&#xe8b6;</i>
