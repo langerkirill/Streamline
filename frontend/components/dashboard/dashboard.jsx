@@ -8,10 +8,12 @@ class Dashboard extends React.Component {
 
   constructor(props){
     super(props);
-    this.handleScroll = this.handleScroll.bind(this);
     this.state = {
-      top:false
+      top: false,
+      display: "Your Activities"
     }
+    this.handleScroll = this.handleScroll.bind(this);
+    this.handleDisplay = this.handleDisplay.bind(this);
   }
 
   componentDidMount() {
@@ -35,6 +37,16 @@ class Dashboard extends React.Component {
     }
   }
 
+  handleDisplay () {
+    let options = ['Your Activities', 'Following'];
+    let current = this.state.display;
+    let display = options.filter(function(item) {
+      return item !== current
+    });
+    let newDisplay = display[0];
+    this.setState({display: newDisplay})
+  }
+
   render () {
 
     let scroll_class = this.state.top ? "scroll-dash" : "stay";
@@ -49,7 +61,10 @@ class Dashboard extends React.Component {
           <UserBox />
           <BikingRunningBox user={this.props.user} workouts={this.props.workouts}/>
         </div>
-        <WorkoutIndex className="workout-index" workouts={this.props.workouts}/>
+        <div className="main-feed">
+          <button onClick={this.handleDisplay}>{this.state.display}</button>
+          <WorkoutIndex className="workout-index" user={this.props.user} display={this.state.display} workouts={this.props.workouts}/>
+        </div>
       </div>
     );
   }

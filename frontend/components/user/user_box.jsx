@@ -23,7 +23,6 @@ class UserBox extends React.Component {
     let latestDate = this.props.latestWorkout.date;
 
     if (Object.values(this.props.latestWorkout) === 0){
-
       latestWorkout = "";
       latestDate = "";
     }

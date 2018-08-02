@@ -10,11 +10,30 @@ class WorkoutIndex extends React.Component {
       workouts: []
     }
     this.dateSorter = this.dateSorter.bind(this);
+    this.workoutSorter = this.workoutSorter.bind(this);
   }
 
   componentWillReceiveProps (nextProps) {
     let workouts = nextProps.workouts;
-    this.dateSorter(workouts)
+    this.workoutSorter(workouts);
+  }
+
+  workoutSorter(workouts) {
+    let filteredWorkouts = [];
+    if (this.props.display === "Your Activities"){
+      workouts.forEach((workout) => {
+        if (workout.user_id === this.props.user.id){
+          filteredWorkouts.push(workout);
+        }
+      });
+    } else {
+      workouts.forEach((workout) => {
+        if (workout.user_id !== this.props.user.id){
+          filteredWorkouts.push(workout);
+        }
+      });
+    }
+    this.dateSorter(filteredWorkouts);
   }
 
   dateSorter(workouts) {
@@ -27,7 +46,7 @@ class WorkoutIndex extends React.Component {
   }
 
   render () {
-    
+
     let workoutIndex;
     if (Object.values(this.state.workouts).length === 0) {
       workoutIndex = "";

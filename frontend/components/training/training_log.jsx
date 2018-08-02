@@ -82,7 +82,7 @@ class TrainingLog extends React.Component {
         dates.push([editedDate, first, second]);
         today.setDate(today.getDate() - 1);
       }
-      debugger
+
     this.setState({weeks:dates});
   }
 

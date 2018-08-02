@@ -69,7 +69,7 @@ class CreateRoute extends React.Component {
     }
     let newMiles = total*0.000621371192;
     let roundedMiles = Math.round(newMiles*10)/10;
-    debugger
+
     this.setState({miles: roundedMiles});
   }
 
@@ -80,7 +80,7 @@ class CreateRoute extends React.Component {
       total += data[i].duration.value;
     }
     let minutes = Math.floor(total / 60);
-    debugger
+
     this.setState({duration: minutes});
   }
 
