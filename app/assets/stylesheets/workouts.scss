@@ -228,3 +228,22 @@
   display: flex;
   flex-direction: column;
 }
+
+.toggle-workouts{
+  background: #f4f4f4;
+  height: 40px;
+  width: 180px;
+  font-size: 16px;
+  font-weight: lighter;
+  border: none;
+  margin-top: 5px;
+}
+
+button:focus {outline:0;}
+
+.toggle-workouts:hover{
+  background-color: white;
+  box-shadow: 0 0 15px #ededed;
+  transition: 1s;
+  cursor: pointer;
+}

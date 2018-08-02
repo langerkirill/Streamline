@@ -44,7 +44,7 @@ class Dashboard extends React.Component {
       return item !== current
     });
     let newDisplay = display[0];
-    this.setState({display: newDisplay})
+    this.setState({display: newDisplay});
   }
 
   render () {
@@ -52,18 +52,17 @@ class Dashboard extends React.Component {
     let scroll_class = this.state.top ? "scroll-dash" : "stay";
     let stay_class = this.state.top ? "dont" : "appear";
 
-
     return (
       <div className="dash-bored">
         <div className="f-wrapper"></div>
         <div className={`${stay_class} invisipad`}></div>
         <div className={`${scroll_class}`}>
-          <UserBox />
-          <BikingRunningBox user={this.props.user} workouts={this.props.workouts}/>
+          <UserBox key={3} />
+          <BikingRunningBox key={2} user={this.props.user} workouts={this.props.workouts}/>
         </div>
         <div className="main-feed">
-          <button onClick={this.handleDisplay}>{this.state.display}</button>
-          <WorkoutIndex className="workout-index" user={this.props.user} display={this.state.display} workouts={this.props.workouts}/>
+          <button className="toggle-workouts" onClick={this.handleDisplay}>{this.state.display}</button>
+          <WorkoutIndex key={1} className="workout-index" user={this.props.user} display={this.state.display} workouts={this.props.workouts}/>
         </div>
       </div>
     );
