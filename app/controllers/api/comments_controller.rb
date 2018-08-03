@@ -4,7 +4,7 @@ class Api::CommentsController < ApplicationController
   end
 
   def create
-    comment = Marker.new(comment_params)
+    comment = Comment.new(comment_params)
     comment.user_id = current_user.id
     if comment.save
       render json: 'success'
