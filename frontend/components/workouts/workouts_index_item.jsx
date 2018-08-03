@@ -2,7 +2,7 @@ import React from 'react';
 import {fetchUser} from '../../actions/user_actions';
 import {connect} from 'react-redux';
 import WorkoutRoute from './workout_route';
-import { createComment } from '../../actions/comment_actions'
+import { createComment, deleteComment } from '../../actions/comment_actions'
 import {withRouter} from 'react-router-dom';
 
 class WorkoutIndexItem extends React.Component {
@@ -38,12 +38,11 @@ class WorkoutIndexItem extends React.Component {
     let comment = {};
     comment.text = this.state.text;
     comment.workout_id = this.props.workout.id;
-    debugger
     this.props.createComment(comment);
+    this.setState({text: ""});
   }
 
   render () {
-
     const icon = () => {
       if (this.props.workout.workout_type === "biking") {
         return (<i className="index-icon material-icons">&#xe52f;</i>);
@@ -60,7 +59,7 @@ class WorkoutIndexItem extends React.Component {
           <div className="step">
             <img className="user-img" src={this.props.currentUser.photoUrl}/>
             <div className="comment-info-container">
-              <input onChange={this.updateText()} placeholder="Add a comment..." className="comment-input"></input>
+              <input onChange={this.updateText()} placeholder="Add a comment..." value={this.state.text} className="comment-input"></input>
               <button onClick={this.handleSave} className="comment-post" >Post</button>
             </div>
           </div>
@@ -79,13 +78,24 @@ class WorkoutIndexItem extends React.Component {
           return comment.user_id === commenter.id;
         })
 
+        const removeComment = () => {
+          if (this.props.currentUser.id === comment.user_id){
+            return (<button className="delete-comment">X</button>);
+          } else {
+            return ("");
+          }
+        }
+
         return (
           <div key={i+1} className="wbox-comment">
-            <img src={commentator[0].photoUrl} className="commenter-image"></img>
-            <div className="comment-text">
-              <strong>{commentator[0].username}</strong>
-              <div key={i}>{comment.text}</div>
+            <div className="comment-left">
+              <img src={commentator[0].photoUrl} className="commenter-image"></img>
+              <div className="comment-text">
+                <strong>{commentator[0].username}</strong>
+                <div key={i}>{comment.text}</div>
+              </div>
             </div>
+            {removeComment()}
           </div>
         );
       });
@@ -159,7 +169,8 @@ const msp = (state, ownProps) => {
 
 const mdp = (dispatch) => {
   return {
-    createComment: (comment) => dispatch(createComment(comment))
+    createComment: (comment) => dispatch(createComment(comment)),
+    deleteComment: (commentId) => dispatch(deleteComment(commentId))
   }
 }
 
