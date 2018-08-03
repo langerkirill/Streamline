@@ -12,7 +12,7 @@ class SignUp extends React.Component {
       username: '',
       password: ''
     };
-
+    this.errors = 0;
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -28,12 +28,37 @@ class SignUp extends React.Component {
   }
 
   handleSubmit(e) {
-    
+
     e.preventDefault();
     this.props.signup(Object.assign({}, this.state));
   }
 
+  componentDidUpdate() {
+    debugger
+    if ((this.props.errors).length > 0) {
+      this.errors += 1;
+      if (this.errors > 1) {
+        this.props.clearErrors();
+        this.errors = 0;
+      }
+    }
+  }
+
   render() {
+
+    let errors;
+    const errorDisplay = () => {
+      if (Object.keys(this.props.errors).length > 0) {
+        this.errors+1;
+        errors = this.props.errors.join();
+        return (
+          <h3 className="errors">{`${errors}`}</h3>
+        );
+        } else {
+          errors = "";
+          return ("");
+        }
+      }
 
     let photo = this.state.image;
 
@@ -51,6 +76,7 @@ class SignUp extends React.Component {
             <img className="background" src={this.state.image}/>
               <div className="signup-container">
                 <div className="signup-top"> Join Streamline today, it's Free </div>
+                {errorDisplay()}
                   <div className="form-container">
                     <form className="signup-form" onSubmit={this.handleSubmit}>
                       <div></div>

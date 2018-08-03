@@ -49,15 +49,15 @@ class LogIn extends React.Component {
     }
   }
 
-  // componentDidUpdate() {
-  //   if ((this.props.errors).length > 0) {
-  //     this.errors += 1;
-  //     if (this.errors > 1) {
-  //       this.props.clearErrors();
-  //       this.errors = 0;
-  //     }
-  //   }
-  // }
+  componentDidUpdate() {
+    if ((this.props.errors).length > 0) {
+      this.errors += 1;
+      if (this.errors > 1) {
+        this.props.clearErrors();
+        this.errors = 0;
+      }
+    }
+  }
 
   render() {
 

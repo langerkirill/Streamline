@@ -49,7 +49,7 @@ class WorkoutIndexItem extends React.Component {
         );
       });
     } else {
-      comment = "";
+      comments = "";
     }
 
     return (

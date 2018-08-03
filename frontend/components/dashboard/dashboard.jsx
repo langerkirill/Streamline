@@ -10,7 +10,7 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       top: false,
-      display: "Your Activities"
+      display: "Following"
     }
     this.handleScroll = this.handleScroll.bind(this);
     this.handleDisplay = this.handleDisplay.bind(this);
