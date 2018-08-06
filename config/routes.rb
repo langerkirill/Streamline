@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
 
-  namespace :api do
-    get 'comments/new'
-    get 'comments/create'
-    get 'comments/destroy'
-  end
+
   root to: 'static_pages#root'
   # we namespace the routes that return json specifically under api
   # all of these controller actions will return json.  We only need data now, not html

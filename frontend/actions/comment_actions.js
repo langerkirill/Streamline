@@ -41,10 +41,10 @@ export const createComment = comment => {
   };
 };
 
-export const deleteComment = comment => {
+export const deleteComment = commentId => {
   return dispatch => {
-    return CommentApiUtil.deleteComment(comment).then(comment => {
-      return dispatch(removeComment(comment));
+    return CommentApiUtil.deleteComment(commentId).then(commentId => {
+      return dispatch(removeComment(commentId));
     });
   };
 };

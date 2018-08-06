@@ -16,12 +16,12 @@ class Api::CommentsController < ApplicationController
 
   def destroy
     comment = Comment.find(params[:id])
-    if comment.author_id == current_user.id
+    if comment.user_id == current_user.id
       comment.destroy
     else
       render json: "you can't delete another person's comment"
     end
-    render json: ["Workout destroyed"]
+    render json: comment.id
   end
 
   def comment_params

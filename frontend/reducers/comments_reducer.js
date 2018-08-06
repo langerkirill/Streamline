@@ -15,7 +15,7 @@ export default (state = {}, action) => {
     case RECEIVE_COMMENT:
       return merge({}, newState, {[action.comment.id]: action.comment})
     case REMOVE_COMMENT:
-      delete newState[action.commentId]
+      delete newState[action.commentId];
       return newState;
     case LOGOUT_CURRENT_USER:
       return {};

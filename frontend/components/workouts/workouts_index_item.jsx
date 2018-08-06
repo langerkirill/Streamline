@@ -11,12 +11,14 @@ class WorkoutIndexItem extends React.Component {
     super(props);
     this.state = {
       addComment: false,
-      text: ""
+      text: "",
+      comments: []
     }
     this.handleRedirect = this.handleRedirect.bind(this);
     this.handleAddComment = this.handleAddComment.bind(this);
     this.updateText = this.updateText.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleRedirect () {
@@ -26,6 +28,17 @@ class WorkoutIndexItem extends React.Component {
   handleAddComment(){
     let bool = !this.state.addComment;
     this.setState({addComment: bool});
+  }
+
+  handleDelete(commentId) {
+    return () => {
+      this.props.deleteComment(commentId);
+    }
+  }
+
+  componentWillReceiveProps(nextProps, ownProps) {
+    let newComments = nextProps.comment;
+    this.setState({comments: newComments});
   }
 
   updateText () {
@@ -69,9 +82,9 @@ class WorkoutIndexItem extends React.Component {
       }
     }
 
-    if (this.props.comment.length > 0) {
+    if (this.state.comments.length > 0) {
       let i = 0;
-      comments = this.props.comment.map((comment) => {
+      comments = this.state.comments.map((comment) => {
         i+=1;
 
         let commentator = this.props.commenters.filter(function(commenter) {
@@ -80,9 +93,11 @@ class WorkoutIndexItem extends React.Component {
 
         const removeComment = () => {
           if (this.props.currentUser.id === comment.user_id){
-            return (<button className="delete-comment">X</button>);
+            let commentId = comment.id;
+            debugger
+            return (<button onClick={this.handleDelete(commentId)} className="delete-comment">X</button>);
           } else {
-            return ("");
+            return "";
           }
         }
 
@@ -157,7 +172,7 @@ const msp = (state, ownProps) => {
       commenters.push(person);
     }
   });
-  debugger
+
   return {
     user,
     route,

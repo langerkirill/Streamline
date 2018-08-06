@@ -34,7 +34,7 @@ class SignUp extends React.Component {
   }
 
   componentDidUpdate() {
-    debugger
+    
     if ((this.props.errors).length > 0) {
       this.errors += 1;
       if (this.errors > 1) {
