@@ -1,23 +1,17 @@
-// Place all the styles related to the Routes controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 
 .create-route-map {
   height:89vh;
   width: 100%;
-  z-index: 1;
   position: relative;
 }
 
 .path-info {
   width: 84%;
   height: 6%;
-
   background: #fafafa;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  z-index: 3;
   position: absolute;
   left: 8%;
   bottom: 5%;
@@ -107,7 +101,6 @@
   width: 450px;
   background: #ededed;
   top: 30%;
-  z-index: 20;
   grid-template-rows: .6fr .8fr .3fr 2fr 1fr;
   grid-template-columns: 20% 20% 20% 20% 20%;
   display: grid;
@@ -186,7 +179,6 @@
   top: 30%;
   height: 400px;
   width: 900px;
-  z-index: 1;
   position: relative;
   margin-right: 50px;
 }
@@ -200,7 +192,6 @@
 }
 
 .user-info-stats {
-
   width: 300px;
   height: 330px;
 }
@@ -211,7 +202,6 @@
   height: 70px;
   border-radius: 50%;
   background-color: #e65525;
-  z-index: 2;
 }
 
 .route-box{
@@ -313,7 +303,6 @@
   top: 30%;
   height: 300px;
   width: 400px;
-  z-index: 1;
   position: relative;
 }
 

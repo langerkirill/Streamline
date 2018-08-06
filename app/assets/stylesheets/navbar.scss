@@ -3,7 +3,6 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  z-index: 0;
   width: 150px;
   height: 190px;
   position: absolute;
@@ -21,7 +20,6 @@
   overflow: hidden;
   height: 58px;
   width: 150px;
-  z-index: 5;
 }
 
 .create-route{

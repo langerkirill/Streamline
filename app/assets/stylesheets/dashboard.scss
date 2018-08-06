@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 1;
 }
 
 .nav-left {
@@ -237,7 +238,7 @@
   top: 40px;
   width: 220px;
   position: fixed;
-  z-index: 60;
+  z-index: 0;
   border-bottom: grey;
   padding-right: 660px;
 }
