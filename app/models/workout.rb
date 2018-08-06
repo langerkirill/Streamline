@@ -28,5 +28,6 @@ class Workout < ApplicationRecord
     optional:true
 
   has_many :comments
+  has_many :likes
 
 end

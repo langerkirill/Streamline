@@ -3,6 +3,7 @@ import workouts from './workouts_reducer'
 import routes from './routes_reducer';
 import markers from './markers_reducer';
 import comments from './comments_reducer';
+import likes from './likes_reducer';
 import { combineReducers } from 'redux';
 
 export default combineReducers({
@@ -10,5 +11,6 @@ export default combineReducers({
   workouts: workouts,
   routes: routes,
   markers: markers,
-  comments, comments
+  comments, comments,
+  likes: likes
 });

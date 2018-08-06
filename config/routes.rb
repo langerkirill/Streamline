@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   root to: 'static_pages#root'
   # we namespace the routes that return json specifically under api
   # all of these controller actions will return json.  We only need data now, not html
@@ -10,6 +9,7 @@ Rails.application.routes.draw do
       # <-- responses by default should be json
     get 'markers/created_routes', :to => 'markers#created_routes'
     resources :comments, except: [:index]
+    resources :likes, only: [:new, :create]
     resources :markers, except: [:show, :index]
     resources :users do
       resources :routes, only: [:index]

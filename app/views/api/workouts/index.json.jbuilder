@@ -41,3 +41,15 @@ json.comments do
     end
   end
 end
+
+json.likes do
+  @workouts.each do |workout|
+    if workout.likes.present?
+      workout.likes.each do |like|
+        json.set! like.id do
+          json.extract! like, :id, :user_id, :workout_id
+        end
+      end
+    end
+  end
+end

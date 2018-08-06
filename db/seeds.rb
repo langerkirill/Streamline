@@ -129,5 +129,9 @@ Workout.create!(workout_type: "biking", title: "#{Faker::GreekPhilosophers.quote
 Workout.create!(workout_type: "biking", title: "#{Faker::GreekPhilosophers.quote} pedalz", route_id: r19.id, elevation: 23, achievments: "15", duration: 33,  miles: 3, date: DateTime.new(2018,9,5), user_id: brian.id)
 
 Workout.all.each do |workout|
+  random = rand(1..3)
   Comment.create!(workout_id: workout.id, text: Faker::Hipster.sentence(5), user_id: User.order("RANDOM()").first.id)
+  if random == 3
+    Like.create!(workout_id: workout.id, user_id: User.order("RANDOM()").first.id)
+  end
 end
