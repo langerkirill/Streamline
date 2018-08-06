@@ -41,3 +41,15 @@ json.comments do
     end
   end
 end
+
+json.kudos do
+  @workouts.each do |workout|
+    if workout.kudos.present?
+      workout.kudos.each do |kudo|
+        json.set! kudo.id do
+          json.extract! kudo, :id, :user_id, :workout_id
+        end
+      end
+    end
+  end
+end

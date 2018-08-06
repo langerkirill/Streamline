@@ -1,6 +1,6 @@
 class Kudo < ApplicationRecord
 
-  belongs_to :user,
-  belongs_to :likes
+  belongs_to :user
+  belongs_to :workout
 
 end
