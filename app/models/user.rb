@@ -28,6 +28,7 @@ class User < ApplicationRecord
     class_name: :Workout
 
   has_many :routes
+  has_many :kudos
 
   has_many :markers,
     through: :routes,

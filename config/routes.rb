@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get 'kudos/new'
+  get 'kudos/create'
   root to: 'static_pages#root'
   # we namespace the routes that return json specifically under api
   # all of these controller actions will return json.  We only need data now, not html
