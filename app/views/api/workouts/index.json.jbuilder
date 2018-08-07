@@ -2,6 +2,7 @@ json.workouts do
   @workouts.each do |workout|
     json.set! workout.id do
       json.extract! workout, :id, :user_id, :date, :workout_type, :miles, :duration, :title, :elevation, :route_id
+      json.kudosIds workout.kudos.ids
     end
   end
 end

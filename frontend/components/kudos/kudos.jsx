@@ -16,8 +16,6 @@ class Kudos extends React.Component{
 
     let images;
 
-    debugger
-
       if (this.props.kudosGivers){
         let i = 0;
         images = this.props.kudosGivers.map((kudoer) => {
@@ -31,6 +29,7 @@ class Kudos extends React.Component{
     return (
       <div className="kudos-container">
         {images}
+        <div className="kudos-count">{this.props.kudosGivers.length} kudos</div>
       </div>
     );
   }
@@ -39,7 +38,9 @@ class Kudos extends React.Component{
 
 const msp = (state, ownProps) => {
   let kudosIds = Object.values(state.entities.kudos).map((kudos) => {
-    return kudos.user_id;
+    if (ownProps.workout.kudosIds.includes(kudos.id)){
+      return kudos.user_id;
+    }
   });
 
   let kudosGivers = [];
@@ -48,8 +49,6 @@ const msp = (state, ownProps) => {
       kudosGivers.push(person);
     }
   });
-
-  debugger
 
   return {
     kudosIds,

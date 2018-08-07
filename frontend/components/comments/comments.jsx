@@ -32,13 +32,25 @@ class Comments extends React.Component{
           }
         }
 
+    let photoUrl;
+    let username;
+    let text;
+
+    if (this.props.commentator.length > 0) {
+      photoUrl = this.props.commentator[0].photoUrl;
+      username = this.props.commentator[0].username;
+    } else {
+      photoUrl = "";
+      username = "";
+    }
+
         return (
           <div key={i+1} className="wbox-comment">
             <div className="comment-left">
-              <img src={this.props.commentator[0].photoUrl} className="commenter-image"></img>
+              <img src={photoUrl} className="commenter-image"></img>
               <div className="comment-text">
-                <strong>{this.props.commentator[0].username}</strong>
-                <div key={i}>{this.props.comment.text}</div>
+                <strong>{username}</strong>
+                <div key={i}>{comment.text}</div>
               </div>
             </div>
             {removeComment()}

@@ -60,6 +60,7 @@
   left: -6%;
   grid-template-rows: .3fr .8fr .3fr 2fr .8fr;
   display: grid;
+  z-index: 2;
 }
 
 .modal-form{

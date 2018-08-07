@@ -25,16 +25,17 @@ class User < ApplicationRecord
 
   has_many :workouts,
     foreign_key: :user_id,
-    class_name: :Workout
+    class_name: :Workout,
+    dependent: :destroy
 
-  has_many :routes
-  has_many :kudos
+  has_many :routes, dependent: :destroy
+  has_many :kudos, dependent: :destroy
 
   has_many :markers,
     through: :routes,
     source: :markers
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   has_one_attached :image
 
