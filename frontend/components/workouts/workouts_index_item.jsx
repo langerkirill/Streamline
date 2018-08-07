@@ -5,6 +5,7 @@ import WorkoutRoute from './workout_route';
 import { createComment } from '../../actions/comment_actions';
 import {withRouter} from 'react-router-dom';
 import Comment from '../comments/comments';
+import Kudos from '../kudos/kudos';
 
 class WorkoutIndexItem extends React.Component {
 
@@ -138,6 +139,7 @@ class WorkoutIndexItem extends React.Component {
         <div className="map-container">
           <WorkoutRoute key={this.props.workout.route_id} routeId={this.props.workout.route_id}/>
         </div>
+        <Kudos workout={this.props.workout}/>
         {comments}
         <div className="like-comment">
           <button className="lc"><i className="fa">&#xf0a4;</i></button>
@@ -153,9 +155,11 @@ const msp = (state, ownProps) => {
   const currentUser = state.entities.users[state.session.id];
   const user = state.entities.users[ownProps.workout['user_id']];
   const route = state.entities.routes[ownProps.workout['route_id']];
+
   let commenterIds = ownProps.comment.map((comment) => {
     return comment.user_id;
   });
+
   let commenters = [];
   Object.values(state.entities.users).forEach((person) => {
     if (commenterIds.includes(person.id)){
