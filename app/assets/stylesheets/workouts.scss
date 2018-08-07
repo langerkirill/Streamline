@@ -271,17 +271,31 @@ button:focus {outline:0;}
 }
 
 .like-comment{
+  width: 80px;
   display: flex;
   grid-row: 5;
-  grid-column: 5;
+  grid-column: 4/5;
   height: 40px;
+  padding-left: 35px;
 }
 
 .lc {
-  background: transparent;
-  border: none !important;
+  margin-left: 3px;
+  height: 30px;
+  width: 35px;
   cursor: pointer;
   font-size: 20px;
+  border-radius: 5px;
+  background: #ededed;
+  border: 1px solid white;
+}
+
+.lc:hover {
+  background: white;
+  border: 1px solid #ededed;
+  cursor: pointer;
+  font-size: 20px;
+  transition: 1s;
 }
 
 .step{

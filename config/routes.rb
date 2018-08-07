@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       # <-- responses by default should be json
     get 'markers/created_routes', :to => 'markers#created_routes'
     resources :comments, except: [:index]
-    resource :kudo, only: [:new, :create]
+    resource :kudos, only: [:new, :create]
     resources :markers, except: [:show, :index]
     resources :users do
       resources :routes, only: [:index]

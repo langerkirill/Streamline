@@ -6,6 +6,8 @@ import { createComment } from '../../actions/comment_actions';
 import {withRouter} from 'react-router-dom';
 import Comment from '../comments/comments';
 import Kudos from '../kudos/kudos';
+import { createKudo } from '../../actions/kudo_actions';
+
 
 class WorkoutIndexItem extends React.Component {
 
@@ -20,6 +22,7 @@ class WorkoutIndexItem extends React.Component {
     this.handleAddComment = this.handleAddComment.bind(this);
     this.updateText = this.updateText.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.giveKudo = this.giveKudo.bind(this);
   }
 
   handleRedirect () {
@@ -29,6 +32,12 @@ class WorkoutIndexItem extends React.Component {
   handleAddComment(){
     let bool = !this.state.addComment;
     this.setState({addComment: bool});
+  }
+
+  giveKudo(){
+    let kudo = {};
+    kudo.workout_id = this.props.workout.id;
+    this.props.createKudo(kudo);
   }
 
   componentDidMount() {
@@ -109,6 +118,16 @@ class WorkoutIndexItem extends React.Component {
       comments = "";
     }
 
+    let color;
+
+    if (this.props.kudosIds.includes(this.props.currentUser.id)){
+      color = "orange";
+    } else {
+      color = ""
+    }
+
+    debugger
+
     return (
       <div className="workout-box">
         <div className="top-left-image">
@@ -139,10 +158,10 @@ class WorkoutIndexItem extends React.Component {
         <div className="map-container">
           <WorkoutRoute key={this.props.workout.route_id} routeId={this.props.workout.route_id}/>
         </div>
-        <Kudos workout={this.props.workout}/>
+        <Kudos currentUser={this.props.currentUser} workout={this.props.workout}/>
         {comments}
         <div className="like-comment">
-          <button className="lc"><i className="fa">&#xf0a4;</i></button>
+          <button onClick={this.giveKudo} className={`${color} kudo-button lc`}><i className="fa">&#xf0a4;</i></button>
           <button onClick={this.handleAddComment} className="lc"><i className="fa">&#xf0e5;</i></button>
         </div>
         {addComment()}
@@ -167,19 +186,26 @@ const msp = (state, ownProps) => {
     }
   });
 
+  let kudosIds = Object.values(state.entities.kudos).map((kudos) => {
+    if (ownProps.workout.id === kudos.workout_id){
+      return kudos.user_id;
+    }
+  });
+
   return {
     user,
     route,
     commenters,
     commenterIds,
-    currentUser
+    currentUser,
+    kudosIds
   }
 }
 
 const mdp = (dispatch) => {
   return {
     createComment: (comment) => dispatch(createComment(comment)),
-    deleteComment: (commentId) => dispatch(deleteComment(commentId))
+    createKudo: (comment) => dispatch(createKudo(comment)),
   }
 }
 

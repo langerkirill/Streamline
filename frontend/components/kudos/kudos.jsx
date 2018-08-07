@@ -1,24 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createKudo } from '../../actions/kudo_actions';
 
 class Kudos extends React.Component{
   constructor(props){
     super(props);
-    this.giveKudo = this.giveKudo.bind(this);
+    this.state = {
+      kudosGivers: []
+    }
   }
 
-  giveKudo(){
-
+  componentDidMount() {
+    let kg = this.props.kudosGivers;
+    this.setState({kudosGivers: kg});
   }
+
+  componentWillReceiveProps(nextProps, ownProps) {
+    let kg = nextProps.kudosGivers;
+    this.setState({kudosGivers: kg}, this.render);
+  }
+
 
   render(){
 
     let images;
-
-      if (this.props.kudosGivers){
+      if (this.state.kudosGivers){
         let i = 0;
-        images = this.props.kudosGivers.map((kudoer) => {
+        images = this.state.kudosGivers.map((kudoer) => {
           i += 1;
           return (<img className={`kudos-image${i}`} key={kudoer.id} src={kudoer.photoUrl}></img>);
         });
@@ -29,7 +36,7 @@ class Kudos extends React.Component{
     return (
       <div className="kudos-container">
         {images}
-        <div className="kudos-count">{this.props.kudosGivers.length} kudos</div>
+        <div className="kudos-count">{this.state.kudosGivers.length} kudos</div>
       </div>
     );
   }
@@ -38,7 +45,7 @@ class Kudos extends React.Component{
 
 const msp = (state, ownProps) => {
   let kudosIds = Object.values(state.entities.kudos).map((kudos) => {
-    if (ownProps.workout.kudosIds.includes(kudos.id)){
+    if (ownProps.workout.id === kudos.workout_id){
       return kudos.user_id;
     }
   });
@@ -56,10 +63,4 @@ const msp = (state, ownProps) => {
   }
 }
 
-const mdp = (dispatch) => {
-  return {
-    createKudo: (kudos) => dispatch(createKudo(kudos))
-  }
-}
-
-export default connect(msp, mdp)(Kudos);
+export default connect(msp)(Kudos);

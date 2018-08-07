@@ -4,13 +4,13 @@ class Api::KudosController < ApplicationController
   end
 
   def create
-    kudo = Kudo.new(kudo_params)
-    if kudo.save
+    @kudo = Kudo.new(kudo_params)
+    @kudo.user_id = current_user.id
+    if @kudo.save
       # render 'api/routes/show'
-      render json: 'success'
+      render :show
     else
-      render json: kudo.errors.full_messages, status: :unprocessable_entity
-      render :new, status: 422
+      render json: @kudo.errors.full_messages, status: :unprocessable_entity
     end
   end
 

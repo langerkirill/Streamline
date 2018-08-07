@@ -2,26 +2,25 @@ import * as KudoApiUtil from "../util/kudos_api_util";
 
 export const RECEIVE_KUDOS = "RECEIVE_KUDOS";
 export const RECEIVE_KUDO = "RECEIVE_KUDO";
-export const REMOVE_KUDO = "REMOVE_KUDO";
 
-const receiveKudos = ({ kudoss }) => {
+const receiveKudos = ({ kudos }) => {
   return {
     type: RECEIVE_KUDOS,
-    kudoss
-  };
-};
-
-const receiveKudo = kudos => {
-  return {
-    type: RECEIVE_KUDO,
     kudos
   };
 };
 
-const removeKudo = kudosId => {
+const receiveKudo = kudo => {
+  return {
+    type: RECEIVE_KUDO,
+    kudo
+  };
+};
+
+const removeKudo = kudoId => {
   return {
     type: REMOVE_KUDO,
-    kudosId
+    kudoId
   };
 };
 
@@ -33,10 +32,10 @@ export const fetchWorkoutKudos = (workoutId) => {
   };
 };
 
-export const createKudo = kudos => {
+export const createKudo = kudo => {
   return dispatch => {
-    return KudoApiUtil.createKudo(kudos).then(kudos => {
-      return dispatch(receiveKudo(kudos));
+    return KudoApiUtil.createKudo(kudo).then(kudo => {
+      return dispatch(receiveKudo(kudo));
     });
   };
 };
