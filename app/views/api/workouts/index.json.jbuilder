@@ -7,15 +7,15 @@ json.workouts do
 end
 
 json.users do
-  @workouts.each do |workout|
-    json.set! workout.user.id do
-      json.extract! workout.user, :id, :username
-      if workout.user.image.attached?
-        json.photoUrl url_for(workout.user.image)
+  @users.each do |user|
+    json.set! user.id do
+      json.extract! user, :id, :username
+      if user.image.attached?
+        json.photoUrl url_for(user.image)
       else
         json.photoUrl "http://cdn.marketplaceimages.windowsphone.com/v8/images/b8f268a6-6818-4a19-b857-bf1ed2f26962?imageType=ws_icon_medium"
       end
-      json.workoutIds workout.user.workouts.order('date DESC').ids
+      json.workoutIds user.workouts.order('date DESC').ids
     end
   end
 end
@@ -42,12 +42,21 @@ json.comments do
   end
 end
 
+<<<<<<< HEAD
 json.likes do
   @workouts.each do |workout|
     if workout.likes.present?
       workout.likes.each do |like|
         json.set! like.id do
           json.extract! like, :id, :user_id, :workout_id
+=======
+json.kudos do
+  @workouts.each do |workout|
+    if workout.kudos.present?
+      workout.kudos.each do |kudo|
+        json.set! kudo.id do
+          json.extract! kudo, :id, :user_id, :workout_id
+>>>>>>> whateverdanwants
         end
       end
     end

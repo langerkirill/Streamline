@@ -28,6 +28,10 @@ class Workout < ApplicationRecord
     optional:true
 
   has_many :comments
+<<<<<<< HEAD
   has_many :likes
+=======
+  has_many :kudos
+>>>>>>> whateverdanwants
 
 end

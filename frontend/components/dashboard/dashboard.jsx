@@ -62,7 +62,7 @@ class Dashboard extends React.Component {
         </div>
         <div className="main-feed">
           <button className="toggle-workouts" onClick={this.handleDisplay}>{this.state.display}</button>
-          <WorkoutIndex key={1} comments={this.props.comments} className="workout-index" user={this.props.user} display={this.state.display} workouts={this.props.workouts}/>
+          <WorkoutIndex key={1} kudos={this.props.kudos} comments={this.props.comments} className="workout-index" user={this.props.user} display={this.state.display} workouts={this.props.workouts}/>
         </div>
       </div>
     );
@@ -74,11 +74,13 @@ const mapStateToProps = (state) => {
   const users = state.entities.users;
   const user = state.entities.users[state.session.id];
   const comments = Object.values(state.entities.comments);
+  const kudos = Object.values(state.entities.kudos);
   return {
     workouts,
     users,
     user,
-    comments
+    comments,
+    kudos
   };
 };
 

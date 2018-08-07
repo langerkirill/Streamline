@@ -2,8 +2,12 @@ import React from 'react';
 import {fetchUser} from '../../actions/user_actions';
 import {connect} from 'react-redux';
 import WorkoutRoute from './workout_route';
-import { createComment, deleteComment } from '../../actions/comment_actions'
+import { createComment } from '../../actions/comment_actions';
 import {withRouter} from 'react-router-dom';
+import Comment from '../comments/comments';
+import Kudos from '../kudos/kudos';
+import { createKudo } from '../../actions/kudo_actions';
+
 
 class WorkoutIndexItem extends React.Component {
 
@@ -18,7 +22,7 @@ class WorkoutIndexItem extends React.Component {
     this.handleAddComment = this.handleAddComment.bind(this);
     this.updateText = this.updateText.bind(this);
     this.handleSave = this.handleSave.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
+    this.giveKudo = this.giveKudo.bind(this);
   }
 
   handleRedirect () {
@@ -30,10 +34,15 @@ class WorkoutIndexItem extends React.Component {
     this.setState({addComment: bool});
   }
 
-  handleDelete(commentId) {
-    return () => {
-      this.props.deleteComment(commentId);
-    }
+  giveKudo(){
+    let kudo = {};
+    kudo.workout_id = this.props.workout.id;
+    this.props.createKudo(kudo);
+  }
+
+  componentDidMount() {
+    let newComments = this.props.comment;
+    this.setState({comments: newComments});
   }
 
   componentWillReceiveProps(nextProps, ownProps) {
@@ -43,7 +52,7 @@ class WorkoutIndexItem extends React.Component {
 
   updateText () {
     return e => {
-      this.setState({text:e.currentTarget.value})
+      this.setState({text: e.currentTarget.value})
     }
   }
 
@@ -94,7 +103,7 @@ class WorkoutIndexItem extends React.Component {
         const removeComment = () => {
           if (this.props.currentUser.id === comment.user_id){
             let commentId = comment.id;
-            debugger
+
             return (<button onClick={this.handleDelete(commentId)} className="delete-comment">X</button>);
           } else {
             return "";
@@ -102,21 +111,22 @@ class WorkoutIndexItem extends React.Component {
         }
 
         return (
-          <div key={i+1} className="wbox-comment">
-            <div className="comment-left">
-              <img src={commentator[0].photoUrl} className="commenter-image"></img>
-              <div className="comment-text">
-                <strong>{commentator[0].username}</strong>
-                <div key={i}>{comment.text}</div>
-              </div>
-            </div>
-            {removeComment()}
-          </div>
+            <Comment key={i} currentUser={this.props.currentUser} commentator={commentator} comment={comment}></Comment>
         );
       });
     } else {
       comments = "";
     }
+
+    let color;
+
+    if (this.props.kudosIds.includes(this.props.currentUser.id)){
+      color = "orange";
+    } else {
+      color = ""
+    }
+
+
 
     return (
       <div className="workout-box">
@@ -148,9 +158,10 @@ class WorkoutIndexItem extends React.Component {
         <div className="map-container">
           <WorkoutRoute key={this.props.workout.route_id} routeId={this.props.workout.route_id}/>
         </div>
+        <Kudos currentUser={this.props.currentUser} workout={this.props.workout}/>
         {comments}
         <div className="like-comment">
-          <button className="lc"><i className="fa">&#xf0a4;</i></button>
+          <button onClick={this.giveKudo} className={`${color} kudo-button lc`}><i className="fa">&#xf0a4;</i></button>
           <button onClick={this.handleAddComment} className="lc"><i className="fa">&#xf0e5;</i></button>
         </div>
         {addComment()}
@@ -163,13 +174,21 @@ const msp = (state, ownProps) => {
   const currentUser = state.entities.users[state.session.id];
   const user = state.entities.users[ownProps.workout['user_id']];
   const route = state.entities.routes[ownProps.workout['route_id']];
+
   let commenterIds = ownProps.comment.map((comment) => {
     return comment.user_id;
   });
+
   let commenters = [];
   Object.values(state.entities.users).forEach((person) => {
     if (commenterIds.includes(person.id)){
       commenters.push(person);
+    }
+  });
+
+  let kudosIds = Object.values(state.entities.kudos).map((kudos) => {
+    if (ownProps.workout.id === kudos.workout_id){
+      return kudos.user_id;
     }
   });
 
@@ -178,14 +197,15 @@ const msp = (state, ownProps) => {
     route,
     commenters,
     commenterIds,
-    currentUser
+    currentUser,
+    kudosIds
   }
 }
 
 const mdp = (dispatch) => {
   return {
     createComment: (comment) => dispatch(createComment(comment)),
-    deleteComment: (commentId) => dispatch(deleteComment(commentId))
+    createKudo: (comment) => dispatch(createKudo(comment)),
   }
 }
 
