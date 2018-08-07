@@ -4,7 +4,8 @@ class Api::WorkoutsController < ApplicationController
     if params[:user_id]
       @workouts = Workout.where(user_id: params[:user_id])
     else
-      @workouts = Workout.all.includes(user: :workouts, route: :workouts, comments: :workout)
+      @workouts = Workout.all.includes(user: :workouts, route: :workouts, comments: :workout, kudos: :workout)
+      @users = User.all.includes(image_attachment: :blob)
     end
     render :index
   end

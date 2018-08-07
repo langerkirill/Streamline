@@ -103,7 +103,7 @@ class WorkoutIndexItem extends React.Component {
         const removeComment = () => {
           if (this.props.currentUser.id === comment.user_id){
             let commentId = comment.id;
-            debugger
+
             return (<button onClick={this.handleDelete(commentId)} className="delete-comment">X</button>);
           } else {
             return "";
@@ -126,7 +126,7 @@ class WorkoutIndexItem extends React.Component {
       color = ""
     }
 
-    debugger
+
 
     return (
       <div className="workout-box">

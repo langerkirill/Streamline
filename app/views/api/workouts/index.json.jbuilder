@@ -7,15 +7,15 @@ json.workouts do
 end
 
 json.users do
-  @workouts.each do |workout|
-    json.set! workout.user.id do
-      json.extract! workout.user, :id, :username
-      if workout.user.image.attached?
-        json.photoUrl url_for(workout.user.image)
+  @users.each do |user|
+    json.set! user.id do
+      json.extract! user, :id, :username
+      if user.image.attached?
+        json.photoUrl url_for(user.image)
       else
         json.photoUrl "http://cdn.marketplaceimages.windowsphone.com/v8/images/b8f268a6-6818-4a19-b857-bf1ed2f26962?imageType=ws_icon_medium"
       end
-      json.workoutIds workout.user.workouts.order('date DESC').ids
+      json.workoutIds user.workouts.order('date DESC').ids
     end
   end
 end
