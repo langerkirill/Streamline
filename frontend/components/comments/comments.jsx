@@ -32,8 +32,6 @@ class Comments extends React.Component{
           }
         }
 
-        debugger
-
         return (
           <div key={i+1} className="wbox-comment">
             <div className="comment-left">
@@ -49,13 +47,6 @@ class Comments extends React.Component{
     } else {
       return ("");
     }
-  }
-}
-
-const msp = (state, ownProps) => {
-  const currentUser = state.entities.users[state.session.id];
-  return {
-    currentUser
   }
 }
 

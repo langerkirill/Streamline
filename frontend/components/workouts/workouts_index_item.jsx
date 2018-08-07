@@ -2,7 +2,7 @@ import React from 'react';
 import {fetchUser} from '../../actions/user_actions';
 import {connect} from 'react-redux';
 import WorkoutRoute from './workout_route';
-import { createComment, deleteComment } from '../../actions/comment_actions';
+import { createComment } from '../../actions/comment_actions';
 import {withRouter} from 'react-router-dom';
 import Comment from '../comments/comments';
 
@@ -19,7 +19,6 @@ class WorkoutIndexItem extends React.Component {
     this.handleAddComment = this.handleAddComment.bind(this);
     this.updateText = this.updateText.bind(this);
     this.handleSave = this.handleSave.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleRedirect () {
@@ -31,10 +30,9 @@ class WorkoutIndexItem extends React.Component {
     this.setState({addComment: bool});
   }
 
-  handleDelete(commentId) {
-    return () => {
-      this.props.deleteComment(commentId);
-    }
+  componentDidMount() {
+    let newComments = this.props.comment;
+    this.setState({comments: newComments});
   }
 
   componentWillReceiveProps(nextProps, ownProps) {
@@ -44,7 +42,7 @@ class WorkoutIndexItem extends React.Component {
 
   updateText () {
     return e => {
-      this.setState({text:e.currentTarget.value})
+      this.setState({text: e.currentTarget.value})
     }
   }
 
