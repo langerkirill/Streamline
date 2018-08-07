@@ -1,15 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import { deleteComment } from '../../actions/comment_actions';
+
 
 class Comments extends React.Component{
   constructor(props){
     super(props);
-    this.state = {
-      text: ""
-    }
-    this.handleAddComment = this.handleAddComment.bind(this);
-    this.updateText = this.updateText.bind(this);
-    this.handleSave = this.handleSave.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
   }
 
@@ -19,71 +15,46 @@ class Comments extends React.Component{
     }
   }
 
-  updateText () {
-    return e => {
-      this.setState({text:e.currentTarget.value})
-    }
-  }
-
   render(){
 
-    let comments;
+    let comment;
 
-    if (this.props.comments.length > 0) {
+    if (this.props.comment) {
       let i = 0;
-      comments = this.props.comments.map((comment) => {
-        i+=1;
-
-        let commentator = this.props.commenters.filter(function(commenter) {
-          return comment.user_id === commenter.id;
-        })
+      comment = this.props.comment;
 
         const removeComment = () => {
           if (this.props.currentUser.id === comment.user_id){
             let commentId = comment.id;
-            debugger
             return (<button onClick={this.handleDelete(commentId)} className="delete-comment">X</button>);
           } else {
             return "";
           }
         }
 
+        debugger
+
         return (
           <div key={i+1} className="wbox-comment">
             <div className="comment-left">
-              <img src={commentator[0].photoUrl} className="commenter-image"></img>
+              <img src={this.props.commentator[0].photoUrl} className="commenter-image"></img>
               <div className="comment-text">
-                <strong>{commentator[0].username}</strong>
-                <div key={i}>{comment.text}</div>
+                <strong>{this.props.commentator[0].username}</strong>
+                <div key={i}>{this.props.comment.text}</div>
               </div>
             </div>
             {removeComment()}
           </div>
         );
-      });
     } else {
-      comments = "";
+      return ("");
     }
   }
 }
 
 const msp = (state, ownProps) => {
   const currentUser = state.entities.users[state.session.id];
-  const user = state.entities.users[ownProps.workout['user_id']];
-  let commenterIds = ownProps.comment.map((comment) => {
-    return comment.user_id;
-  });
-  let commenters = [];
-  Object.values(state.entities.users).forEach((person) => {
-    if (commenterIds.includes(person.id)){
-      commenters.push(person);
-    }
-  });
-
   return {
-    user,
-    commenters,
-    commenterIds,
     currentUser
   }
 }
@@ -94,4 +65,4 @@ const mdp = (dispatch) => {
   }
 }
 
-export default connect(msp, mdp)(Comment);
+export default connect(null, mdp)(Comments);

@@ -2,8 +2,9 @@ import React from 'react';
 import {fetchUser} from '../../actions/user_actions';
 import {connect} from 'react-redux';
 import WorkoutRoute from './workout_route';
-import { createComment, deleteComment } from '../../actions/comment_actions'
+import { createComment, deleteComment } from '../../actions/comment_actions';
 import {withRouter} from 'react-router-dom';
+import Comment from '../comments/comments';
 
 class WorkoutIndexItem extends React.Component {
 
@@ -102,16 +103,7 @@ class WorkoutIndexItem extends React.Component {
         }
 
         return (
-          <div key={i+1} className="wbox-comment">
-            <div className="comment-left">
-              <img src={commentator[0].photoUrl} className="commenter-image"></img>
-              <div className="comment-text">
-                <strong>{commentator[0].username}</strong>
-                <div key={i}>{comment.text}</div>
-              </div>
-            </div>
-            {removeComment()}
-          </div>
+            <Comment key={i} currentUser={this.props.currentUser} commentator={commentator} comment={comment}></Comment>
         );
       });
     } else {
