@@ -274,28 +274,6 @@ button:focus {outline:0;}
   width: 80px;
   display: flex;
   grid-row: 5;
-<<<<<<< HEAD
-  grid-column: 4/6;
-  height: 33px;
-  width: 100px;
-  padding-right: 10px;
-}
-
-.lc {
-  background: #ededed;
-  border: 1px solid white;
-  cursor: pointer;
-  font-size: 20px;
-  width: 43px;
-  margin: 0 auto;
-  border-radius: 5px;
-}
-
-.lc:hover{
-  background-color: white;
-  transition: 1s;
-  border: 1px solid #ededed;
-=======
   grid-column: 4/5;
   height: 40px;
   padding-left: 35px;
@@ -318,7 +296,6 @@ button:focus {outline:0;}
   cursor: pointer;
   font-size: 20px;
   transition: 1s;
->>>>>>> whateverdanwants
 }
 
 .step{

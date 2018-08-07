@@ -28,13 +28,8 @@ class User < ApplicationRecord
     class_name: :Workout,
     dependent: :destroy
 
-<<<<<<< HEAD
-  has_many :routes
-  has_many :likes
-=======
   has_many :routes, dependent: :destroy
   has_many :kudos, dependent: :destroy
->>>>>>> whateverdanwants
 
   has_many :markers,
     through: :routes,

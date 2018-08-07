@@ -132,10 +132,6 @@ Workout.all.each do |workout|
   random = rand(1..3)
   Comment.create!(workout_id: workout.id, text: Faker::Hipster.sentence(5), user_id: User.order("RANDOM()").first.id)
   if random == 3
-<<<<<<< HEAD
-    Like.create!(workout_id: workout.id, user_id: User.order("RANDOM()").first.id)
-=======
     Kudo.create!(workout_id: workout.id, user_id: User.order("RANDOM()").first.id)
->>>>>>> whateverdanwants
   end
 end
