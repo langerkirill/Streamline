@@ -27,7 +27,6 @@ class TrainingLog extends React.Component {
     window.removeEventListener('scroll', this.handleScroll);
   }
 
-
   componentWillReceiveProps(nextProps){
     const userWorkouts = Object.values(nextProps.workouts);
     this.setState({myWorkouts: userWorkouts});
@@ -42,7 +41,6 @@ class TrainingLog extends React.Component {
       this.setState({top:false})
     }
   }
-
 
   weeks () {
     let today = new Date();

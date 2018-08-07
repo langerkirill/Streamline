@@ -19,7 +19,7 @@
   margin-left: auto;
   position: absolute;
   bottom: 0px;
-  right: 72px;
+  right: 6.4%;
 }
 
 .log-index{
@@ -47,15 +47,14 @@
 }
 
 .week-days{
+  width: 65%;
+  left: 20%;
   display: flex;
-  justify-content: space-between;
+  align-items: flex-end;
+  justify-content: space-around;
+  margin-left: auto;
   position: absolute;
-  padding: 20px;
-  background: white;
-  width: 58%;
-  right: 17%;
   top: 200px;
-  padding: 20px;
   background: white;
 }
 
@@ -88,12 +87,13 @@
 .scroll {
   position: fixed;
   display: flex;
-  justify-content: space-between;
-  width: 58%;
+  justify-content: space-around;
+  width: 65%;
   text-align: right;
-  right: 17%;
-  padding: 30px;
+  right: 14.8%;
+  padding: 30px 0px;
   background: white;
   top: 0px;
-  border-bottom: grey;
+  z-index: 2;
+  border-bottom: 1px solid #ededed;
 }
