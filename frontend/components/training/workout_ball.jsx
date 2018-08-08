@@ -67,9 +67,9 @@ class WorkoutBall extends React.Component {
     let height = this.props.workout.miles;
     let width = this.props.workout.miles;
 
-    if (height > 35) {
-      height = 35;
-      width = 35;
+    if (height > 30) {
+      height = 30;
+      width = 30;
     }
 
     let modal;
@@ -80,9 +80,10 @@ class WorkoutBall extends React.Component {
     }
 
     return(
-      <div>
-        <div onMouseEnter={this.modal} onMouseLeave={this.modal} className={`${this.state.weekday} workout-ball`} style={{height: height, width: width}}>{this.props.workout.miles}</div>
-        {modal}
+      <div className="training-container">
+        <div onMouseEnter={this.modal} onMouseLeave={this.modal} className={`${this.state.weekday} workout-ball`} style={{height: height, width: width}}>{this.props.workout.miles}
+          {modal}
+        </div>
       </div>
     );
   }
