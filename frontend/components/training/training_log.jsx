@@ -10,7 +10,8 @@ class TrainingLog extends React.Component {
     this.state = {
       myWorkouts: [],
       weeks: [],
-      top: false
+      top: false,
+      scaled: []
     }
     this.weeks = this.weeks.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
@@ -33,7 +34,6 @@ class TrainingLog extends React.Component {
   }
 
   handleScroll () {
-
     let lastScrollY = window.scrollY;
     if (lastScrollY > 142){
       this.setState({top:true})

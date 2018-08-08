@@ -97,3 +97,53 @@
   z-index: 2;
   border-bottom: 1px solid #ededed;
 }
+
+.workout-ball {
+  border: 1px solid black;
+  border-radius: 50%;
+  background-color: red;
+  text-align: center;
+  line-height: 40px;
+}
+
+.sunday{
+  position: absolute;
+  right: 11.4%;
+  bottom: 90px;
+}
+
+.monday{
+  position: absolute;
+  right: 72.2%;
+  bottom: 90px;
+}
+
+.tuesday{
+  position: absolute;
+  right: 62.4%;
+  bottom: 90px;
+}
+
+.wednesday{
+  position: absolute;
+  right: 52.6%;
+  bottom: 90px;
+}
+
+.thursday{
+  position: absolute;
+  right: 42.8%;
+  bottom: 90px;
+}
+
+.friday{
+  position: absolute;
+  right: 33.5%;
+  bottom: 90px;
+}
+
+.saturday{
+  position: absolute;
+  right: 23.2%;
+  bottom: 90px;
+}

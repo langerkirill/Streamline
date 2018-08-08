@@ -52,15 +52,14 @@ class TrainingLogItem extends React.Component {
 
   render() {
 
-    const displayWorkout = () => {
+    let workouts;
       if (this.state.workouts.length > 0) {
-        this.state.workouts.map((workout) => {
+        workouts = this.state.workouts.map((workout) => {
           return (<WorkoutBall key={workout.id} workout={workout}/>);
         });
       } else {
-        return ("");
+        workouts = "";
       }
-    }
 
     return (
       <section className="log-container">
@@ -78,7 +77,7 @@ class TrainingLogItem extends React.Component {
             <div className="dotted"></div>
             <div className="dotted"></div>
           </div>
-          {displayWorkout()}
+          {workouts}
         </div>
       </section>
     );
