@@ -77,6 +77,7 @@ class TrainingLogItem extends React.Component {
             <div className="dotted"></div>
             <div className="dotted"></div>
           </div>
+          <img src="https://identicon-api.herokuapp.com/name/40?format=png" alt="5"/>
           {workouts}
         </div>
       </section>
