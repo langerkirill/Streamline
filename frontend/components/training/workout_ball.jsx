@@ -1,14 +1,17 @@
 import React from 'react';
+import WorkoutModal from './workout_modal'
 
 class WorkoutBall extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       day:null,
-      weekday: ""
+      weekday: "",
+      modal:false
     }
     this.picked = "";
     this.daypick = this.daypick.bind(this);
+    this.modal = this.modal.bind(this);
   }
 
   componentDidMount() {
@@ -18,6 +21,10 @@ class WorkoutBall extends React.Component {
     this.setState({day: day}, this.daypick)
   }
 
+  modal(){
+    let bool = !this.state.modal;
+    this.setState({modal:bool});
+  }
 
   daypick(){
     let picked;
@@ -60,13 +67,23 @@ class WorkoutBall extends React.Component {
     let height = this.props.workout.miles;
     let width = this.props.workout.miles;
 
-    if (height > 60) {
-      height = 60;
-      width = 60;
+    if (height > 35) {
+      height = 35;
+      width = 35;
+    }
+
+    let modal;
+    if (this.state.modal){
+      modal = <WorkoutModal key={this.props.workout.id} workout={this.props.workout}/>
+    } else {
+      modal = "";
     }
 
     return(
-      <div className={`${this.state.weekday} workout-ball`} style={{height: height, width: width}}>{this.props.workout.miles}</div>
+      <div>
+        <div onMouseEnter={this.modal} onMouseLeave={this.modal} className={`${this.state.weekday} workout-ball`} style={{height: height, width: width}}>{this.props.workout.miles}</div>
+        {modal}
+      </div>
     );
   }
 }
