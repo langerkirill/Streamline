@@ -144,7 +144,7 @@ end
   sports = ['biking', 'running', 'penguin catching']
   sport = sports[var]
   title = Faker::BreakingBad.episode
-  icon = "https://identicon-api.herokuapp.com/#{title}/40?format=png"
+  icon = "https://identicon-api.herokuapp.com/#{title}/180?format=png"
 
   def time_rand from = 0.0, to = Time.now
     Time.at(from + rand * (to.to_f - from.to_f))
