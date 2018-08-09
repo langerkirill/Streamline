@@ -11,9 +11,7 @@ class Api::ChallengesController < ApplicationController
 
   def update
     @challenge = Challenge.find(params[:id])
-    unless @challenge.users.include?(current_user)
-      @challenge.users << current_user
-      render :show
-    end
+    @challenge.users << current_user
+    render :show
   end
 end

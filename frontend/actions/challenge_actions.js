@@ -36,6 +36,8 @@ export const fetchChallenge = challenge => {
 export const joinChallenge = challengeId => {
   return dispatch => {
     return ChallengeApiUtil.joinChallenge(challengeId).then(challenge => {
+      debugger
+
       return dispatch(receiveChallenge(challenge));
     });
   };

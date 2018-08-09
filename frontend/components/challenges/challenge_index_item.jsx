@@ -8,7 +8,7 @@ class ChallengeIndexItem extends React.Component{
     super(props);
     this.joinChallenge = this.joinChallenge.bind(this);
     this.state = {
-      challenge: {id:0, img:"", workout_type:"", title:"", text:""}
+      challenge: {id:0, img:"", workout_type:"", title:"", text:"", userIds: []}
     }
   }
 
@@ -31,8 +31,30 @@ class ChallengeIndexItem extends React.Component{
 
   render(){
     let challenge = this.state.challenge;
+    let that = this;
+
+    const button = () => {
+      if  ((that.state.challenge.userIds === undefined) || (that.state.challenge.userIds.includes(that.props.currentUserId))) {
+        return ""
+      } else {
+        return (<button onClick={that.joinChallenge(challenge.id)} className="challenge-join">Join Now</button>);
+      }
+    }
+
+    let ribbon = ((that.state.challenge.userIds === undefined) || (that.state.challenge.userIds.includes(that.props.currentUserId))) ? "corner-ribbon top-left sticky red shadow" : "";
+
+    const bow = () => {
+      if (ribbon.length > 0) {
+        return (<div className={`${ribbon}`}>Joined</div>);
+      } else {
+        return ""
+      }
+    }
+
+    let s = challenge.userIds.length > 1 || challenge.userIds.length === 0 ? "s" : ""
+
       return (
-        <div key={challenge.id} className="challenge-box">
+        <div key={challenge.id} className={`challenge-box`}>
           <img className="challenge-image" src={challenge.img}/>
           <div className="challenge-type">
             <div className="challenge-line-left"></div>
@@ -41,10 +63,19 @@ class ChallengeIndexItem extends React.Component{
           </div>
           <div className="challenge-title">{challenge.title}</div>
           <div className="challenge-text">{challenge.text}</div>
-          <button onClick={this.joinChallenge(challenge.id)} className="challenge-join">Join Now</button>
+          {button()}
+          {bow()}
+          <div className="participants">{challenge.userIds.length} participant{s}</div>
         </div>
       )
   };
+}
+
+const msp = (state, ownProps) => {
+  let currentUserId = state.session.id;
+  return {
+    currentUserId
+  }
 }
 
 const mdp = (dispatch) => {
@@ -53,4 +84,4 @@ const mdp = (dispatch) => {
   }
 }
 
-export default connect(null, mdp)(ChallengeIndexItem);
+export default connect(msp, mdp)(ChallengeIndexItem);
