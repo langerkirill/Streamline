@@ -11,6 +11,9 @@ User.destroy_all
 Workout.destroy_all
 Route.destroy_all
 Marker.destroy_all
+Comment.destroy_all
+Challenge.destroy_all
+Kudo.destroy_all
 
 mashu = User.new(username: "Mashu-rella", password: "hunter12")
 file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/MashuDuek.jpg')
@@ -134,4 +137,20 @@ Workout.all.each do |workout|
   if random == 3
     Kudo.create!(workout_id: workout.id, user_id: User.order("RANDOM()").first.id)
   end
+end
+
+30.times do |challenge|
+  var = rand(0..2)
+  sports = ['biking', 'running', 'penguin catching']
+  sport = sports[var]
+  title = Faker::BreakingBad.episode
+  icon = "https://identicon-api.herokuapp.com/#{title}/40?format=png"
+
+  def time_rand from = 0.0, to = Time.now
+    Time.at(from + rand * (to.to_f - from.to_f))
+  end
+
+  date = time_rand Time.local(2018, 8, 1), Time.local(2018, 10, 1)
+
+  Challenge.create!(title: title, text: Faker::Community.quotes, workout_type: sport, img:icon, time_limit:date)
 end

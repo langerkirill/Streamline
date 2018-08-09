@@ -28,6 +28,8 @@ class User < ApplicationRecord
     class_name: :Workout,
     dependent: :destroy
 
+  has_and_belongs_to_many :challenges
+
   has_many :routes, dependent: :destroy
   has_many :kudos, dependent: :destroy
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_06_233136) do
+ActiveRecord::Schema.define(version: 2018_08_09_004408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,21 @@ ActiveRecord::Schema.define(version: 2018_08_06_233136) do
   create_table "add_columns_to_workouts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "challenges", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "workout_type", null: false
+    t.string "text", null: false
+    t.string "img", null: false
+    t.date "time_limit", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "challenges_users", id: false, force: :cascade do |t|
+    t.bigint "challenge_id", null: false
+    t.bigint "user_id", null: false
   end
 
   create_table "change_columnin_workouts", force: :cascade do |t|

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  type: 
+  text: MyString
+  img: MyString
+  time_limit: 2018-08-08
+
+two:
+  title: MyString
+  type: 
+  text: MyString
+  img: MyString
+  time_limit: 2018-08-08
