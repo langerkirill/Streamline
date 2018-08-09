@@ -1,16 +1,30 @@
 import React from 'react';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import {fetchChallenges} from '../../actions/challenge_actions'
 
 class Challenges extends React.Component {
 
   componentDidMount(){
-    debugger
-    this.props.fetchChallenges;
+    this.props.fetchChallenges();
   }
 
   render(){
+
+    let challengeIndex = this.props.challenges.map(challenge => {
+      return (
+        <div className="challenge-box">
+          <div>{challenge.title}</div>
+          <div>{challenge.workout_type}</div>
+          <img src={challenge.img}/>
+          <div>{challenge.text}</div>
+        </div>
+      )
+    })
+
     return(
-      <div>Challnge meh</div>
+      <article className="challenge-wrapper">
+        {challengeIndex}
+      </article>
     )
   }
 

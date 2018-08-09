@@ -1,3 +1,17 @@
 .icon-for-challenges{
   border: 1px solid black;
 }
+
+.challenge-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.challenge-box{
+  width: 200px;
+  height: 200px;
+  border: 2px solid #ededed;
+  text-align: center;
+  margin: 10px;
+}
