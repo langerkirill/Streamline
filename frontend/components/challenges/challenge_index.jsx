@@ -19,17 +19,25 @@ class Challenges extends React.Component {
             <div>{challenge.workout_type}</div>
             <div className="challenge-line-right"></div>
           </div>
-          <div>{challenge.title}</div>
-          <div>{challenge.text}</div>
-          <button>Join Now</button>
+          <div className="challenge-title">{challenge.title}</div>
+          <div className="challenge-text">{challenge.text}</div>
+          <button className="challenge-join">Join Now</button>
         </div>
       )
     })
 
     return(
+      <section>
+        <article className="challenges-top">
+          <img className="challenge-icon" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl2zWSljqPFQMCAvlpIGGlh_6aRPSbQD-ilP7zBKsf33_8EHP1"></img>
+          <div className="challenge-main-title">Strava Challenges</div>
+          <div className="top-challenge">Join a run or cycling Challenge to stay on top of your game, earn new achievements and see how you stack up.
+          </div>
+        </article>
       <article className="challenge-wrapper">
         {challengeIndex}
       </article>
+    </section>
     )
   }
 
