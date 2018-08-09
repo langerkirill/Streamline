@@ -12,7 +12,7 @@ class Challenges extends React.Component {
 
     let challengeIndex = this.props.challenges.map(challenge => {
       return (
-        <div className="challenge-box">
+        <div key={challenge.id} className="challenge-box">
           <img className="challenge-image" src={challenge.img}/>
           <div className="challenge-type">
             <div className="challenge-line-left"></div>
@@ -30,7 +30,7 @@ class Challenges extends React.Component {
       <section>
         <article className="challenges-top">
           <img className="challenge-icon" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl2zWSljqPFQMCAvlpIGGlh_6aRPSbQD-ilP7zBKsf33_8EHP1"></img>
-          <div className="challenge-main-title">Strava Challenges</div>
+          <div className="challenge-main-title">Streamline Challenges</div>
           <div className="top-challenge">Join a run or cycling Challenge to stay on top of your game, earn new achievements and see how you stack up.
           </div>
         </article>
