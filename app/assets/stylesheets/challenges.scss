@@ -133,3 +133,58 @@
   bottom: 10px;
   left: 110px;
 }
+
+.challenge-buttons{
+  display: flex;
+  border-radius: 5px;
+  width: 240px;
+  margin-bottom: 50px;
+}
+
+.challenge-buttons > button {
+  height: 40px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.challenge-buttons > button:hover {
+  background-color: #ededed;
+  transition: 1s;
+}
+
+.challenge-buttons > button:focus {
+  background-color: lightgrey;
+  transition: 1s;
+}
+
+.challenge-main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vall {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.peng-c {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.ride-c {
+  border: 1px solid black;
+}
+
+.run-c {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}

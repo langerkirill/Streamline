@@ -1,6 +1,6 @@
 class Api::ChallengesController < ApplicationController
   def index
-    @challenges = Challenge.all
+    @challenges = Challenge.all.includes(:users)
     render :index
   end
 
