@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     get 'markers/created_routes', :to => 'markers#created_routes'
     resources :comments, except: [:index]
     resource :kudos, only: [:new, :create]
-    resources :challenges, only: [:show, :index]
+    resources :challenges, only: [:show, :index, :update]
     resources :markers, except: [:show, :index]
     resources :users do
       resources :routes, only: [:index]

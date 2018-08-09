@@ -17,9 +17,9 @@ const receiveChallenge = challenge => {
   };
 };
 
-export const fetchChallenges = (workoutId) => {
+export const fetchChallenges = () => {
   return dispatch => {
-    return ChallengeApiUtil.fetchChallenges(workoutId).then(challenges => {
+    return ChallengeApiUtil.fetchChallenges().then(challenges => {
       return dispatch(receiveChallenges(challenges));
     });
   };
@@ -28,6 +28,14 @@ export const fetchChallenges = (workoutId) => {
 export const fetchChallenge = challenge => {
   return dispatch => {
     return ChallengeApiUtil.fetchChallenge(challenge).then(challenge => {
+      return dispatch(receiveChallenge(challenge));
+    });
+  };
+};
+
+export const joinChallenge = challengeId => {
+  return dispatch => {
+    return ChallengeApiUtil.joinChallenge(challengeId).then(challenge => {
       return dispatch(receiveChallenge(challenge));
     });
   };

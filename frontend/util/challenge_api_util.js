@@ -11,3 +11,10 @@ export const fetchChallenge = (challengeId) => {
     url: `/api/challenges/${challengeId}`
   });
 };
+
+export const joinChallenge = (challengeId) => {
+  return $.ajax({
+    method: 'PATCH',
+    url: `/api/challenges/${challengeId}`
+  });
+};

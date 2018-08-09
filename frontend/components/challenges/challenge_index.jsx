@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {fetchChallenges} from '../../actions/challenge_actions'
+import {fetchChallenges, joinChallenge} from '../../actions/challenge_actions';
+import ChallengeIndexItem from './challenge_index_item';
 
 class Challenges extends React.Component {
 
@@ -9,20 +10,9 @@ class Challenges extends React.Component {
   }
 
   render(){
-
     let challengeIndex = this.props.challenges.map(challenge => {
       return (
-        <div key={challenge.id} className="challenge-box">
-          <img className="challenge-image" src={challenge.img}/>
-          <div className="challenge-type">
-            <div className="challenge-line-left"></div>
-            <div>{challenge.workout_type}</div>
-            <div className="challenge-line-right"></div>
-          </div>
-          <div className="challenge-title">{challenge.title}</div>
-          <div className="challenge-text">{challenge.text}</div>
-          <button className="challenge-join">Join Now</button>
-        </div>
+        <ChallengeIndexItem key={challenge.id} challenge={challenge}/>
       )
     })
 
@@ -40,7 +30,6 @@ class Challenges extends React.Component {
     </section>
     )
   }
-
 }
 
 const msp = (state) => {

@@ -148,7 +148,7 @@ class WorkoutIndexItem extends React.Component {
           </div>
           <div className="workout-elevation">
             <div className="stats-label">Elevation Gain:</div>
-            <div className="elevation">{this.props.workout.elevation} ft</div>
+            <div className="elevation">{this.props.workout.elevation} m</div>
           </div>
           <div>
             <div className="stats-label"> Time: </div>
