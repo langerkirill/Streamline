@@ -254,14 +254,12 @@ class CreateRoute extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-
     let routeId = nextProps.route;
     this.setMarkers(routeId);
     this.setState({black:true});
   }
 
   setMarkers(routeId) {
-
     let coords = this.coordinates;
     for (let i=0; i<coords.length; i++){
       let marker = {};
@@ -303,7 +301,7 @@ class CreateRoute extends React.Component {
     let chartButton = this.state.chart ? "On" : "Off";
 
     let savedModal;
-    
+
     if (this.state.black) {
       savedModal = () => {
         return (

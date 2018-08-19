@@ -16,7 +16,12 @@ class MyRoutesItem extends React.Component {
     };
 
     this.map = new google.maps.Map(this.mapNode, mapOptions);
-    this.calcRoute(this.props.markers);
+
+    let sorted = this.props.markers.sort(function(a,b){
+      return b.order > a.order;
+    });
+
+    this.calcRoute(sorted);
   }
 
     calcRoute(markers) {
@@ -68,7 +73,7 @@ class MyRoutesItem extends React.Component {
       }
 
     handleRedirect () {
-      
+
       this.props.history.push(`/routes/${this.props.route.id}`)
     }
 

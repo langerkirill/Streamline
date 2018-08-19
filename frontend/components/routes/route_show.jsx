@@ -30,14 +30,16 @@ class RouteShow extends React.Component {
   }
 
   componentWillReceiveProps(nextProps, ownProps) {
-
     let coordinates = [];
     for (let i=0; i<nextProps.markers.length; i++) {
       if (nextProps.markers[i].route_id == nextProps.match.params.routeId) {
         coordinates.push(nextProps.markers[i]);
       }
     }
-    this.calcRoute(coordinates);
+    let sorted = coordinates.sort(function(a,b){
+      return b.order > a.order;
+    });
+    this.calcRoute(sorted);
   }
 
   componentDidUpdate(prevProps, prevState) {

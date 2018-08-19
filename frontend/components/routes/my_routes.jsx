@@ -37,11 +37,9 @@ class MyRoutes extends React.Component {
         current = [];
       }
     let sorted = allMarkers.sort(function(a,b){
-      
       return b[0].created_at > a[0].created_at;
     });
 
-    
     this.setState({markers: allMarkers});
   }
 
@@ -49,6 +47,7 @@ class MyRoutes extends React.Component {
 
     const routes = this.state.markers.map(markers => {
       let route = this.props.routes[markers[0].route_id];
+      debugger
       return(<MyRoutesItem route={route} key={markers[0].id} markers={markers}/>);
     })
 
