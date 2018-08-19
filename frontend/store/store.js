@@ -6,5 +6,5 @@ import logger from 'redux-logger'; // <-- Must be the last piece of middleware
 // The store is an object that packages up Redux for us
 
 export default (preloadedState = {}) => {
-  return createStore(rootReducer, preloadedState, applyMiddleware(thunk, logger));
+  return createStore(rootReducer, preloadedState, applyMiddleware(thunk));
 };
