@@ -96,26 +96,25 @@ class NavBar extends React.Component {
       }
     }
 
-
+    // <NavLink className="nav-left-links" to="/explore"> Explore </NavLink>
+    // <div>
+    //   <i className="fa fa-bell-o"></i>
+    // </div>
+    //  <i className="search-icon material-icons">&#xe8b6;</i>
 
     return (
     <nav className={`${scroll_class} top-nav`}>
       <div className="nav-left">
         <Link className="nav-icon" to="/dashboard"> Streamline </Link>
-        <i className="search-icon material-icons">&#xe8b6;</i>
         <div onMouseEnter={this.handleDashHover} onMouseLeave={this.handleDashHover} className="dash-hover-helper">
           <NavLink className="dash-link nav-left-links" to="/dashboard"> Dashboard
           </NavLink>
           {dashHover()}
         </div>
         <NavLink className="nav-left-links" to="/training/log"> Training </NavLink>
-        <NavLink className="nav-left-links" to="/explore"> Explore </NavLink>
         <NavLink className="nav-left-links" to="/challenges"> Challenges </NavLink>
       </div>
       <div className="nav-right">
-        <div>
-          <i className="fa fa-bell-o"></i>
-        </div>
         <div className="bell-icon">
           <div onMouseEnter={this.handleImageHover} onMouseLeave={this.handleImageHover} className="hover-helper">
             <img className="nav-image" src={this.props.user.photoUrl}/>

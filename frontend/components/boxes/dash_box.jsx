@@ -7,8 +7,8 @@ class DashBox extends React.Component {
     return (
         <div className="dash-box">
           <div className="dash-cover"></div>
-          <button>Activity Feed</button>
-          <NavLink style={{textDecoration: 'none'}} className="dash-create-route create-route" to="/routes">My Routes</NavLink >
+          <NavLink className="goto-dash create-route" to="/dashboard">Activity Feed</NavLink >
+          <NavLink  className="dash-create-route create-route" to="/routes">My Routes</NavLink >
         </div>
     );
   }

@@ -45,7 +45,7 @@
   justify-content: space-around;
   align-items: center;
   z-index: 50;
-  width: 155px;
+  width: 156px;
   height: 110px;
   position: absolute;
   right: -60px;
@@ -54,32 +54,26 @@
   background-color: white;
 }
 
-.dash-box > button{
-  font-size: 14px;
-  background-repeat:no-repeat;
-  border: none;
-  cursor:pointer;
-  overflow: hidden;
-  height: 58px;
-  width: 155px;
-  z-index: 5;
-}
-
 .create-route{
+  text-decoration: none;
   color: black;
   text-align: center;
-  vertical-align: middle;
-  line-height: 45px;
   font-family: sans-serif;
 }
 
-.dash-box > button, .dash-create-route{
-  padding: 0px 2px;
-  line-height: 22px;
-  padding-right: 3px;
+.goto-dash{
+  padding-top: 6px;
+  padding-left: 2px;
+  padding-right: 4px;
 }
 
-.dash-box > button:hover, .dash-create-route:hover{
+.dash-create-route{
+  padding: 0px 2px;
+  padding-right:4px;
+  padding-top: 5px;
+}
+
+.dash-create-route:hover{
   background-color: lightgrey;
 }
 
@@ -89,10 +83,10 @@
 
 .dash-cover {
   border: 1px solid white;
-  height: 1px;
-  width: 94px;
+  width: 95px;
   right: 59px;
-  top: -2px;
+  padding-bottom: 8px;
+  top: -10px;
   z-index: 500;
   background: white;
   position: absolute;
