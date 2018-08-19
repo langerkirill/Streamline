@@ -16,7 +16,8 @@ class CreateRoute extends React.Component {
       name: "",
       chart: true,
       route_type: "biking",
-      errors: false
+      markerErrors: false,
+      nameErrors: false
     }
     this.coordinates = [];
     this.latlngs = [];
@@ -241,14 +242,18 @@ class CreateRoute extends React.Component {
 
   handleSave() {
     if (this.coordinates.length < 2) {
-      this.setState({errors: true});
+      this.setState({markerErrors: true});
       return;
-    };
+    } else if (this.state.name === "") {
+      this.setState({nameErrors: true});
+      return;
+    }
 
     let copy = this.state;
     delete copy['black'];
     delete copy['chart'];
-    delete copy['errors'];
+    delete copy['markerErrors'];
+    delete copy['nameErrors'];
     copy.startlat = parseFloat(this.coordinates[0][0]);
     copy.startlong = parseFloat(this.coordinates[0][1]);
     copy.endlat = parseFloat(this.coordinates[this.coordinates.length-1][0]);
@@ -284,7 +289,8 @@ class CreateRoute extends React.Component {
   }
 
   clearErrors(){
-    this.setState({errors: false});
+    this.setState({markerErrors: false});
+    this.setState({nameErrors: false});
   }
 
   changeType(field){
@@ -312,15 +318,16 @@ class CreateRoute extends React.Component {
     let chartDisplay = this.state.chart ? "chart" : "nochart";
     let chartButton = this.state.chart ? "On" : "Off";
 
-    let errors;
     const errorDisplay = () => {
-      if (this.state.errors) {
-        errors = "You must have two or more markers to create a route"
+      if (this.state.markerErrors) {
         return (
-          <h3 className="crerrors">{`${errors}`}</h3>
+          <h3 className="crerrors">You must have two or more markers to create a route</h3>
         );
+      } else if (this.state.nameErrors){
+          return (
+            <h3 className="crerrors">The route must have a name</h3>
+          );
         } else {
-          errors = "";
           return ("");
         }
       }
