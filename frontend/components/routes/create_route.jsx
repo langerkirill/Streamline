@@ -15,7 +15,8 @@ class CreateRoute extends React.Component {
       black: false,
       name: "",
       chart: true,
-      route_type: "biking"
+      route_type: "biking",
+      errors: false
     }
     this.coordinates = [];
     this.latlngs = [];
@@ -27,6 +28,7 @@ class CreateRoute extends React.Component {
     this.showChart = this.showChart.bind(this);
     this.setMapOnAll = this.setMapOnAll.bind(this);
     this.clearMarkers = this.clearMarkers.bind(this);
+    this.clearErrors = this.clearErrors.bind(this);
     this.directionsDisplay = new google.maps.DirectionsRenderer;
     this.directionsService = new google.maps.DirectionsService();
   }
@@ -238,9 +240,15 @@ class CreateRoute extends React.Component {
     }
 
   handleSave() {
+    if (this.coordinates.length < 2) {
+      this.setState({errors: true});
+      return;
+    };
+
     let copy = this.state;
     delete copy['black'];
     delete copy['chart'];
+    delete copy['errors'];
     copy.startlat = parseFloat(this.coordinates[0][0]);
     copy.startlong = parseFloat(this.coordinates[0][1]);
     copy.endlat = parseFloat(this.coordinates[this.coordinates.length-1][0]);
@@ -272,7 +280,11 @@ class CreateRoute extends React.Component {
   }
 
   changeColor(){
-    this.setState({black: !this.state.black})
+    this.setState({black: !this.state.black}, this.clearErrors);
+  }
+
+  clearErrors(){
+    this.setState({errors: false});
   }
 
   changeType(field){
@@ -300,22 +312,36 @@ class CreateRoute extends React.Component {
     let chartDisplay = this.state.chart ? "chart" : "nochart";
     let chartButton = this.state.chart ? "On" : "Off";
 
+    let errors;
+    const errorDisplay = () => {
+      if (this.state.errors) {
+        errors = "You must have two or more coordinates to create a route"
+        return (
+          <h3 className="crerrors">{`${errors}`}</h3>
+        );
+        } else {
+          errors = "";
+          return ("");
+        }
+      }
+
     let savedModal;
 
     if (this.state.black) {
       savedModal = () => {
         return (
           <div className="route-modal">
+            {errorDisplay()}
             <div></div>
             <div className="route-modal-title"> Save</div>
             <div className="route-modal-text"> Enter a name for your route below. On the next page, you'll be able to see, edit, and share your route.</div>
-            <form className="route-modal-form" onSubmit={this.handleSubmit}>
+            <form className="route-modal-form">
               <label>Route Name</label><br/>
               <input type="text" className="modal-email"
               onChange={this.handleChange}></input>
             </form>
             <div className="route-bottom-buttons">
-              <button className="route-modal-exit" onClick={this.changeColor.bind(this)}>Cancel</button>
+              <button className="route-modal-exit" onClick={this.changeColor}>Cancel</button>
               <button onClick={this.handleSave} className="save-modal">Save</button>
             </div>
           </div>
