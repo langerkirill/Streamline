@@ -22,6 +22,7 @@ I used the google elevation API to render an elevation chart that generates an a
 
   # Code Snippet:
   
+   ```javascript
     elevationChart(latlngs){
     if (latlngs.length < 2) return;
     let elevator = new google.maps.ElevationService();
@@ -98,7 +99,7 @@ I used the google elevation API to render an elevation chart that generates an a
       that.elevationChart(points);
       });
     }
-
+  ```
 #### Elevation Gain: 
 
 After this elevation array is generated, I iterated through every elevation and added to a variable whenever a previous point was lower than the current point. This allowed for the elevation gain calculation. 
