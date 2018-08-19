@@ -58,6 +58,7 @@ class WorkoutIndexItem extends React.Component {
 
   handleSave(){
     let comment = {};
+    if (this.state.text.length === 0) return;
     comment.text = this.state.text;
     comment.workout_id = this.props.workout.id;
     this.props.createComment(comment);

@@ -315,7 +315,7 @@ class CreateRoute extends React.Component {
     let errors;
     const errorDisplay = () => {
       if (this.state.errors) {
-        errors = "You must have two or more coordinates to create a route"
+        errors = "You must have two or more markers to create a route"
         return (
           <h3 className="crerrors">{`${errors}`}</h3>
         );
