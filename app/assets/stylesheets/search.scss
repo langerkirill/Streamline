@@ -1,0 +1,41 @@
+.searcharino{
+  border: 1px solid black;
+  color: grey;
+  cursor: pointer;
+}
+
+.searcharino:hover{
+  color: black;
+}
+
+.search-icons {
+  color: inherit;
+  display: grid;
+  grid-column: 1;
+  grid-row: 2;
+  text-align: center;
+  padding:none;
+}
+
+.search-boxes{
+  display: flex;
+  align-items: center;
+}
+
+.search-item{
+  height: 40px;
+  width: 140px;
+  border-radius: 0;
+  background: white;
+  margin-right: 5px;
+  -webkit-appearance: none;
+}
+
+.search-input{
+  height: 34px;
+  width: 250px;
+}
+
+.search-exit{
+
+}

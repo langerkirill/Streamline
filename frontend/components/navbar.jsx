@@ -6,6 +6,7 @@ import IconBox from './boxes/icon_box';
 import DashBox from './boxes/dash_box';
 import {logout} from '../actions/session_actions';
 import {fetchUser} from '../actions/user_actions';
+import Search from './search/search'
 
 
 class NavBar extends React.Component {
@@ -101,11 +102,15 @@ class NavBar extends React.Component {
     //   <i className="fa fa-bell-o"></i>
     // </div>
     //  <i className="search-icon material-icons">&#xe8b6;</i>
+    // <div>
+    //   <i className="fa fa-bell-o"></i>
+    // </div>
 
     return (
     <nav className={`${scroll_class} top-nav`}>
       <div className="nav-left">
         <Link className="nav-icon" to="/dashboard"> Streamline </Link>
+        <Search/>
         <div onMouseEnter={this.handleDashHover} onMouseLeave={this.handleDashHover} className="dash-hover-helper">
           <NavLink className="dash-link nav-left-links" to="/dashboard"> Dashboard
           </NavLink>
