@@ -17,12 +17,14 @@ class NavBar extends React.Component {
       plusHover: false,
       imageHover: false,
       dashHover: false,
-      stick:false
+      stick:false,
+      search: false
     }
     this.handlePlusHover = this.handlePlusHover.bind(this);
     this.handleImageHover = this.handleImageHover.bind(this);
     this.handleDashHover = this.handleDashHover.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
+    this.handleSearchChange = this.handleSearchChange.bind(this);
   }
 
   componentWillMount () {
@@ -61,6 +63,10 @@ class NavBar extends React.Component {
     this.setState({imageHover: false, plusHover:false, dashHover:false});
   }
 
+  handleSearchChange() {
+    let bool = !this.state.search
+    this.setState({search: bool});
+  }
 
   render () {
     if (this.props.location.pathname === "/route/create"){
@@ -72,6 +78,9 @@ class NavBar extends React.Component {
     if (this.props.location.pathname === "/dashboard"){
       scroll_class = this.state.stick ? "stick-nav" : "stay";
     }
+
+    let search_class;
+    search_class = this.state.search ? "disappear" : "here";
 
     const plusHover = () => {
       if (this.state.plusHover) {
@@ -101,23 +110,19 @@ class NavBar extends React.Component {
     // <div>
     //   <i className="fa fa-bell-o"></i>
     // </div>
-    //  <i className="search-icon material-icons">&#xe8b6;</i>
-    // <div>
-    //   <i className="fa fa-bell-o"></i>
-    // </div>
 
     return (
     <nav className={`${scroll_class} top-nav`}>
       <div className="nav-left">
         <Link className="nav-icon" to="/dashboard"> Streamline </Link>
-        <Search/>
-        <div onMouseEnter={this.handleDashHover} onMouseLeave={this.handleDashHover} className="dash-hover-helper">
-          <NavLink className="dash-link nav-left-links" to="/dashboard"> Dashboard
+        <Search search={this.state.search} onSearchChange={this.handleSearchChange}/>
+        <div className={search_class} onMouseEnter={this.handleDashHover} onMouseLeave={this.handleDashHover} className="dash-hover-helper">
+          <NavLink className={`${search_class} dash-link nav-left-links`} to="/dashboard"> Dashboard
           </NavLink>
           {dashHover()}
         </div>
-        <NavLink className="nav-left-links" to="/training/log"> Training </NavLink>
-        <NavLink className="nav-left-links" to="/challenges"> Challenges </NavLink>
+        <NavLink className={`${search_class} nav-left-links`} to="/training/log"> Training </NavLink>
+        <NavLink className={`${search_class} nav-left-links`} to="/challenges"> Challenges </NavLink>
       </div>
       <div className="nav-right">
         <div className="bell-icon">

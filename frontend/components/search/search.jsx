@@ -1,23 +1,21 @@
 import React from 'react';
 
 class Search extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = {
-      search:false
-    }
-    this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleClick(){
-    let bool = !this.state.search;
-    this.setState({search:bool})
+  handleChange(e) {
+    this.props.onSearchChange();
   }
 
   render(){
-    if (!this.state.search) {
+    let search = this.props.search;
+
+    if (!search) {
       return(
-        <div onClick={this.handleClick} className="searcharino">
+        <div onClick={this.handleChange} className="searcharino">
           <i className="search-icon material-icons">&#xe8b6;</i>
         </div>
       )
@@ -31,7 +29,7 @@ class Search extends React.Component {
             <option value="coding">Segments</option>
           </select>
           <input type="text" className="search-input"></input>
-          <button onClick={this.handleClick}>X</button>
+          <button className="search-exit" onClick={this.handleChange}>X</button>
         </div>
       )
     }
