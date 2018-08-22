@@ -5,6 +5,7 @@ import markers from './markers_reducer';
 import comments from './comments_reducer';
 import kudos from './kudos_reducer';
 import challenges from './challenges_reducer';
+import search from './search_reducer';
 import { combineReducers } from 'redux';
 
 export default combineReducers({
@@ -14,5 +15,6 @@ export default combineReducers({
   markers: markers,
   comments: comments,
   kudos: kudos,
-  challenges: challenges
+  challenges: challenges,
+  search: search
 });

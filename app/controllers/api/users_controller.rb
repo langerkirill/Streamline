@@ -1,7 +1,12 @@
 class Api::UsersController < ApplicationController
   def index
-    
     @users = User.all.includes(image_attachment: :blob)
+    render :index
+  end
+
+  def search
+    query = params[:query]
+    @users = User.where("username LIKE ?", "%#{query}%")
     render :index
   end
 
@@ -31,6 +36,6 @@ class Api::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:username, :password, :file, :io)
+    params.require(:user).permit(:username, :password, :file, :io, :query)
   end
 end

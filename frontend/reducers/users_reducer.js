@@ -1,4 +1,4 @@
-import { RECEIVE_USERS, RECEIVE_USER } from '../actions/user_actions';
+import { RECEIVE_USERS, RECEIVE_USER, RECEIVE_SEARCH } from '../actions/user_actions';
 import { RECEIVE_WORKOUTS } from '../actions/workout_actions';
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { LOGOUT_CURRENT_USER , LOGIN_USER} from '../actions/session_actions';

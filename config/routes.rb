@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: 'json' } do
       # <-- responses by default should be json
     get 'markers/created_routes', :to => 'markers#created_routes'
+
+    get 'users/search', :to => 'users#search'
+
     resources :comments, except: [:index]
     resource :kudos, only: [:new, :create]
     resources :challenges, only: [:show, :index, :update]

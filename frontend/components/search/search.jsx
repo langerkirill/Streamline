@@ -1,9 +1,16 @@
 import React from 'react';
+import {searchUsers} from '../../actions/user_actions';
+import {connect} from 'react-redux'
 
 class Search extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+  }
+
+  handleSearch(e) {
+    this.props.searchUsers(e.target.value);
   }
 
   handleChange(e) {
@@ -28,7 +35,7 @@ class Search extends React.Component {
             <option value="swimming">Clubs</option>
             <option value="coding">Segments</option>
           </select>
-          <input type="text" className="search-input"></input>
+          <input onChange={this.handleSearch} type="text" className="search-input"></input>
           <button className="search-exit" onClick={this.handleChange}>X</button>
         </div>
       )
@@ -36,4 +43,11 @@ class Search extends React.Component {
   }
 }
 
-export default Search;
+const mdp = (dispatch) => {
+  return {
+    searchUsers: (query) => dispatch(searchUsers(query))
+  }
+}
+
+
+export default connect(null, mdp)(Search);
