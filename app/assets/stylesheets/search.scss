@@ -65,9 +65,22 @@
 .search-img{
   width: 30px;
   height: 30px;
+  border-radius: 50%;
+  margin: 0px 10px;
 }
 
 .search-box-item{
-  grid-column: 1/6;
+  grid-column: 1/7;
   display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: sans-serif;
+  color: grey;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.search-box-item:hover{
+  color: black;
+  background: #ededed;
 }

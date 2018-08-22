@@ -1,5 +1,6 @@
 import React from 'react';
 import {searchUsers} from '../../actions/user_actions';
+import {clearSearch} from '../../actions/search_actions';
 import {connect} from 'react-redux'
 
 class Search extends React.Component {
@@ -10,7 +11,11 @@ class Search extends React.Component {
   }
 
   handleSearch(e) {
-    this.props.searchUsers(e.target.value);
+    if (e.target.value === ""){
+      this.props.clearSearch();
+    } else {
+      this.props.searchUsers(e.target.value);
+    }
   }
 
   handleChange(e) {
@@ -19,7 +24,6 @@ class Search extends React.Component {
 
   render(){
     let search = this.props.search;
-
     let that = this;
 
     let searchBox = () => {
@@ -27,7 +31,7 @@ class Search extends React.Component {
         let items = this.props.searchItems.map(user => {
           return (
             <div className="search-box-item">
-              <img className="search-img" src={user.photoUrl}/>
+              <img key={user.id} className="search-img" src={user.photoUrl}/>
               <div>{user.username}</div>
             </div>
           )
@@ -75,7 +79,8 @@ const msp = (state) => {
 
 const mdp = (dispatch) => {
   return {
-    searchUsers: (query) => dispatch(searchUsers(query))
+    searchUsers: (query) => dispatch(searchUsers(query)),
+    clearSearch: () => dispatch(clearSearch())
   }
 }
 
