@@ -56,9 +56,6 @@ class Search extends React.Component {
         <div className="search-boxes">
           <select className="search-item">
             <option value="running">Athletes</option>
-            <option value="biking">Activites</option>
-            <option value="swimming">Clubs</option>
-            <option value="coding">Segments</option>
           </select>
           <input onChange={this.handleSearch} type="text" className="search-input"></input>
           <button className="search-exit" onClick={this.handleChange}><i className="close fa">&#xf00d;</i></button>
