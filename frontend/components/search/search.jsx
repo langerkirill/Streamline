@@ -20,6 +20,27 @@ class Search extends React.Component {
   render(){
     let search = this.props.search;
 
+    let that = this;
+
+    let searchBox = () => {
+      if (that.props.searchItems.length > 0){
+        let items = this.props.searchItems.map(user => {
+          return (
+            <div className="search-box-item">
+              <img className="search-img" src={user.photoUrl}/>
+              <div>{user.username}</div>
+            </div>
+          )
+
+        })
+        return(
+          <div className="search-box">
+            {items}
+          </div>
+        )
+      }
+    }
+
     if (!search) {
       return(
         <div onClick={this.handleChange} className="searcharino">
@@ -37,9 +58,18 @@ class Search extends React.Component {
           </select>
           <input onChange={this.handleSearch} type="text" className="search-input"></input>
           <button className="search-exit" onClick={this.handleChange}>X</button>
+          {searchBox()}
         </div>
       )
     }
+  }
+}
+
+const msp = (state) => {
+  debugger
+  const searchItems = Object.values(state.entities.search);
+  return {
+    searchItems
   }
 }
 
@@ -50,4 +80,4 @@ const mdp = (dispatch) => {
 }
 
 
-export default connect(null, mdp)(Search);
+export default connect(msp, mdp)(Search);

@@ -18,7 +18,7 @@ class NavBar extends React.Component {
       imageHover: false,
       dashHover: false,
       stick:false,
-      search: false
+      search: true
     }
     this.handlePlusHover = this.handlePlusHover.bind(this);
     this.handleImageHover = this.handleImageHover.bind(this);

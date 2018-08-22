@@ -17,6 +17,7 @@
 }
 
 .search-boxes{
+  position: relative;
   display: flex;
   align-items: center;
 }
@@ -44,4 +45,29 @@
 
 .disappear{
   display: none;
+}
+
+.search-box{
+  position: absolute;
+  top: 40px;
+  left: 144px;
+  width: 258px;
+  margin: 0 auto;
+  margin: 6px 0px;
+  background: white;
+  box-shadow: 0 0 15px #ededed;
+  display: grid;
+  grid-auto-rows: minmax(60px, auto);
+  grid-template-columns: 15% 50% 10% 10% 10%;
+  cursor: default;
+}
+
+.search-img{
+  width: 30px;
+  height: 30px;
+}
+
+.search-box-item{
+  grid-column: 1/6;
+  display: flex;
 }
