@@ -55,13 +55,14 @@ class Search extends React.Component {
       return(
         <div className="search-boxes">
           <select className="search-item">
-            <option value="biking">Activites</option>
             <option value="running">Athletes</option>
+            <option value="biking">Activites</option>
             <option value="swimming">Clubs</option>
             <option value="coding">Segments</option>
           </select>
           <input onChange={this.handleSearch} type="text" className="search-input"></input>
-          <button className="search-exit" onClick={this.handleChange}>X</button>
+          <button className="search-exit" onClick={this.handleChange}><i className="close fa">&#xf00d;</i></button>
+          <i className="searching-icon material-icons">&#xe8b6;</i>
           {searchBox()}
         </div>
       )
@@ -70,7 +71,7 @@ class Search extends React.Component {
 }
 
 const msp = (state) => {
-  debugger
+
   const searchItems = Object.values(state.entities.search);
   return {
     searchItems

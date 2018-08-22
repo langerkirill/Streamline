@@ -47,7 +47,7 @@ class MyRoutes extends React.Component {
 
     const routes = this.state.markers.map(markers => {
       let route = this.props.routes[markers[0].route_id];
-      debugger
+      
       return(<MyRoutesItem route={route} key={markers[0].id} markers={markers}/>);
     })
 
