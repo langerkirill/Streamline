@@ -133,7 +133,7 @@ Workout.create!(workout_type: "biking", title: "#{Faker::GreekPhilosophers.quote
 
 runpictures = ["rungirl", "run", "mrun", "grey", "brun", "brun2", "beachrun" ]
 
-bikepictures = ["mbike", "jump", "enchilada", "biking", "biket", "bikeg", "bikedirt", "biked"]
+bikepictures = ["mbike", "jump", "enchilada", "biking", "biket", "bikeg", "bikedirt"]
 
 file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/MashuDuek.jpg')
 mashu.image.attach(io: file, filename: 'MashuDuek.jpg')
