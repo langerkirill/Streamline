@@ -239,7 +239,8 @@ button:focus {outline:0;}
 }
 
 .wbox-comment {
-  grid-column: 1/6;
+  width: 94%;
+  grid-column: 1/7;
   font-size: 12px;
   height: 30px;
   display: flex;
@@ -267,9 +268,9 @@ button:focus {outline:0;}
   width: 80px;
   display: flex;
   grid-row: 5;
-  grid-column: 4/5;
+  grid-column: 6/7;
   height: 40px;
-  padding-left: 35px;
+  padding-left: 15px;
 }
 
 .lc {
@@ -292,9 +293,10 @@ button:focus {outline:0;}
 }
 
 .step{
-  grid-column: 1/6;
+  grid-column: 1/7;
+  padding-right: 50px;
   height: 30px;
-  width: 100%;
+  width: 94%;
   align-self: flex-start;
   justify-content: center;
   display: flex;
@@ -312,7 +314,7 @@ button:focus {outline:0;}
 }
 
 .comment-input{
-  width: 83%;
+  width: 100%;
   background-color: #f4f4f4;
   border: none;
   padding: 7px 0px;
