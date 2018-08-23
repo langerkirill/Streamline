@@ -2,12 +2,15 @@ json.workouts do
   @workouts.each do |workout|
     json.set! workout.id do
       json.extract! workout, :id, :user_id, :date, :workout_type, :miles, :duration, :title, :elevation, :route_id
+      if workout.image.attached?
+        json.photoUrl url_for(workout.image)
+      end
     end
   end
 end
 
 json.users do
-  
+
   @users.each do |user|
     json.set! user.id do
       json.extract! user, :id, :username

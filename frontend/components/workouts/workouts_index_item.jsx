@@ -159,6 +159,7 @@ class WorkoutIndexItem extends React.Component {
         <div className="map-container">
           <WorkoutRoute key={this.props.workout.route_id} routeId={this.props.workout.route_id}/>
         </div>
+        <img className="dash-workout-image" src={`${this.props.workout.photoUrl}`}/>
         <Kudos currentUser={this.props.currentUser} workout={this.props.workout}/>
         {comments}
         <div className="like-comment">

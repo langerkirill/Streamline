@@ -131,7 +131,30 @@ Workout.create!(workout_type: "biking", title: "#{Faker::GreekPhilosophers.quote
 Workout.create!(workout_type: "biking", title: "#{Faker::GreekPhilosophers.quote} BIIIKKKEE", route_id: r18.id, elevation: 50, achievments: "15", duration: 33,  miles: 3, date: DateTime.new(2018,9,3), user_id: brian.id)
 Workout.create!(workout_type: "biking", title: "#{Faker::GreekPhilosophers.quote} pedalz", route_id: r19.id, elevation: 23, achievments: "15", duration: 33,  miles: 3, date: DateTime.new(2018,9,5), user_id: brian.id)
 
+runpictures = ["rungirl", "run", "mrun", "grey", "brun", "brun2", "beachrun" ]
+
+bikepictures = ["mbike", "jump", "enchilada", "biking", "biket", "bikeg", "bikedirt", "biked"]
+
+file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/MashuDuek.jpg')
+mashu.image.attach(io: file, filename: 'MashuDuek.jpg')
+mashu.save!
+
+
 Workout.all.each do |workout|
+
+  run = runpictures.sample
+  bike = bikepictures.sample
+
+  if workout.workout_type == "running"
+    file = EzDownload.open("https://s3.amazonaws.com/streamline-application-dev/#{run}.jpg")
+    workout.image.attach(io: file, filename: "#{run}.jpg")
+    workout.save!
+  elsif workout.workout_type == "biking"
+    file = EzDownload.open("https://s3.amazonaws.com/streamline-application-dev/#{bike}.jpg")
+    workout.image.attach(io: file, filename: "#{bike}.jpg")
+    workout.save!
+  end
+
   random = rand(1..3)
   Comment.create!(workout_id: workout.id, text: Faker::Hipster.sentence(5), user_id: User.order("RANDOM()").first.id)
   if random == 3
