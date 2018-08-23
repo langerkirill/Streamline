@@ -12,6 +12,7 @@ import CreateRoute from './routes/create_route';
 import CreateWorkout from './workouts/create_workout';
 import Challenges from './challenges/challenge_index';
 import RouteShow from './routes/route_show';
+import UserShow from './user/user_show';
 import MyRoutes from './routes/my_routes';
 import TrainingLog from './training/training_log';
 
@@ -37,6 +38,7 @@ function App({ loggedIn, user, logout }) {
         <ProtectedRoute component={CreateRoute} path="/route/create" />
         <ProtectedRoute component={CreateWorkout} path="/workout/create" />
         <ProtectedRoute exact path="/routes/:routeId" component={RouteShow} />
+        <ProtectedRoute exact path="/users/:userId" component={UserShow} />
         <ProtectedRoute exact path="/routes" component={MyRoutes} />
         <ProtectedRoute exact path="/training/log" component={TrainingLog} />
         <ProtectedRoute exact path="/challenges" component={Challenges} />
