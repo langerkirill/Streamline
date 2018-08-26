@@ -37,7 +37,7 @@ class RouteShow extends React.Component {
       }
     }
     let sorted = coordinates.sort(function(a,b){
-      return b.order > a.order;
+      return a.order > b.order;
     });
     this.calcRoute(sorted);
   }

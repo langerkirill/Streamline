@@ -18,7 +18,7 @@ class MyRoutesItem extends React.Component {
     this.map = new google.maps.Map(this.mapNode, mapOptions);
 
     let sorted = this.props.markers.sort(function(a,b){
-      return b.order > a.order;
+      return a.order > b.order;
     });
 
     this.calcRoute(sorted);
