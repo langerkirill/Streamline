@@ -67,8 +67,6 @@ class WorkoutIndexItem extends React.Component {
 
   render () {
 
-    debugger
-
     const icon = () => {
       if (this.props.workout.workout_type === "biking") {
         return (<i className="index-icon material-icons">&#xe52f;</i>);
@@ -123,7 +121,6 @@ class WorkoutIndexItem extends React.Component {
     }
 
     let color;
-
     if (this.props.kudosIds.includes(this.props.currentUser.id)){
       color = "orange";
     } else {
@@ -131,7 +128,6 @@ class WorkoutIndexItem extends React.Component {
     }
 
     let image;
-
     if (this.props.workout.photoUrl) {
       image = (<img className="dash-workout-image" src={`${this.props.workout.photoUrl}`}/>);
     } else {

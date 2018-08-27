@@ -79,6 +79,8 @@ class WorkoutBall extends React.Component {
       modal = "";
     }
 
+    debugger
+
     return(
       <div className="training-container">
         <div onMouseEnter={this.modal} onMouseLeave={this.modal} className={`${this.state.weekday} workout-ball`} style={{height: height, width: width}}>{this.props.workout.miles}
