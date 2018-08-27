@@ -66,6 +66,9 @@ class WorkoutIndexItem extends React.Component {
   }
 
   render () {
+
+    debugger
+
     const icon = () => {
       if (this.props.workout.workout_type === "biking") {
         return (<i className="index-icon material-icons">&#xe52f;</i>);
@@ -127,7 +130,22 @@ class WorkoutIndexItem extends React.Component {
       color = ""
     }
 
+    let image;
 
+    if (this.props.workout.photoUrl) {
+      image = (<img className="dash-workout-image" src={`${this.props.workout.photoUrl}`}/>);
+    } else {
+      image = "";
+    }
+
+    let map;
+    if (this.props.workout.route_id) {
+      map = (<div className="map-container">
+              <WorkoutRoute key={this.props.workout.route_id} routeId={this.props.workout.route_id}/>
+            </div>);
+    } else {
+      map = ""
+    }
 
     return (
       <div className="workout-box">
@@ -156,10 +174,8 @@ class WorkoutIndexItem extends React.Component {
             <div className="time"> {this.props.workout.duration} minutes</div>
           </div>
         </div>
-        <div className="map-container">
-          <WorkoutRoute key={this.props.workout.route_id} routeId={this.props.workout.route_id}/>
-        </div>
-        <img className="dash-workout-image" src={`${this.props.workout.photoUrl}`}/>
+        {map}
+        {image}
         <Kudos currentUser={this.props.currentUser} workout={this.props.workout}/>
         {comments}
         <div className="like-comment">
