@@ -128,7 +128,9 @@ class WorkoutIndexItem extends React.Component {
     }
 
     let image;
-    if (this.props.workout.photoUrl) {
+    if (this.props.workout.photoUrl && !this.props.workout.route_id) {
+      image = (<img className="dash-workout-image-bigger" src={`${this.props.workout.photoUrl}`}/>);
+    } else if (this.props.workout.photoUrl) {
       image = (<img className="dash-workout-image" src={`${this.props.workout.photoUrl}`}/>);
     } else {
       image = "";
