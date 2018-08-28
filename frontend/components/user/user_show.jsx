@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
-import {fetchUserWorkouts} from '../../actions/workout_actions'
-import {fetchUser} from '../../actions/user_actions'
+import {fetchUserWorkouts} from '../../actions/workout_actions';
+import {fetchUser} from '../../actions/user_actions';
+import Calendar from 'rc-calendar';
 
 class UserShow extends React.Component {
   constructor(props){
@@ -48,6 +49,7 @@ class UserShow extends React.Component {
             </div>
           </div>
         </div>
+        <Calendar className="user-calendar"/>
       </div>
     );
   }

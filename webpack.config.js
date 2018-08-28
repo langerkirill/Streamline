@@ -13,12 +13,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|css)$/,
         use: {
           loader: 'babel-loader',
           query: {
             presets: ['env', 'react']
-          }
+          },
         },
         exclude: /node_modules/
       }
