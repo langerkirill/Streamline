@@ -9,13 +9,32 @@ class UserShow extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      userId: 0
+      userId: 0,
+      workoutCount: 0
     }
+    this.parseData = this.parseData.bind(this);
   }
 
   componentWillMount() {
     this.props.fetchUser(this.props.userId);
-    this.props.fetchUserWorkouts(this.props.userId);
+    let that = this;
+    this.props.fetchUserWorkouts(this.props.userId).then(response => {
+      that.parseData(response.workouts);
+    });
+  }
+
+  parseData(workouts){
+    let count = 0;
+    let fourWeeksAgo = new Date();
+    fourWeeksAgo.setDate(fourWeeksAgo.getDate() - 28);
+    Object.values(workouts).forEach(workout => {
+      let dates = workout.date.split("-");
+      let wDate = new Date(parseInt(dates[0]), parseInt(dates[1])-1, parseInt(dates[2]));
+      if (wDate > fourWeeksAgo){
+        count+=1;
+      }
+    })
+    this.setState({workoutCount:count});
   }
 
   componentWillReceiveProps(newProps){
@@ -28,6 +47,9 @@ class UserShow extends React.Component {
   }
 
   render(){
+
+    debugger
+
     let i = 0;
     let pictures = this.props.photos.map(photo => {
       if (photo !== undefined && i < 4) {
@@ -49,7 +71,14 @@ class UserShow extends React.Component {
             </div>
           </div>
         </div>
-        <Calendar className="user-calendar"/>
+        <section className="middle-user-show">
+          <article>
+          <div>Last 4 weeks</div>
+          <div>{this.state.workoutCount}</div>
+          <div> total activities </div>
+          </article>
+          <Calendar className="user-calendar"/>
+        </section>
       </div>
     );
   }
@@ -57,7 +86,6 @@ class UserShow extends React.Component {
 
 const msp = (state, ownProps) => {
   const workouts = state.entities.workouts;
-  debugger
   const userId = ownProps.match.params.userId;
   const user = state.entities.users[ownProps.match.params.userId] || {};
   let photos = Object.values(state.entities.workouts).map(workout => {
