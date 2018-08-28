@@ -1,13 +1,15 @@
 import React from 'react';
 import {searchUsers} from '../../actions/user_actions';
 import {clearSearch} from '../../actions/search_actions';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import {Redirect, withRouter} from 'react-router-dom';
 
 class Search extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleRedirect = this.handleRedirect.bind(this);
   }
 
   handleSearch(e) {
@@ -16,6 +18,10 @@ class Search extends React.Component {
     } else {
       this.props.searchUsers(e.target.value);
     }
+  }
+
+  handleRedirect(id) {
+    this.props.history.push(`/users/${id}`)
   }
 
   handleChange(e) {
@@ -30,7 +36,7 @@ class Search extends React.Component {
       if (that.props.searchItems.length > 0){
         let items = this.props.searchItems.map(user => {
           return (
-            <div className="search-box-item">
+            <div key={user.id} onClick={() => this.handleRedirect(user.id)} className="search-box-item">
               <img key={user.id} className="search-img" src={user.photoUrl}/>
               <div>{user.username}</div>
             </div>
@@ -83,4 +89,4 @@ const mdp = (dispatch) => {
 }
 
 
-export default connect(msp, mdp)(Search);
+export default withRouter(connect(msp, mdp)(Search));

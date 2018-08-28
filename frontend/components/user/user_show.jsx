@@ -2,19 +2,25 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import {fetchUserWorkouts} from '../../actions/workout_actions'
+import {fetchUser} from '../../actions/user_actions'
 
 class UserShow extends React.Component {
 
   componentWillMount() {
-    this.props.fetchUserWorkouts(this.props.user.id);
+    this.props.fetchUser(this.props.userId);
+    this.props.fetchUserWorkouts(this.props.userId);
   }
 
   render(){
 
+    debugger
+
     let pictures = this.props.photos.map(photo => {
-      return (
-        <img className="workout-photo" src={photo}></img>
-      );
+      if (photo !== undefined) {
+        return (
+          <img className="workout-photo" src={photo}></img>
+        );
+      }
     })
 
     return (
@@ -34,12 +40,17 @@ class UserShow extends React.Component {
 }
 
 const msp = (state, ownProps) => {
-  const user = state.entities.users[ownProps.match.params.userId];
+  const userId = ownProps.match.params.userId;
+  const user = state.entities.users[ownProps.match.params.userId] || {};
   let photos = Object.values(state.entities.workouts).map(workout => {
-    return workout.photoUrl;
+    debugger
+    if (workout.user_id == userId) {
+      return workout.photoUrl;
+    }
   })
 
   return {
+    userId,
     photos,
     user
   }
@@ -47,6 +58,7 @@ const msp = (state, ownProps) => {
 
 const mdp = (dispatch) => {
   return {
+    fetchUser: (userId) => dispatch(fetchUser(userId)),
     fetchUserWorkouts: (userId) => dispatch(fetchUserWorkouts(userId))
   }
 }
