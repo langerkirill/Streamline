@@ -5,11 +5,14 @@ export const fetchWorkouts = () => {
   });
 };
 
-export const createWorkout = workout => {
+export const createWorkout = formData => {
+
   return $.ajax({
     method: 'POST',
     url: `/api/workouts`,
-    data: { workout }
+    data: formData,
+    contentType: false,
+    processData: false
   });
 };
 

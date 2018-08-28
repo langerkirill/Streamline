@@ -79,7 +79,7 @@ class WorkoutBall extends React.Component {
       modal = "";
     }
 
-    debugger
+    
 
     return(
       <div className="training-container">

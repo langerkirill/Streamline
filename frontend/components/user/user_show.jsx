@@ -38,7 +38,7 @@ const msp = (state, ownProps) => {
   let photos = Object.values(state.entities.workouts).map(workout => {
     return workout.photoUrl;
   })
-  debugger
+
   return {
     photos,
     user

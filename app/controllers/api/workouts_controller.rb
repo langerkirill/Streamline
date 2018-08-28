@@ -23,8 +23,8 @@ class Api::WorkoutsController < ApplicationController
 
   def create
     @workout = Workout.new(workout_params)
-    @workout.user_id = current_user.id
 
+    @workout.user_id = current_user.id
     if @workout.save
       render :show
     else
@@ -58,6 +58,7 @@ class Api::WorkoutsController < ApplicationController
 
   private
   def workout_params
-    params.require(:workout).permit(:elevation, :title, :workout_type, :duration, :miles, :date, :route_id, :user_id)
+
+    params.require(:workout).permit(:elevation, :title, :workout_type, :duration, :miles, :date, :route_id, :user_id, :image)
   end
 end
