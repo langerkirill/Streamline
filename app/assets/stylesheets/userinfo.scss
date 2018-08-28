@@ -126,12 +126,18 @@ thead > tr {
 }
 
 .middle-user-show{
-  border: 1px solid black;
   display: flex;
   justify-content:space-around;
   width: 900px;
   position: absolute;
   right: 0px;
   align-items: center;
+}
 
+.last-four{
+    text-align: center;
+}
+
+.workouts-number{
+  font-size: 65px;
 }

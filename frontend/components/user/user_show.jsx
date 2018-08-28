@@ -28,10 +28,12 @@ class UserShow extends React.Component {
     let fourWeeksAgo = new Date();
     fourWeeksAgo.setDate(fourWeeksAgo.getDate() - 28);
     Object.values(workouts).forEach(workout => {
-      let dates = workout.date.split("-");
-      let wDate = new Date(parseInt(dates[0]), parseInt(dates[1])-1, parseInt(dates[2]));
-      if (wDate > fourWeeksAgo){
-        count+=1;
+      if (workout.user_id === this.state.userId) {
+        let dates = workout.date.split("-");
+        let wDate = new Date(parseInt(dates[0]), parseInt(dates[1])-1, parseInt(dates[2]));
+        if (wDate > fourWeeksAgo){
+          count+=1;
+        }
       }
     })
     this.setState({workoutCount:count});
@@ -39,10 +41,13 @@ class UserShow extends React.Component {
 
   componentWillReceiveProps(newProps){
     const id = parseInt(newProps.match.params.userId);
-    this.setState({userId: id});
     if (this.state.userId !== id) {
+      this.setState({userId: id});
       this.props.fetchUser(id);
-      this.props.fetchUserWorkouts(id);
+      let that = this;
+      this.props.fetchUserWorkouts(id).then(response => {
+        that.parseData(response.workouts);
+      });;
     }
   }
 
@@ -72,10 +77,10 @@ class UserShow extends React.Component {
           </div>
         </div>
         <section className="middle-user-show">
-          <article>
-          <div>Last 4 weeks</div>
-          <div>{this.state.workoutCount}</div>
-          <div> total activities </div>
+          <article className="last-four">
+            <div>Last 4 Weeks</div>
+            <div className="workouts-number">{this.state.workoutCount}</div>
+            <div> Total Activities </div>
           </article>
           <Calendar className="user-calendar"/>
         </section>
