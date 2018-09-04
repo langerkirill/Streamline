@@ -14,6 +14,7 @@ Marker.destroy_all
 Comment.destroy_all
 Challenge.destroy_all
 Kudo.destroy_all
+Follow.destroy_all
 
 mashu = User.new(username: "Mashu-rella", password: "hunter12")
 file = EzDownload.open('https://s3.amazonaws.com/streamline-application-dev/MashuDuek.jpg')
@@ -174,6 +175,9 @@ end
   end
 
   date = time_rand Time.local(2018, 8, 1), Time.local(2018, 10, 1)
-
   Challenge.create!(title: title, text: Faker::Community.quotes, workout_type: sport, img:icon, time_limit:date)
+end
+
+20.times do |follow|
+  Follow.create!(user_id: User.order("RANDOM()").first.id, following_id: User.order("RANDOM()").first.id)
 end

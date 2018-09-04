@@ -8,7 +8,6 @@ export default (state = {}, action) => {
   let newState = merge({}, state);
   switch (action.type) {
     case RECEIVE_WORKOUTS:
-    
       return action.workouts;
     case RECEIVE_WORKOUT:
       return merge({}, newState, {[action.workout.id]: action.workout})

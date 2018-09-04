@@ -10,7 +10,6 @@ json.workouts do
 end
 
 json.users do
-
   @users.each do |user|
     json.set! user.id do
       json.extract! user, :id, :username
@@ -56,4 +55,9 @@ json.kudos do
       end
     end
   end
+end
+
+json.follows do
+  json.followingIds current_user.following.ids
+  json.followerIds current_user.followers.ids
 end

@@ -6,6 +6,7 @@ import comments from './comments_reducer';
 import kudos from './kudos_reducer';
 import challenges from './challenges_reducer';
 import search from './search_reducer';
+import follows from './follows_reducer';
 import { combineReducers } from 'redux';
 
 export default combineReducers({
@@ -16,5 +17,6 @@ export default combineReducers({
   comments: comments,
   kudos: kudos,
   challenges: challenges,
-  search: search
+  search: search,
+  follows: follows
 });
