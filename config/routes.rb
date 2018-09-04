@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :comments, except: [:index]
     resource :kudos, only: [:new, :create]
     resources :challenges, only: [:show, :index, :update]
+    resources :follows, only: [:show, :index, :create]
     resources :markers, except: [:show, :index]
     resources :users do
       resources :routes, only: [:index]

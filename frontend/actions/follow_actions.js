@@ -1,34 +1,42 @@
 import * as FollowApiUtil from "../util/follow_api_util";
 
-export const RECEIVE_FOLLOWS = "RECEIVE_FOLLOWS";
+export const RECEIVE_FOLLOWING = "RECEIVE_FOLLOWING";
+export const RECEIVE_FOLLOWERS = "RECEIVE_FOLLOWERS";
 export const RECEIVE_FOLLOW = "RECEIVE_FOLLOW";
 
-const receiveFollows = ({ follows }) => {
+const receiveFollowers = ({ followers }) => {
   return {
-    type: RECEIVE_FOLLOWS,
-    follows
+    type: RECEIVE_FOLLOWERS,
+    followers
   };
 };
 
-const receiveFollow = follow => {
+const receiveFollow = ({ follow }) => {
   return {
     type: RECEIVE_FOLLOW,
     follow
   };
 };
 
-export const fetchFollows = () => {
+const receiveFollowing = following => {
+  return {
+    type: RECEIVE_FOLLOWING,
+    following
+  };
+};
+
+export const fetchFollowers = () => {
   return dispatch => {
-    return FollowApiUtil.fetchFollows().then(follows => {
-      return dispatch(receiveFollows(follows));
+    return FollowApiUtil.fetchFollowers().then(followers => {
+      return dispatch(receiveFollowers(followers));
     });
   };
 };
 
-export const fetchFollow = follow => {
+export const fetchFollowing = () => {
   return dispatch => {
-    return FollowApiUtil.fetchFollow(follow).then(follow => {
-      return dispatch(receiveFollow(follow));
+    return FollowApiUtil.fetchFollowing().then(following => {
+      return dispatch(receiveFollowing(following));
     });
   };
 };
