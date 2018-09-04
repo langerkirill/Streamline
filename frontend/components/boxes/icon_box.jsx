@@ -10,7 +10,6 @@ class IconBox extends React.Component {
   }
 
   handleLogout () {
-
     this.props.logout().then(() =>
     this.props.history.push(`/`));
   }
@@ -19,6 +18,7 @@ class IconBox extends React.Component {
       return (
           <div className="icon-box">
             <div className="icon-cover"></div>
+            <Link className="logout-button" style={{textDecoration: "none"}} to={`/users/${this.props.user.id}`}>My Profile</Link>
             <Link className="logout-button" style={{textDecoration: "none"}} onClick={this.handleLogout} to="/">Log Out</Link>
           </div>
       );
@@ -27,7 +27,10 @@ class IconBox extends React.Component {
 
 const msp = (state) => {
   const loggedIn = state.session.id;
+  const user = state.entities.users[state.session.id];
+  debugger
   return {
+    user,
     loggedIn
   }
 }
