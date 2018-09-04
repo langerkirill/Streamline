@@ -256,3 +256,12 @@
   z-index: 200;
   background: white;
 }
+
+.user-info{
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-around;
+  grid-row: 3;
+  font-family: sans-serif;
+  font-size: 12px;
+}

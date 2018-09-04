@@ -57,7 +57,7 @@ class Dashboard extends React.Component {
         <div className="f-wrapper"></div>
         <div className={`${stay_class} invisipad`}></div>
         <div className={`${scroll_class}`}>
-          <UserBox key={3} />
+          <UserBox follows={this.props.follows} key={3} />
           <BikingRunningBox key={2} user={this.props.user} workouts={this.props.workouts}/>
         </div>
         <div className="main-feed">

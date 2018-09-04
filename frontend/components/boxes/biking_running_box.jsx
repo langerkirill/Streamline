@@ -19,7 +19,7 @@ class BikingRunningBox extends React.Component {
   }
 
   componentWillMount () {
-    
+
     this.parseWorkouts("biking");
   }
 
@@ -73,8 +73,6 @@ class BikingRunningBox extends React.Component {
   }
 
   render () {
-
-    
 
     let bikeback = this.state.bike ? "greyBack" : "whiteBack";
     let runback = this.state.run ? "greyBack" : "whiteBack";

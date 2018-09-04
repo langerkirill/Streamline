@@ -30,7 +30,6 @@ class WorkoutIndex extends React.Component {
     } else {
       workouts.forEach((workout) => {
         if (workout.user_id !== this.props.user.id){
-          debugger
           if (this.props.following.includes(workout.user_id)){
             filteredWorkouts.push(workout);
           }
