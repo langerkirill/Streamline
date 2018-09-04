@@ -178,6 +178,10 @@ end
   Challenge.create!(title: title, text: Faker::Community.quotes, workout_type: sport, img:icon, time_limit:date)
 end
 
-20.times do |follow|
-  Follow.create!(user_id: User.order("RANDOM()").first.id, following_id: User.order("RANDOM()").first.id)
+20.times do |i|
+  users = User.order("RANDOM()")
+  follow = Follow.create(user_id: users.first.id, following_id: users.second.id)
+  unless follow.save
+    i-=1
+  end
 end
