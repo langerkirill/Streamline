@@ -30,7 +30,10 @@ class WorkoutIndex extends React.Component {
     } else {
       workouts.forEach((workout) => {
         if (workout.user_id !== this.props.user.id){
-          filteredWorkouts.push(workout);
+          debugger
+          if (this.props.following.includes(workout.user_id)){
+            filteredWorkouts.push(workout);
+          }
         }
       });
     }
@@ -60,7 +63,7 @@ class WorkoutIndex extends React.Component {
             comments.push(comment);
           }
         })
-        
+
         return (<WorkoutIndexItem comment={comments} workout={workout} key={workout.id} />);
       });
     }
