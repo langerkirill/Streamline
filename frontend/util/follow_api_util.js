@@ -12,10 +12,10 @@ export const fetchFollowing = () => {
   });
 };
 
-export const follow = (follow_id) => {
+export const follow = (following_id) => {
   return $.ajax({
     method: 'POST',
     url: `/api/follows`,
-    data: {follow_id}
+    data: { follow: {following_id} }
   });
 };

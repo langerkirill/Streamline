@@ -2,6 +2,7 @@ import React from 'react';
 import WorkoutIndex from '../workouts/workouts_index';
 import UserBox from '../user/user_box';
 import BikingRunningBox from '../boxes/biking_running_box';
+import FriendSuggestionBox from '../boxes/friend_suggestion_box';
 import { connect } from 'react-redux';
 
 class Dashboard extends React.Component {
@@ -64,6 +65,9 @@ class Dashboard extends React.Component {
           <button className="toggle-workouts" onClick={this.handleDisplay}>{this.state.display}</button>
           <WorkoutIndex key={1} following={this.props.follows[0]} followers={this.props.follows[1]} kudos={this.props.kudos} comments={this.props.comments} className="workout-index" user={this.props.user} display={this.state.display} workouts={this.props.workouts}/>
         </div>
+        <div className="right-dash">
+          <FriendSuggestionBox user={this.props.user} follows={this.props.follows} users={this.props.users}/>
+        </div>
       </div>
     );
   }
@@ -71,7 +75,7 @@ class Dashboard extends React.Component {
 
 const mapStateToProps = (state) => {
   const workouts = Object.values(state.entities.workouts);
-  const users = state.entities.users;
+  const users = Object.values(state.entities.users);
   const user = state.entities.users[state.session.id];
   const comments = Object.values(state.entities.comments);
   const kudos = Object.values(state.entities.kudos);
