@@ -1,24 +1,48 @@
 import React from 'react';
-import {NavLink, Redirect} from 'react-router-dom';
+import {NavLink, Redirect, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {follow} from '../../actions/follow_actions';
 
 class FriendSuggestionBox extends React.Component {
   constructor(props){
     super(props);
-    this.state = {}
+    this.state = {top:false}
+    this.handleScroll = this.handleScroll.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentWillMount () {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll () {
+    let lastScrollY = window.scrollY;
+    if (lastScrollY > 142){
+      this.setState({top:true})
+    } else {
+      this.setState({top:false})
+    }
+  }
+
+  handleClick(id){
+    return () =>{
+      this.props.history.push(`/users/${id}`)
+    }
   }
 
   handleFollow(id){
     return () => {
-
       this.props.follow(id);
     }
-    this.setState({id: true});
   }
 
   render() {
-    debugger
+    let scroll_class = this.state.top ? "scroll-friend" : "stay";
+
     let that = this;
     let friends = this.props.users.map(user => {
       if (that.props.following) {
@@ -28,7 +52,7 @@ class FriendSuggestionBox extends React.Component {
             <img className="friend-image" src={user.photoUrl}>
             </img>
             <div>
-              <div>{user.username}</div>
+              <div onClick={this.handleClick(user.id)} className="friend_username">{user.username}</div>
               <button onClick={this.handleFollow(user.id)} className="follow">Follow</button>
             </div>
           </section>);
@@ -37,7 +61,7 @@ class FriendSuggestionBox extends React.Component {
     })
 
     return (
-        <div className="friend-box">
+        <div className={`${scroll_class} friend-box`}>
           <div className="s-f">Suggested Friends</div>
           {friends}
         </div>
@@ -58,4 +82,4 @@ const mdp = (dispatch) => {
   }
 }
 
-export default connect(msp, mdp)(FriendSuggestionBox);
+export default withRouter(connect(msp, mdp)(FriendSuggestionBox));
