@@ -5,12 +5,8 @@ import {fetchUser} from '../../actions/user_actions';
 import {fetchUserWorkouts} from '../../actions/workout_actions';
 
 class UserBox extends React.Component {
-  constructor(props){
-    super(props);
-  }
 
   render () {
-
     const img = () => {
       if(this.props.user.photoUrl === undefined){
         return("");
@@ -30,8 +26,6 @@ class UserBox extends React.Component {
     let following;
     let followers;
 
-    debugger
-
     if (this.props.follows.length > 0){
       following = this.props.follows[0].length;
       followers = this.props.follows[1].length;
@@ -40,9 +34,16 @@ class UserBox extends React.Component {
       followers = "";
     }
 
+    let workouts = 0;
+
+    if (this.props.workouts.length > 0){
+      this.props.workouts.forEach(workout => {
+        if (workout.user_id == this.props.user.id) {workouts += 1};
+      })
+    }
+
     return(
       <section className="user-box">
-
         <div className="icon-container">
           <img className="user-icon" src={img()} ></img>
         </div>
@@ -63,14 +64,14 @@ class UserBox extends React.Component {
           <article>
             <div className="bts-text"> Activites
             </div>
-            <div className="bts-data">
+            <div className="bts-data"> {workouts}
             </div>
           </article>
         </div>
         <div className="user-activity">
-          <div>Latest Activity</div>
+          <div className="l-a"> Latest Activity</div>
           <strong>{latestWorkout}</strong>
-          <div>{latestDate}</div>
+          <div className="l-d" >{latestDate}</div>
         </div>
         <NavLink className="user-training-link" to="/training/log"> Your Training Log </NavLink>
       </section>
@@ -79,7 +80,7 @@ class UserBox extends React.Component {
 }
 
 const msp = (state) => {
-  const dummy = {username:""}
+  const dummy = {username:""};
   const user_id = state.session.id;
   const user = state.entities.users[user_id] || dummy;
   const latestWorkout = state.entities.workouts[user.workoutIds[0]] || [];
@@ -89,11 +90,4 @@ const msp = (state) => {
   }
 }
 
-const mdp = (dispatch) => {
-  return {
-    fetchUser: (id) => dispatch(fetchUser(id)),
-    fetchUserWorkouts: (userId) => dispatch(fetchUserWorkouts(userId))
-  }
-}
-
-export default connect(msp, mdp)(UserBox);
+export default connect(msp)(UserBox);
