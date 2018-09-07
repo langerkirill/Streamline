@@ -28,7 +28,7 @@ class IconBox extends React.Component {
 const msp = (state) => {
   const loggedIn = state.session.id;
   const user = state.entities.users[state.session.id];
-  debugger
+  
   return {
     user,
     loggedIn

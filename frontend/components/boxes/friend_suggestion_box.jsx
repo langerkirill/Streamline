@@ -4,20 +4,25 @@ import {connect} from 'react-redux';
 import {follow} from '../../actions/follow_actions';
 
 class FriendSuggestionBox extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {}
+  }
 
   handleFollow(id){
     return () => {
-      debugger
+
       this.props.follow(id);
     }
+    this.setState({id: true});
   }
 
   render() {
+    debugger
     let that = this;
     let friends = this.props.users.map(user => {
-      debugger
-      if (that.props.follows.length > 0) {
-        if (!that.props.follows[0].includes(user.id) && (user.id != this.props.user.id)){
+      if (that.props.following) {
+        if (!that.props.following.includes(user.id)){
         return (
           <section key={user.id} className="friend-suggestion">
             <img className="friend-image" src={user.photoUrl}>
@@ -40,10 +45,17 @@ class FriendSuggestionBox extends React.Component {
   }
 }
 
+const msp = (state) => {
+  const following = state.entities.follows.followingIds;
+  return {
+    following
+  }
+}
+
 const mdp = (dispatch) => {
   return {
     follow: (followId) => dispatch(follow(followId))
   }
 }
 
-export default connect(null, mdp)(FriendSuggestionBox);
+export default connect(msp, mdp)(FriendSuggestionBox);

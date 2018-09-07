@@ -4,14 +4,15 @@ export const RECEIVE_FOLLOWING = "RECEIVE_FOLLOWING";
 export const RECEIVE_FOLLOWERS = "RECEIVE_FOLLOWERS";
 export const RECEIVE_FOLLOW = "RECEIVE_FOLLOW";
 
-const receiveFollowers = ({ followers }) => {
+const receiveFollowers =  followers  => {
   return {
     type: RECEIVE_FOLLOWERS,
     followers
   };
 };
 
-const receiveFollow = ({ follow }) => {
+const receiveFollow =  follow  => {
+
   return {
     type: RECEIVE_FOLLOW,
     follow

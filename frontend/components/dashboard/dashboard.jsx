@@ -79,7 +79,7 @@ const mapStateToProps = (state) => {
   const user = state.entities.users[state.session.id];
   const comments = Object.values(state.entities.comments);
   const kudos = Object.values(state.entities.kudos);
-  debugger
+  
   const follows = Object.values(state.entities.follows);
   return {
     workouts,

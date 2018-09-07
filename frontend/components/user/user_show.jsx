@@ -53,7 +53,7 @@ class UserShow extends React.Component {
 
   render(){
 
-    debugger
+    
 
     let i = 0;
     let pictures = this.props.photos.map(photo => {

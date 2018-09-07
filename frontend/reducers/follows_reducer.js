@@ -13,8 +13,8 @@ export default (state = {}, action) => {
     case RECEIVE_FOLLOWING:
       return merge({}, newState, action.follows)
     case RECEIVE_FOLLOW:
-    debugger
-      return merge({}, newState, {[action.follow.id]: action.follow})
+      newState.followingIds.push(action.follow.user_id);
+      return merge({}, newState)
     case LOGOUT_CURRENT_USER:
       return {};
     default:
