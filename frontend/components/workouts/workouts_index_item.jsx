@@ -22,12 +22,20 @@ class WorkoutIndexItem extends React.Component {
     this.handleAddComment = this.handleAddComment.bind(this);
     this.updateText = this.updateText.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.giveKudo = this.giveKudo.bind(this);
   }
 
   handleRedirect () {
     this.props.history.push(`/routes/${this.props.route.id}`);
   }
+
+  handleClick(id){
+    return () =>{
+      this.props.history.push(`/users/${id}`)
+    }
+  }
+
 
   handleAddComment(){
     let bool = !this.state.addComment;
@@ -148,11 +156,11 @@ class WorkoutIndexItem extends React.Component {
     return (
       <div className="workout-box">
         <div className="top-left-image">
-          <img className="dash-feed-image" src={`${this.props.user.photoUrl}`}/>
+          <img onClick={this.handleClick(this.props.user.id)} className="dash-feed-image" src={`${this.props.user.photoUrl}`}/>
         </div>
         {icon()}
         <div className="wbox-header">
-          <div className="wbox-name">{this.props.user.username}</div>
+          <div onClick={this.handleClick(this.props.user.id)} className="wbox-name">{this.props.user.username}</div>
           <div className="wbox-date"> {this.props.workout.date}</div>
         </div>
         <div onClick={this.handleRedirect} className="workout-title">

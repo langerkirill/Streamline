@@ -37,6 +37,7 @@
   grid-column: 1;
   grid-row: 1;
   top: 0px;
+  cursor: pointer;
 }
 
 .time, .distance, .elevation {
@@ -68,6 +69,11 @@
   font-weight: bold;
   font-family: sans-serif;
   font-size: 14px;
+  cursor:pointer;
+}
+
+.wbox-name:hover{
+  color:blue;
 }
 
 .wbox-date {
