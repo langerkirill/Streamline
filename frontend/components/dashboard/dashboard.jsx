@@ -50,13 +50,12 @@ class Dashboard extends React.Component {
 
   render () {
 
-    let scroll_class = this.state.top ? "scroll-dash" : "stay";
+    let scroll_class = this.state.top ? "scroll-dash" : "";
     let stay_class = this.state.top ? "dont" : "appear";
+    let stay_friend = this.state.top ? "do" : "appear";
 
     return (
       <div className="dash-bored">
-        <div className="f-wrapper"></div>
-        <div className={`${stay_class} invisipad`}></div>
         <div className={`${scroll_class}`}>
           <UserBox workouts={this.props.workouts} follows={this.props.follows} key={3} />
           <BikingRunningBox key={2} user={this.props.user} workouts={this.props.workouts}/>
@@ -74,13 +73,14 @@ class Dashboard extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+
   const workouts = Object.values(state.entities.workouts);
   const users = Object.values(state.entities.users);
   const user = state.entities.users[state.session.id];
   const comments = Object.values(state.entities.comments);
   const kudos = Object.values(state.entities.kudos);
-  
   const follows = Object.values(state.entities.follows);
+
   return {
     workouts,
     users,
