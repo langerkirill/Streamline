@@ -76,7 +76,7 @@ class NavBar extends React.Component {
     let scroll_class;
 
     if (this.props.location.pathname === "/dashboard"){
-      scroll_class = this.state.stick ? "stick-nav" : "stay";
+      scroll_class = this.state.stick ? "stick-nav" : "";
     }
 
     let search_class;
